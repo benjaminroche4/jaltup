@@ -10,6 +10,7 @@ module.exports = {
         'main':'#0F0049',
         'second':'#714EFF',
         'light': '#FFF5F1',
+        'pastel-jaltup': '#FED6B0',
       }
     },
   },
