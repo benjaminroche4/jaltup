@@ -38,12 +38,10 @@
 }
 
 body{
-    background-color : #FFF5F1;
+    background-color : #FFFFFF;
 }
 
-html{
-    scroll-behavior: smooth;
-}
+
 
 body{
     font-family: 'Satoshi', sans-serif;

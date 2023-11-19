@@ -3,7 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <section class="relative isolate">
+    <section class="relative isolate bg-light">
         <div class="absolute inset-x-0 -top-40 -z-40 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none" aria-hidden="true">
             <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
@@ -12,30 +12,31 @@
                 <h1 class="text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                     Trouver votre prochaine alternance en tant que<br/>
                     <span
-                                    {{ stimulus_controller('symfony/ux-typed', {
-                                        strings: [
-                                            'développeur web',
-                                            'plombier',
-                                            'chargé de clientèle',
-                                            'boulanger',
-                                        ],
-                                        loop: true,
-                                        showCursor: true,
-                                    }) }} class="text-second"
+                        {{ stimulus_controller('symfony/ux-typed', {
+                            strings: [
+                                'développeur web',
+                                'plombier',
+                                'chargé de clientèle',
+                                'boulanger',
+                                'agent d\'accueil',
+                            ],
+                            loop: true,
+                            showCursor: true,
+                        }) }} class="text-second"
                     ></span>
                 </h1>
                 <p class="mt-6 text-center sm:text-left sm:text-lg max-w-lg leading-8 text-gray-600">Choisissez votre alternance parmis <span class="font-semibold text-main">459 annonces</span> vérifiées.</p>
                 <div class="mt-10 flex items-center gap-x-6 justify-center sm:justify-start">
-                    <a href="#" class="rounded-full bg-main px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-second">Trouver mon alternance</a>
+                    <a href="#" class="rounded-full bg-main px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-main-light">Trouver mon alternance</a>
                 </div>
             </div>
             <div class="relative mx-auto justify-center w-full h-full lg:max-w-md mt-10 lg:mt-0">
-                    <img class="mx-auto w-10/12 lg:w-full" src="{{ asset('media/site/frame.svg') }}" alt="">
+                <img class="mx-auto w-11/12 lg:w-full" src="{{ asset('media/site/frame.png') }}" alt="">
             </div>
         </div>
     </section>
 
-    <section class="bg-white py-24">
+    <section class="py-12 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                 <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
@@ -47,20 +48,18 @@
         </div>
     </section>
 
-    <section class="bg-white py-24 sm:py-32">
+    <section class="py-12 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl lg:text-center">
-                <h2 class="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Le job board dédié à l'alternance</p>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.</p>
+            <div class="mx-auto max-w-2xl lg:text-center space-y-6">
+                <h2 class="text-3xl font-bold tracking-tight text-main sm:text-4xl">Le job board dédié à l'alternance</h2>
             </div>
             <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-                    <div class="flex flex-col">
+                <dl class="grid grid-cols-1 gap-x-12 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                    <div class="flex flex-col bg-light rounded-2xl p-6">
                         <dt class="text-lg font-semibold leading-7 text-gray-900">
-                            <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-cyan-400">
-                                <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-second">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
                                 </svg>
                             </div>
                             Assurance 1
@@ -72,14 +71,14 @@
                             </p>
                         </dd>
                     </div>
-                    <div class="flex flex-col">
+                    <div class="flex flex-col bg-light rounded-2xl p-6">
                         <dt class="text-lg font-semibold leading-7 text-gray-900">
-                            <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-orange-400">
-                                <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-second">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                 </svg>
                             </div>
-                            Assurance 1
+                            Assurance 2
                         </dt>
                         <dd class="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
                             <p class="flex-auto">Non quo aperiam repellendus quas est est. Eos aut dolore aut ut sit nesciunt. Ex tempora quia. Sit nobis consequatur dolores incidunt.</p>
@@ -88,14 +87,14 @@
                             </p>
                         </dd>
                     </div>
-                    <div class="flex flex-col">
+                    <div class="flex flex-col bg-light rounded-2xl p-6">
                         <dt class="text-lg font-semibold leading-7 text-gray-900">
-                            <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-lg bg-green-400">
-                                <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-second">
+                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
                                 </svg>
                             </div>
-                            Assurance 1
+                            Assurance 3
                         </dt>
                         <dd class="mt-1 flex flex-auto flex-col text-base leading-7 text-gray-600">
                             <p class="flex-auto">Non quo aperiam repellendus quas est est. Eos aut dolore aut ut sit nesciunt. Ex tempora quia. Sit nobis consequatur dolores incidunt.</p>
@@ -109,6 +108,190 @@
         </div>
     </section>
 
+    <section class="py-12 sm:py-16">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                <div class="flex items-center justify-left lg:justify-start lg:pl-4 lg:ml-auto">
+                    <div class="lg:max-w-lg space-y-6">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Soyez le premier avertis des annonces sur le marché</h2>
+                        <p class="leading-8 text-gray-600">See which work apps your team is working in, and join the work apps your team is working in, and join them with a click. Shared cursors equals better than screen-sharing.</p>
+                        <dl class="col-span-2 grid grid-cols-1 gap-x-8 text-base leading-7 text-gray-600 sm:grid-cols-2 gap-y-5 border-t pt-9">
+                            <div class="relative pl-10">
+                                <dt class="font-medium text-main">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                        <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                    </svg>
+                                    Soyez notifié
+                                </dt>
+                            </div>
+                            <div class="relative pl-10">
+                                <dt class="font-medium text-main">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                        <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                    </svg>
+                                    Annonces vérifiés
+                                </dt>
+                            </div>
+                            <div class="relative pl-10">
+                                <dt class="font-medium text-main">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                        <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                    </svg>
+                                    Mentor dispoible 24/7
+                                </dt>
+                            </div>
+                            <div class="relative pl-10">
+                                <dt class="font-medium text-main">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                        <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                    </svg>
+                                    Organize your data
+                                </dt>
+                            </div>
+                            <div class="relative pl-10">
+                                <dt class="font-medium text-main">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                        <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                    </svg>
+                                    Tous secteurs d'activités
+                                </dt>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="flex items-start justify-center order-first">
+                    <img src="{{ asset('media/site/main-photo.png') }}" alt="#" class="sm:w-10/12">
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="py-12 sm:py-16">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                <div class="flex items-center justify-left lg:justify-start lg:pl-4 lg:ml-auto order-2 lg:order-1">
+                    <div class="lg:max-w-lg space-y-6">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Des étudiants et mentors disponibles 24/7</h2>
+                        <p class="leading-8 text-gray-600">See which work apps your team is working in, and join the work apps your team is working in, and join them with a click. Shared cursors equals better than screen-sharing.</p>
+                        <dl class="mt-16 grid max-w-xl gap-8 sm:mt-20 grid-cols-2 xl:mt-16 pt-9">
+                            <div class="flex flex-col gap-y-3 border-l border-gray-900/10 pl-6">
+                                <dt class="text-sm leading-6 text-gray-600">entreprises inscrites</dt>
+                                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">400+</dd>
+                            </div>
+                            <div class="flex flex-col gap-y-3 border-l border-gray-900/10 pl-6">
+                                <dt class="text-sm leading-6 text-gray-600">alternances trouvées</dt>
+                                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">1780</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="flex items-start justify-center order-1 lg:order-2">
+                    <img src={{ asset('media/site/image-2.png') }}#" alt="#" class="sm:w-10/12">
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section class="py-12 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-3xl divide-y divide-gray-900/10">
+                <h2 class="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl">Frequently asked questions</h2>
+                <dl class="mt-16 space-y-6 divide-y divide-gray-900/10">
+                    <div class="pt-6" x-data="{ open : false }">
+                        <dt>
+                            <button @click="open = ! open" type="button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" aria-expanded="false">
+                                <span class="text-base font-semibold leading-7">Est-ce que c'est gratuit de s'inscrire ?</span>
+                                <span class="ml-6 flex h-7 items-center">
+                                <svg x-show="!open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                </svg>
+                                <svg x-show="open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                </svg>
+                              </span>
+                            </button>
+                        </dt>
+                        <dd class="mt-2 pr-12" x-show="open">
+                            <p class="text-base leading-7 text-gray-600">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+                        </dd>
+                    </div>
+                    <div class="pt-6" x-data="{ open : false }">
+                        <dt>
+                            <button @click="open = ! open" type="button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" aria-expanded="false">
+                                <span class="text-base font-semibold leading-7">Est-ce que c'est gratuit de s'inscrire ?</span>
+                                <span class="ml-6 flex h-7 items-center">
+                                <svg x-show="!open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                </svg>
+                                <svg x-show="open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                </svg>
+                              </span>
+                            </button>
+                        </dt>
+                        <dd class="mt-2 pr-12" x-show="open">
+                            <p class="text-base leading-7 text-gray-600">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+                        </dd>
+                    </div>
+                    <div class="pt-6" x-data="{ open : false }">
+                        <dt>
+                            <button @click="open = ! open" type="button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" aria-expanded="false">
+                                <span class="text-base font-semibold leading-7">Comment ça se passe quand je suis inscrit ?</span>
+                                <span class="ml-6 flex h-7 items-center">
+                                <svg x-show="!open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                </svg>
+                                <svg x-show="open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                </svg>
+                              </span>
+                            </button>
+                        </dt>
+                        <dd class="mt-2 pr-12" x-show="open">
+                            <p class="text-base leading-7 text-gray-600">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+                        </dd>
+                    </div>
+                    <div class="pt-6" x-data="{ open : false }">
+                        <dt>
+                            <button @click="open = ! open" type="button" class="flex w-full items-start justify-between text-left text-gray-900" aria-controls="faq-0" aria-expanded="false">
+                                <span class="text-base font-semibold leading-7">Encore une autre question ici ?</span>
+                                <span class="ml-6 flex h-7 items-center">
+                                <svg x-show="!open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                </svg>
+                                <svg x-show="open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                </svg>
+                              </span>
+                            </button>
+                        </dt>
+                        <dd class="mt-2 pr-12" x-show="open">
+                            <p class="text-base leading-7 text-gray-600">I don&#039;t know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.</p>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative isolate overflow-hidden bg-light py-12 sm:py-24">
+        <div class="px-6 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-main sm:text-4xl">Trouver votre alternance<br>dès aujourd'hui</h2>
+                <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.</p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <a href="#" class="rounded-full bg-main px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-main-light transition duration-200">Créer mon compte gratuitement</a>
+                </div>
+            </div>
+        </div>
+        <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+            <circle cx="512" cy="512" r="512" fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fill-opacity="0.5" />
+            <defs>
+                <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369">
+                    <stop stop-color="#7775D6" />
+                    <stop offset="1" stop-color="#E935C1" />
+                </radialGradient>
+            </defs>
+        </svg>
+    </section>
 {% endblock %}
