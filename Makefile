@@ -23,3 +23,6 @@ stop:
 #Clear cache
 clear:
 	@php bin/console cache:clear
+
+creata-database:
+	@php bin/console doctrine:database:create
