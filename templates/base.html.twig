@@ -15,7 +15,7 @@
         {% endblock %}
     </head>
     <body>
-        <header class="bg-light">
+        <header class="bg-pastel-light">
             <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="{{ path('app_home') }}" class="-m-1.5 p-1.5">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="hidden lg:flex flex-1 items-center justify-end gap-x-6">
                     <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Se connecter</a>
-                    <a href="#" class="rounded-full bg-main px-4 py-3 text-sm font-semibold text-white hover:bg-main-light transition duration-200">Créer mon compte</a>
+                    <a href="{{ path('app_register') }}" class="rounded-full bg-main px-4 py-3 text-sm font-semibold text-white hover:bg-main-light transition duration-200">Créer mon compte</a>
                 </div>
                 <!-- Mobile menu, show/hide based on menu open state. -->
                 <div x-data="{ isOpen: false }">
@@ -67,7 +67,7 @@
                                         <a href="#" class="-mx-3 block rounded-lg px-3 py-6 text-lg font-medium leading-7 text-gray-900">Se connecter</a>
                                     </div>
                                     <div class="py-3">
-                                        <a href="#" class="-mx-3 block rounded-full px-2.5 py-3 text-lg font-semibold leading-7 text-white hover:bg-main-light bg-main text-center transition duration-200">Créer mon compte</a>
+                                        <a href="{{ path('app_register') }}" class="-mx-3 block rounded-full px-2.5 py-3 text-lg font-semibold leading-7 text-white hover:bg-main-light bg-main text-center transition duration-200">Créer mon compte</a>
                                     </div>
                                 </div>
                             </div>

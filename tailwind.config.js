@@ -11,11 +11,13 @@ module.exports = {
         'main-light':'#594893',
         'second':'#714EFF',
         'second-light':'#edeafd',
-        'light': '#FFF5F1',
+        'pastel-light': '#FFF5F1',
         'pastel-strong': '#FED6B0',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 
