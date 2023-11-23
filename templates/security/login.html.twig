@@ -1,0 +1,48 @@
+{% extends 'auth_base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block body %}
+    <div class="absolute inset-x-0 -top-40 -z-40 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none" aria-hidden="true">
+        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="flex min-h-full flex-col justify-center py-10 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md space-y-2">
+            <h2 class="px-2 sm:px-0 text-center text-2xl font-bold leading-9 tracking-tight text-main">Nous sommes heureux de vous revoir !</h2>
+            <p class="text-center text-sm font-normal leading-9 tracking-tight text-main">Vous n'avez pas de compte Jaltup ? <a href="{{ path('app_register') }}" class="font-medium underline">Inscrivez-vous</a></p>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[580px] px-6 sm:px-12 space-y-6">
+            <div>
+                <form method="post" class="space-y-6">
+                    {% if error %}
+                        <div class="bg-red-100 border border-red-600 py-3 px-4 rounded-lg text-red-600 space-y-1">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+                    <div>
+                        <label for="inputEmail" class="block font-medium leading-6 text-gray-900">Votre adresse email</label>
+                        <div class="mt-2">
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="block w-full rounded-lg border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:leading-6" autocomplete="email" required autofocus>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="inputPassword" class="block font-medium leading-6 text-gray-900">Votre mot de passe</label>
+                        <div class="mt-2">
+                            <input type="password" name="password" id="inputPassword" class="block w-full rounded-lg border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:leading-6" autocomplete="current-password" required>
+                        </div>
+                    </div>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <div>
+                        <button type="submit" class="flex w-full justify-center rounded-full bg-main py-3 font-semibold leading-6 text-white shadow-sm hover:bg-main-light transition duration-200">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <p class="text-center text-sm font-normal leading-6 tracking-tight text-main"><a class="font-medium underline">Mot de passe oublié ?</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

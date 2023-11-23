@@ -15,6 +15,23 @@
         {% endblock %}
     </head>
     <body class="h-full">
+    <header class="shadow">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <div class="flex justify-center">
+                <span class="sr-only">Jaltup</span>
+                <img class="h-6 w-auto" src="{{ asset('media/logo/logo-jaltup.png') }}" alt="">
+            </div>
+            <div class="flex flex-1 justify-end">
+                <a href="{{ path('app_home') }}" class="-m-2.5 p-2.5 text-gray-700 rounded-full hover:bg-white hover:rounded-full transition duration-200">
+                    <span class="sr-only">Revenir</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
         <main>
             {% block body %}{% endblock %}
         </main>

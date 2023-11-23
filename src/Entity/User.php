@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'Cette adresse e-mail est déjà liée à un compte existant.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -23,63 +23,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private array $roles = [];
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\Length(
-        min: 5,
-        max: 255,
-        minMessage: 'Ce champ doit faire au minimum {{ limit }} caractères.',
-        maxMessage: 'Ce champ doit faire au maximum {{ limit }} caractères.',
-    )]
     private ?string $email = null;
-
-    #[ORM\Column(length: 60)]
-    #[Assert\Length(
-        min: 2,
-        max: 60,
-        minMessage: 'Ce champ doit faire au minimum {{ limit }} caractères.',
-        maxMessage: 'Ce champ doit faire au maximum {{ limit }} caractères.',
-    )]
-    private ?string $firstName = null;
-
-    #[ORM\Column(length: 60)]
-    #[Assert\Length(
-        min: 2,
-        max: 60,
-        minMessage: 'Ce champ doit faire au minimum {{ limit }} caractères.',
-        maxMessage: 'Ce champ doit faire au maximum {{ limit }} caractères.',
-    )]
-    private ?string $lastName = null;
-
-    #[ORM\Column(length: 255)]
-    #[Assert\Length(
-        min: 3,
-        max: 255,
-        minMessage: 'Ce champ doit faire au minimum {{ limit }} caractères.',
-        maxMessage: 'Ce champ doit faire au maximum {{ limit }} caractères.',
-    )]
-    private ?string $educationLevel = null;
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\Length(
-        min: 5,
-        max: 255,
-        minMessage: 'Ce champ doit faire au minimum {{ limit }} caractères.',
-        maxMessage: 'Ce champ doit faire au maximum {{ limit }} caractères.',
-    )]
     private ?string $password = null;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
-
-    #[ORM\Column]
-    private ?bool $acceptTerms = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $userIP = null;
 
+    #[ORM\Column]
+    #[Assert\Date]
+    private ?\DateTimeImmutable $createdAt = null;
+
     #[ORM\Column(nullable: true)]
+    #[Assert\Date]
     private ?\DateTimeImmutable $lastLogin = null;
 
     public function getId(): ?int
@@ -164,42 +124,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): static
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): static
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function isAcceptTerms(): ?bool
-    {
-        return $this->acceptTerms;
-    }
-
-    public function setAcceptTerms(bool $acceptTerms): static
-    {
-        $this->acceptTerms = $acceptTerms;
-
-        return $this;
-    }
-
     public function getUserIP(): ?string
     {
         return $this->userIP;
@@ -220,18 +144,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastLogin(?\DateTimeImmutable $lastLogin): static
     {
         $this->lastLogin = $lastLogin;
-
-        return $this;
-    }
-
-    public function getEducationLevel(): ?string
-    {
-        return $this->educationLevel;
-    }
-
-    public function setEducationLevel(string $educationLevel): static
-    {
-        $this->educationLevel = $educationLevel;
 
         return $this;
     }

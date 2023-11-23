@@ -29,7 +29,7 @@
                     <a href="#" class="text-sm font-medium leading-6 text-gray-900">À propos</a>
                 </div>
                 <div class="hidden lg:flex flex-1 items-center justify-end gap-x-6">
-                    <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Se connecter</a>
+                    <a href="{{ path('app_login') }}" class="block text-sm font-semibold leading-6 text-gray-900">Se connecter</a>
                     <a href="{{ path('app_register') }}" class="rounded-full bg-main px-4 py-3 text-sm font-semibold text-white hover:bg-main-light transition duration-200">Créer mon compte</a>
                 </div>
                 <!-- Mobile menu, show/hide based on menu open state. -->
@@ -45,7 +45,7 @@
                     <div x-show="isOpen" x-show="isOpen" class="lg:hidden" role="dialog" aria-modal="true">
                         <!-- Background backdrop, show/hide based on slide-over state. -->
                         <div class="fixed inset-0 z-10"></div>
-                        <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-light px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                        <div class="bg-pastel-light fixed inset-y-0 right-0 z-10 w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                             <div class="flex items-center justify-between">
                                 <a href="#" class="-m-1.5 p-1.5">
                                     <span class="sr-only">Jaltup</span>
@@ -64,10 +64,10 @@
                                         <a href="#" class="-mx-3 block rounded-lg px-3 py-6 text-lg font-medium leading-7 text-gray-900">Fonctionnement</a>
                                         <a href="#" class="-mx-3 block rounded-lg px-3 py-6 text-lg font-medium leading-7 text-gray-900">Entreprises</a>
                                         <a href="#" class="-mx-3 block rounded-lg px-3 py-6 text-lg font-medium leading-7 text-gray-900">À propos</a>
-                                        <a href="#" class="-mx-3 block rounded-lg px-3 py-6 text-lg font-medium leading-7 text-gray-900">Se connecter</a>
                                     </div>
-                                    <div class="py-3">
-                                        <a href="{{ path('app_register') }}" class="-mx-3 block rounded-full px-2.5 py-3 text-lg font-semibold leading-7 text-white hover:bg-main-light bg-main text-center transition duration-200">Créer mon compte</a>
+                                    <div class="py-3 space-y-4">
+                                        <a href="{{ path('app_login') }}" class="-mx-3 block rounded-full px-2.5 py-3 font-semibold leading-7 text-main hover:bg-white border border-main border-1 text-center transition duration-200">Se connecter</a>
+                                        <a href="{{ path('app_register') }}" class="-mx-3 block rounded-full px-2.5 py-3 font-semibold leading-7 text-white hover:bg-main-light bg-main text-center transition duration-200">Créer mon compte</a>
                                     </div>
                                 </div>
                             </div>
