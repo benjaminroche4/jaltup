@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
                         'min' => 6,
                         'max' => 255,
                         'minMessage' => 'Le champ e-amil doit faire au minimum {{ limit }} caractères',
-                        'maxMessage' => 'Le champ e-amil doit faire au maximul {{ limit }} caractères',
+                        'maxMessage' => 'Le champ e-amil doit faire au maximum {{ limit }} caractères',
                     ]),
                 ],
             ])
