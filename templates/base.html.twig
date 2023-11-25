@@ -16,7 +16,7 @@
     </head>
     <body>
         <header class="bg-pastel-light">
-            <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <nav class="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">
                 <div class="flex lg:flex-1">
                     <a href="{{ path('app_home') }}" class="-m-1.5 p-1.5">
                         <span class="sr-only">Jaltup</span>
@@ -24,13 +24,13 @@
                     </a>
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
-                    <a href="#" class="text-sm font-medium leading-6 text-gray-900">Fonctionnement</a>
-                    <a href="#" class="text-sm font-medium leading-6 text-gray-900">Entreprises</a>
-                    <a href="#" class="text-sm font-medium leading-6 text-gray-900">À propos</a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Fonctionnement</a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Entreprises</a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">À propos</a>
                 </div>
-                <div class="hidden lg:flex flex-1 items-center justify-end gap-x-6">
-                    <a href="{{ path('app_login') }}" class="block text-sm font-semibold leading-6 text-gray-900">Se connecter</a>
-                    <a href="{{ path('app_register') }}" class="rounded-full bg-main px-4 py-3 text-sm font-semibold text-white hover:bg-main-light transition duration-200">Créer mon compte</a>
+                <div class="hidden lg:flex flex-1 items-center justify-end gap-x-2.5">
+                    <a href="{{ path('app_login') }}" class="text-sm border border-main px-4 py-2 rounded-full font-semibold leading-6 text-gray-900 hover:bg-white transition duration-200">Se connecter</a>
+                    <a href="{{ path('app_register') }}" class="text-sm bg-main rounded-full px-4 py-2 font-semibold text-white leading-6 hover:bg-main-light transition duration-200">Créer mon compte</a>
                 </div>
                 <!-- Mobile menu, show/hide based on menu open state. -->
                 <div x-data="{ isOpen: false }">

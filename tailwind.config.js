@@ -13,6 +13,7 @@ module.exports = {
         'second-light':'#edeafd',
         'pastel-light': '#FFF5F1',
         'pastel-strong': '#FED6B0',
+        'gray-light': '#F2F3F7',
       }
     },
   },

@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Date]
     private ?\DateTimeImmutable $lastLogin = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $uniqueId = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -144,6 +147,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastLogin(?\DateTimeImmutable $lastLogin): static
     {
         $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    public function getUniqueId(): ?string
+    {
+        return $this->uniqueId;
+    }
+
+    public function setUniqueId(string $uniqueId): static
+    {
+        $this->uniqueId = $uniqueId;
 
         return $this;
     }
