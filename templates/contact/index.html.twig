@@ -3,58 +3,129 @@
 {% block title %}Contactez-nous{% endblock %}
 
 {% block body %}
-    <section class="isolate bg-pastel-light px-6 py-24 lg:px-8">
+    <section class="isolate bg-pastel-light px-6 py-20 lg:px-8">
         <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem] pointer-events-none" aria-hidden="true">
             <div class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
-        <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contacter le support</h2>
-            <p class="mt-2 text-lg leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+        <div class="mx-auto max-w-2xl text-center space-y-10">
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contactez-nous</h1>
+                <p class="mt-2 leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
+            </div>
+            {% for message in app.flashes('contactSuccess') %}
+                <div class="text-left rounded-2xl bg-green-50 p-8 mb-10 border-solid border border-green-500">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-6 w-6 text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="font-medium text-green-800">{{ message }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-2 lg:gap-8 text-left">
+                <div class="rounded-2xl border border-main border-dotted p-8">
+                    <div class="justify-between flex">
+                        <h3 class="text-base font-semibold leading-7 text-gray-900">E-mail</h3>
+                        <span class="relative flex h-3 w-3 mt-2">
+                            {% set now = "now"|date("G") %}
+                            {% set day = "now"|date("N") %}
+                            {% if (day >= 1 and day <= 6 and now >= 9 and now < 18) %}
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            {% else %}
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                            {% endif %}
+                        </span>
+                    </div>
+                    <dl class="mt-3 space-y-1 text-sm leading-6 text-gray-600">
+                        <div>
+                            <dt class="sr-only">E-mail</dt>
+                            <dd><a class="font-semibold text-second" href="mailto:contact@jaltup.com">contact@jaltup.com</a></dd>
+                        </div>
+                        <div class="mt-1">
+                            <dt class="sr-only">Horraire</dt>
+                            <dd>Lun - Sam / 09:00 - 18:00</dd>
+                        </div>
+                    </dl>
+                </div>
+                <div class="rounded-2xl border border-main border-dotted p-8">
+                    <div class="justify-between flex">
+                        <h3 class="text-base font-semibold leading-7 text-gray-900">Téléphone</h3>
+                        <span class="relative flex h-3 w-3 mt-2">
+                            {% set now = "now"|date("G") %}
+                            {% set day = "now"|date("N") %}
+                            {% if (day >= 1 and day <= 5 and now >= 9 and now < 18) %}
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            {% else %}
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                            {% endif %}
+                        </span>
+                    </div>
+                    <dl class="mt-3 space-y-1 text-sm leading-6 text-gray-600">
+                        <div>
+                            <dt class="sr-only">Téléphone</dt>
+                            <dd class="flex justify-between"><a class="font-semibold text-second" href="tel:0000000">01 48 23 91 90</a><p class="text-gray-500">(Appel gratuit)</p></dd>
+                        </div>
+                        <div class="mt-1">
+                            <dt class="sr-only">Horraire</dt>
+                            <dd>Lun - Ven / 09:00 - 18:00</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
         </div>
-        {{ form_start(form, {'attr': {'class':'mx-auto mt-16 max-w-xl sm:mt-20'}}) }}
+        {{ form_start(form, {'attr': {'class':'mx-auto mt-16 max-w-xl'}}) }}
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
-                    <label class="block text-sm font-semibold leading-6 text-gray-900">{{ form_label(form.fullName, 'Nom/Prénom') }}</label>
+                    <label class="block font-medium leading-6 text-gray-900">{{ form_label(form.fullName, 'Nom/Prénom') }}</label>
                     <div class="mt-2.5">
-                        {{ form_widget(form.fullName, {'attr': {'class':'block w-full rounded-md border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
+                        {{ form_widget(form.fullName, {'attr': {'class':'block w-full rounded-lg border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
                     </div>
                 </div>
                 <div>
-                    <div class="flex justify-between text-sm leading-6">
-                        <label class="block font-semibold text-gray-900">{{ form_label(form.society, 'Société') }}</label>
-                        <p id="message-description" class="text-gray-500">Optionel</p>
+                    <div class="flex justify-between leading-6">
+                        <label class="block font-medium text-gray-900">{{ form_label(form.society, 'Société') }}</label>
+                        <p class="text-gray-500">Optionel</p>
                     </div>
                     <div class="mt-2.5">
-                        {{ form_widget(form.society, {'attr': {'class':'block w-full rounded-md border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold leading-6 text-gray-900">{{ form_label(form.email, 'E-mail') }}</label>
-                    <div class="mt-2.5">
-                        {{ form_widget(form.email, {'attr': {'class':'block w-full rounded-md border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
+                        {{ form_widget(form.society, {'attr': {'class':'block w-full rounded-lg border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-semibold leading-6 text-gray-900">{{ form_label(form.phoneNumber, 'Téléphone') }}</label>
+                    <label class="block font-medium leading-6 text-gray-900">{{ form_label(form.email, 'E-mail') }}</label>
                     <div class="mt-2.5">
-                        {{ form_widget(form.phoneNumber, {'attr': {'class':'block w-full rounded-md border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
+                        {{ form_widget(form.email, {'attr': {'class':'block w-full rounded-lg border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between leading-6">
+                        <label class="block font-medium text-gray-900">{{ form_label(form.phoneNumber, 'Téléphone') }}</label>
+                        <p class="text-gray-500">Optionel</p>
+                    </div>
+                    <div class="mt-2.5">
+                        {{ form_widget(form.phoneNumber, {'attr': {'class':'block w-full rounded-lg border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
                     </div>
                 </div>
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-semibold leading-6 text-gray-900">{{ form_label(form.subject, 'Sujet') }}</label>
+                    <label class="block font-medium leading-6 text-gray-900">{{ form_label(form.subject, 'Sujet') }}</label>
                     <div class="mt-2.5">
-                        {{ form_widget(form.subject, {'attr': {'class':'block w-full rounded-md border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
+                        {{ form_widget(form.subject, {'attr': {'class':'block w-full rounded-lg border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
                     </div>
                 </div>
                 <div class="sm:col-span-2">
-                    <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">{{ form_label(form.message, 'Message') }}</label>
+                    <label for="message" class="block font-medium leading-6 text-gray-900">{{ form_label(form.message, 'Message') }}</label>
                     <div class="mt-2.5">
-                        {{ form_widget(form.message, {'attr': {'rows':'4', 'class':'block w-full rounded-md border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
+                        {{ form_widget(form.message, {'attr': {'rows':'4', 'class':'block w-full rounded-lg border-0 px-3.5 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-second sm:text-sm sm:leading-6'}}) }}
                     </div>
                 </div>
             </div>
             <div class="mt-10">
-                <button type="submit" class="block w-full rounded-full bg-main px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:main-light transition duration-200">Envoyer</button>
+                <button type="submit" class="block w-full rounded-full bg-main px-3.5 py-3 text-center font-semibold text-white shadow-sm hover:main-light transition duration-200">Envoyer</button>
             </div>
         {{ form_end(form) }}
     </section>

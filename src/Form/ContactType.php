@@ -56,6 +56,7 @@ class ContactType extends AbstractType
                         'maxMessage' => 'Votre numéro doit faire au maximum {{ limit }} caractères',
                     ]),
                 ],
+                'required' => false,
             ])
             ->add('society', TextType::class, [
                 'constraints' => [
@@ -66,6 +67,7 @@ class ContactType extends AbstractType
                         'maxMessage' => 'Le champ société doit faire au maximum {{ limit }} caractères',
                     ]),
                 ],
+                'required' => false,
             ])
             ->add('subject', ChoiceType::class, [
                 'choices'  => [

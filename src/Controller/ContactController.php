@@ -55,7 +55,7 @@ class ContactController extends AbstractController
                 $logger->error('Erreur lors de l\'envoi de l\'email :'. $e->getMessage());
             }
 
-            $this->addFlash('contactSuccess', 'Message envoyé. Un conseiller va vous recontacter rapidement.');
+            $this->addFlash('contactSuccess', 'Nous avons bien reçu votre demande. Un membre du support va vous recontacter sous 24 heures.');
             return $this->redirectToRoute('app_contact');
         }
 
