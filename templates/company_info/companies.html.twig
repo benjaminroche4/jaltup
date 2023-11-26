@@ -3,5 +3,49 @@
 {% block title %}Travailler avec Jaltup{% endblock %}
 
 {% block body %}
-
+    <section class="relative isolate bg-pastel-light">
+        <div class="absolute inset-x-0 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="z-20 mx-auto max-w-7xl px-6 py-12 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
+            <div class="mx-auto max-w-2xl lg:mx-0 lg:flex-auto space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">Jaltup, <br/>la première communauté d'alternants en France</h2>
+                    <h1 class="text-center lg:text-left text-3xl font-bold tracking-tight text-main sm:text-5xl lg:text-6xl">Recruter vos futurs talents</h1>
+                </div>
+                <dl class=" grid grid-cols-1 text-base leading-7 text-gray-600 gap-y-5">
+                    <div class="relative pl-10">
+                        <dt class="font-medium text-main">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                            </svg>
+                            Une plateforme digitale pour optimiser vos recrutements d'alternants
+                        </dt>
+                    </div>
+                    <div class="relative pl-10">
+                        <dt class="font-medium text-main">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                            </svg>
+                            Les candidats adaptés à votre secteur et à vos fonctions
+                        </dt>
+                    </div>
+                    <div class="relative pl-10">
+                        <dt class="font-medium text-main">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="absolute left-0 h-7 w-7 text-green-400">
+                                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                            </svg>
+                            Des outils adapter pour suivre le parcours de vos alternants
+                        </dt>
+                    </div>
+                </dl>
+                <div class="flex items-center gap-x-6 justify-center lg:justify-start">
+                    <a href="{{ path('app_register') }}" class="rounded-full bg-main px-6 py-4 text-sm leading-6 font-semibold text-white shadow-sm transition duration-200 hover:bg-main-light">Rejoindre la communauté</a>
+                </div>
+            </div>
+            <div class="relative mx-auto justify-center w-full h-full lg:max-w-md mt-10 lg:mt-0">
+                <img class="mx-auto w-11/12 lg:w-full" src="{{ asset('media/site/frame.png') }}" alt="">
+            </div>
+        </div>
+    </section>
 {% endblock %}

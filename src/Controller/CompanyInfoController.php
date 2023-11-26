@@ -11,7 +11,7 @@ class CompanyInfoController extends AbstractController
     #[Route('/fonctionnement', name: 'app_functioning')]
     public function functionning(): Response
     {
-        return $this->render('company_info/fonctionning.html.twig');
+        return $this->render('company_info/functioning.html.twig');
     }
 
     #[Route('/entreprises', name: 'app_companies')]

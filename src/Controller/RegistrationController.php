@@ -49,6 +49,7 @@ class RegistrationController extends AbstractController
 
             $authenticator->authenticateUser($user, $formLoginAuthenticator, $request);
 
+            /** TODO: Redirect route */
             return $this->redirectToRoute('app_home');
         }
 
