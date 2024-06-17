@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OfferController!{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-medium">Offres</h1>
+    {% for offer in offers %}
+        <div class="p-4">
+            <br/>{{ offer.title }}
+            <br/>{{ offer.company.name }}
+            <br/>{{ offer.locationCountry }}
+            <br/>{{ offer.locationCity }}
+            <br/>{{ offer.createdAt|date('d/m/Y') }}
+            <br/>{{ offer.intershipStart|date('d/m/Y') }}
+            <br/>{{ offer.intershipDuration }} mois
+            <br/>{{ offer.studyLevel }}
+            <br/>{% if offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
+            <br/><img class="rounded-full h-8 w-auto" src="{{ offer.company.logo }}"/>
+            <br/><a class="text-red-400" href="{{ path('app_offer_details', {'slug': offer.slug}) }}">Voir</a>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ offer.title }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-medium">Details</h1>
+    <br/>{{ offer.title }}
+    <br/>{{ offer.createdAt|date('d/m/Y') }}
+    <br/>{{ offer.description }}
+    <br/>{{ offer.sourceLink }}
+    <br/>{{ offer.locationCountry }}
+    <br/>{{ offer.locationCity }}
+    <br/>{% if offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
+    <br/>{{ offer.studyLevel }}
+    <br/>{{ offer.intershipStart|date('d/m/Y') }}
+    <br/>{{ offer.intershipDuration }} mois
+    <br/>{{ offer.company.name }}
+    <br/><img class="rounded-full h-8 w-auto" src="{{ offer.company.logo }}"/>
+    <br/>{{ offer.company.website }}
+    <br/>{{ offer.category.name }}
+{% endblock %}
