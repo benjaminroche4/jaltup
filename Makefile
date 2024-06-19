@@ -3,3 +3,6 @@ start:
 
 watch:
 	npm run watch
+
+fixture:
+	php bin/console doctrine:fixtures:load
