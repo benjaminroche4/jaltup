@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
+use App\Model\OfferSearchData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,6 +17,11 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
+    /**
+     * Find all offers by date desc and visibility
+     *
+     * @return Offer[]
+     */
     public function findAllByDateDescAndVisibility()
     {
         return $this->createQueryBuilder('o')
@@ -23,6 +29,36 @@ class OfferRepository extends ServiceEntityRepository
             ->setParameter('visibility', true)
             ->orderBy('o.createdAt', 'DESC')
             ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Search by Location City / Title / Company Name
+     *
+     * @param OfferSearchData $searchData
+     * @return mixed
+     */
+    public function findBySearch(OfferSearchData $searchData): mixed
+    {
+        $offers = $this->createQueryBuilder('o')
+            ->join('o.company', 'c')
+            ->where('o.visibility = :visibility')
+            ->setParameter('visibility', true)
+            ->orderBy('o.createdAt', 'DESC');
+
+        if(!empty($searchData->query)) {
+            $offers = $offers
+                ->andWhere(
+                    $offers->expr()->orX(
+                        $offers->expr()->like('o.locationCity', ':query'),
+                        $offers->expr()->like('o.title', ':query'),
+                        $offers->expr()->like('c.name', ':query')
+                    )
+                )
+                ->setParameter('query', '%' . $searchData->query . '%');
+        }
+
+        return $offers->getQuery()
             ->getResult();
     }
 }

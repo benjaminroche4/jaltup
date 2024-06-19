@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Company;
-use App\Entity\OfferCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;

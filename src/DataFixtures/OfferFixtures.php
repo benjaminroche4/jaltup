@@ -27,6 +27,7 @@ class OfferFixtures extends Fixture
             $offer->setVisibility($faker->boolean);
             $offer->setIntershipStart(new \DateTimeImmutable());
             $offer->setIntershipDuration($faker->numberBetween(1, 6));
+            $offer->setPremium($faker->boolean);
             $offer->setCategory($this->getReference(OfferCategoryFixtures::OFFER_CATEGORY_REFERENCE));
             $offer->setCompany($this->getReference(CompanyFixtures::COMPANY_REFERENCE));
 

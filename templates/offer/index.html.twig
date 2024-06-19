@@ -3,20 +3,50 @@
 {% block title %}Hello OfferController!{% endblock %}
 
 {% block body %}
-    <h1 class="text-3xl font-medium">Offres</h1>
-    {% for offer in offers %}
-        <div class="p-4">
-            <br/>{{ offer.title }}
-            <br/>{{ offer.company.name }}
-            <br/>{{ offer.locationCountry }}
-            <br/>{{ offer.locationCity }}
-            <br/>{{ offer.createdAt|date('d/m/Y') }}
-            <br/>{{ offer.intershipStart|date('d/m/Y') }}
-            <br/>{{ offer.intershipDuration }} mois
-            <br/>{{ offer.studyLevel }}
-            <br/>{% if offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
-            <br/><img class="rounded-full h-8 w-auto" src="{{ offer.company.logo }}"/>
-            <br/><a class="text-red-400" href="{{ path('app_offer_details', {'slug': offer.slug}) }}">Voir</a>
+{#
+    <div class="bg-[#141414] py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl">
+                <h1 class="text-2xl text-white font-bold tracking-tight sm:text-4xl">Trouver votre Alternance Rapidement et Facilement parmis {{ offers|length }} Offres.</h1>
+            </div>
+            <div class="mx-auto max-w-2xl mt-6">
+                <input type="search" class="block w-full rounded-full border-0 py-4 px-5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Rechercher par mots clés...">
+            </div>
         </div>
+    </div>
+#}
+
+    {{ form_start(form) }}
+        {{ form_row(form.query) }}
+        <button type="submit">Rechercher</button>
+    {{ form_end(form) }}
+
+    {% for offer in offers %}
+        {% if offer.premium == true %}
+            <div class="p-4 bg-gray-50 m-2">
+                Offre réservée aux utilisateurs Premium
+                <br/><a href="{{ path('app_offer_details', {'slug': offer.slug}) }}" class="text-red-400">S'abonner</a>
+            </div>
+        {% else %}
+            <div class="p-4 m-2 bg-gray-50">
+                <br/>{{ offer.title }}
+                <br/>{{ offer.company.name }}
+                <br/>{{ offer.locationCountry }}
+                <br/>{{ offer.locationCity }}
+                <br/>Publié {{ offer.createdAt|format_datetime('relative_short', 'none', locale='fr') }}
+                <br/>{{ offer.intershipStart|date('F Y')| format_date(locale='fr') }} commencement
+                <br/>{{ offer.intershipDuration }} mois
+                <br/>{{ offer.studyLevel }}
+                <br/>{{ offer.premium }}{% if offer.premium == true %}Offre premium{% else %}NON premium{% endif %}
+                <br/>{{ offer.visibility }} {% if offer.visibility == true %}Oui Visible{% else %}Non visisble{% endif %}
+                <br/>{% if offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
+                <br/><img class="rounded-full h-8 w-auto" src="{{ offer.company.logo }}"/>
+                <br/><a class="text-red-400" href="{{ path('app_offer_details', {'slug': offer.slug}) }}">Voir</a>
+            </div>
+        {% endif%}
     {% endfor %}
+
+    {% if offers is empty %}
+        Aucune annonce trouvé
+    {% endif %}
 {% endblock %}

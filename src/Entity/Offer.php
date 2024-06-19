@@ -58,6 +58,9 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     private ?Company $company = null;
 
+    #[ORM\Column]
+    private ?bool $premium = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -227,6 +230,18 @@ class Offer
     public function setCompany(?Company $company): static
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function isPremium(): ?bool
+    {
+        return $this->premium;
+    }
+
+    public function setPremium(bool $premium): static
+    {
+        $this->premium = $premium;
 
         return $this;
     }
