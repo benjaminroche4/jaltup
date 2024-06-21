@@ -3,19 +3,6 @@
 {% block title %}Hello OfferController!{% endblock %}
 
 {% block body %}
-{#
-    <div class="bg-[#141414] py-24 sm:py-32">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl">
-                <h1 class="text-2xl text-white font-bold tracking-tight sm:text-4xl">Trouver votre Alternance Rapidement et Facilement parmis {{ offers|length }} Offres.</h1>
-            </div>
-            <div class="mx-auto max-w-2xl mt-6">
-                <input type="search" class="block w-full rounded-full border-0 py-4 px-5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Rechercher par mots clés...">
-            </div>
-        </div>
-    </div>
-#}
-
     {{ form_start(form) }}
         {{ form_row(form.query) }}
         <button type="submit">Rechercher</button>

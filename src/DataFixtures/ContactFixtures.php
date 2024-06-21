@@ -15,17 +15,18 @@ class ContactFixtures extends Fixture
 
         for ($i = 0; $i < 20; $i++) {
             $contact = new Contact();
+            $contact->setFullName($faker->name);
             $contact->setEmail($faker->email);
+            $contact->setPhoneNumber($faker->phoneNumber);
+            $contact->setSociety($faker->company);
             $contact->setSubject($faker->sentence(5));
             $contact->setMessage($faker->paragraph(5));
             $contact->setCreatedAt(new \DateTimeImmutable());
-            $contact->setPhoneNumber($faker->phoneNumber);
-            $contact->setFullName($faker->name);
-            $contact->setSociety($faker->company);
 
             $manager->persist($contact);
         }
 
         $manager->flush();
     }
+
 }

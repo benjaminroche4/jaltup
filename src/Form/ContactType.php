@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,7 +28,7 @@ class ContactType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
                 'constraints' => [
                     new Assert\Email([
@@ -71,6 +72,7 @@ class ContactType extends AbstractType
                 ],
             ])
             ->add('message', TextType::class, [
+                'required' => false,
                 'label' => 'Message',
                 'constraints' => [
                     new Assert\Length([
