@@ -16,11 +16,11 @@
     </head>
     <body>
         <ul class="bg-green-300">
-            <li><a href="{{ path('app_offer') }}">Trouver mon d'alternance</a></li>
+            <li><a href="{{ path('app_offer') }}">Trouver mon d'alternance ({{ offers | length }})</a></li>
             <li>Écoles</li>
             <li>Bon plans</li>
             <li><a href="{{ path('app_register') }}">Inscirption</a></li>
-            <li>Login</li>
+            <li><a href="{{ path('app_login') }}">Login</a></li>
         </ul>
         {% block body %}{% endblock %}
     </body>
