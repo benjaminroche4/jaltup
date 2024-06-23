@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class OfferController extends AbstractController
 {
     public function __construct(
-        private OfferRepository $offerRepository
+        private readonly OfferRepository $offerRepository
     )
     {
     }

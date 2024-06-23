@@ -3,37 +3,6 @@
 {% block title %}Hello OfferController!{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
-        {{ form_row(form.query) }}
-        <button type="submit">Rechercher</button>
-    {{ form_end(form) }}
-
-    {% for offer in offers %}
-        {% if offer.premium == true %}
-            <div class="p-4 bg-gray-50 m-2">
-                Offre réservée aux utilisateurs Premium
-                <br/><a href="{{ path('app_offer_details', {'slug': offer.slug}) }}" class="text-red-400">S'abonner</a>
-            </div>
-        {% else %}
-            <div class="p-4 m-2 bg-gray-50">
-                <br/>{{ offer.title }}
-                <br/>{{ offer.company.name }}
-                <br/>{{ offer.locationCountry }}
-                <br/>{{ offer.locationCity }}
-                <br/>Publié {{ offer.createdAt|format_datetime('relative_short', 'none', locale='fr') }}
-                <br/>{{ offer.intershipStart|date('F Y')| format_date(locale='fr') }} commencement
-                <br/>{{ offer.intershipDuration }} mois
-                <br/>{{ offer.studyLevel }}
-                <br/>{{ offer.premium }}{% if offer.premium == true %}Offre premium{% else %}NON premium{% endif %}
-                <br/>{{ offer.visibility }} {% if offer.visibility == true %}Oui Visible{% else %}Non visisble{% endif %}
-                <br/>{% if offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
-                <br/><img class="rounded-full h-8 w-auto" src="{{ offer.company.logo }}"/>
-                <br/><a class="text-red-400" href="{{ path('app_offer_details', {'slug': offer.slug}) }}">Voir</a>
-            </div>
-        {% endif%}
-    {% endfor %}
-
-    {% if offers is empty %}
-        Aucune annonce trouvé
-    {% endif %}
+    {{ component('OfferGrid') }}
+    {{ component('OfferSearch') }}
 {% endblock %}

@@ -1,0 +1,48 @@
+<div class="OfferGrid" {{ attributes }}>
+    <div>
+        {% if page > 1 %}
+            {# Previous page #}
+            <div id="page--{{ page - 1 }}" data-live-ignore="true"></div>
+        {% endif %}
+
+        {# Current page #}
+        <div id="page--{{ page }}" data-live-ignore="true">
+            {% for item in this.items %}
+                {% if item.offer.premium == true %}
+                    <div class="bg-yellow-400 p-2 m-2">
+                        Offre réservée aux utilisateurs Premium
+                        <br/><a href="{{ path('app_offer_details', {'slug': item.offer.slug}) }}" class="text-red-400">S'abonner</a>
+                    </div>
+                {% else %}
+                    <div class="bg-yellow-300 p-2 m-2">
+                        <data class="ProductGrid_price" value="{{ item.id }}" data-currency="$">
+                            <br/>{{ item.offer.title }}
+                            <br/>{{ item.offer.company.name }}
+                            <br/>{{ item.offer.locationCountry }}
+                            <br/>{{ item.offer.locationCity }}
+                            <br/>Publié {{ item.offer.createdAt|format_datetime('relative_short', 'none', locale='fr') }}
+                            <br/>{{ item.offer.intershipStart|date('F Y')| format_date(locale='fr') }} commencement
+                            <br/>{{ item.offer.intershipDuration }} mois
+                            <br/>{{ item.offer.studyLevel }}
+                            <br/>{{ item.offer.premium }}{% if item.offer.premium == true %}Offre premium{% else %}NON premium{% endif %}
+                            <br/>{{ item.offer.visibility }} {% if item.offer.visibility == true %}Oui Visible{% else %}Non visisble{% endif %}
+                            <br/>{% if item.offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
+                            <br/><img class="rounded-full h-8 w-auto" src="{{ item.offer.company.logo }}"/>
+                            <br/><a class="text-red-400" href="{{ path('app_offer_details', {'slug': item.offer.slug}) }}">Voir</a>
+                        </data>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div>
+            {% if this.hasMore and this.items is not empty %}
+                <button data-action="live#action" data-live-action-param="more" class="OfferGrid_more">
+                    Load More
+                </button>
+            {% else %}
+                <span>Rien à afficher</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
