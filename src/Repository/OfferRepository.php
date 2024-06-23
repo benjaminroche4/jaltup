@@ -17,6 +17,15 @@ class OfferRepository extends ServiceEntityRepository implements \Countable
         parent::__construct($registry, Offer::class);
     }
 
+    public function countVisible(): int
+    {
+        return $this->createQueryBuilder('o')
+            ->select('count(o.id)')
+            ->where('o.visibility = :visibility')
+            ->setParameter('visibility', true)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
     public function paginate(int $page, int $perPage): array
     {

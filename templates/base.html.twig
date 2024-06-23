@@ -16,7 +16,7 @@
     </head>
     <body>
         <ul class="bg-green-300">
-            <li><a href="{{ path('app_offer') }}">Trouver mon d'alternance ({{ offers | length }})</a></li>
+            <li><a href="{{ path('app_offer') }}">Trouver mon d'alternance ({{ offers.countVisible() }})</a></li>
             <li>Écoles</li>
             <li>Bon plans</li>
             <li><a href="{{ path('app_register') }}">Inscirption</a></li>
