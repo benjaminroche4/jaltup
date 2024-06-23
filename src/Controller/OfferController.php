@@ -21,27 +21,7 @@ class OfferController extends AbstractController
     #[Route('/', name: 'app_offer')]
     public function index(Request $request): Response
     {
-        $offers = $this->offerRepository->findAllByDateDescAndVisibility();
-
-        $offerSearchData = new OfferSearchData();
-        $form = $this->createForm(OfferSearchType::class, $offerSearchData);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()) {
-            $offerSearchData->page = $request->query->getInt('page', 1);
-            $offers = $this->offerRepository->findBySearch($offerSearchData);
-
-            return $this->render('offer/index.html.twig', [
-                'form' => $form->createView(),
-                'offers' => $offers
-            ]);
-        }
-
-        return $this->render('offer/index.html.twig', [
-            'form' => $form->createView(),
-            'offers' => $offers
-        ]);
+        return $this->render('offer/index.html.twig');
     }
 
     #[Route('/offre/{slug}', name: 'app_offer_details')]
