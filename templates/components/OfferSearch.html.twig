@@ -9,7 +9,10 @@
     {% if computed.offers %}
         <div data-loading="addClass(opacity-50)" class="mt-3 row">
             {% for offer in computed.offers %}
-                <br/>{{ offer.title }}
+                 {% if query is empty %}
+                {% else %}
+                    <br/>{{ offer.title }}
+                {% endif %}
             {% endfor %}
         </div>
     {% else %}
