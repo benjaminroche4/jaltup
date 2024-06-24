@@ -57,4 +57,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findAllByOrderDesc()
+    {
+        return $this->createQueryBuilder('u') // 'u' is an alias for 'User'
+        ->orderBy('u.createdAt', 'DESC') // Order by 'id' in descending order
+        ->getQuery() // Get the query
+        ->getResult(); // Execute the query and get the result
+    }
 }
