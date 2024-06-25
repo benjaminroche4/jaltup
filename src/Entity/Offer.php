@@ -6,6 +6,9 @@ use App\Repository\OfferRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * This class represents an offer
+ */
 #[ORM\Entity(repositoryClass: OfferRepository::class)]
 class Offer
 {
@@ -60,6 +63,9 @@ class Offer
 
     #[ORM\Column]
     private ?bool $premium = null;
+
+    #[ORM\Column(length: 12, nullable: true)]
+    private ?string $bgColor = null;
 
     public function getId(): ?int
     {
@@ -242,6 +248,18 @@ class Offer
     public function setPremium(bool $premium): static
     {
         $this->premium = $premium;
+
+        return $this;
+    }
+
+    public function getBgColor(): ?string
+    {
+        return $this->bgColor;
+    }
+
+    public function setBgColor(?string $bgColor): static
+    {
+        $this->bgColor = $bgColor;
 
         return $this;
     }

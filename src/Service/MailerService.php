@@ -7,13 +7,30 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
+/**
+ * The mailer service
+ */
 readonly class MailerService
 {
+    /**
+     * The constructor
+     *
+     * @param MailerInterface $mailer
+     * @param LoggerInterface $logger
+     */
     public function __construct(
         private MailerInterface $mailer,
         private LoggerInterface $logger,
     ) {}
 
+    /**
+     * Send an email
+     *
+     * @param string $to
+     * @param string $subject
+     * @param string $htmlTemplate
+     * @param array $context
+     */
     public function sendEmail(
         string $to,
         string $subject,

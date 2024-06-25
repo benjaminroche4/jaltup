@@ -25,11 +25,16 @@ class ResetPasswordController extends AbstractController
 {
     use ResetPasswordControllerTrait;
 
+    /**
+     * The constructor
+     *
+     * @param ResetPasswordHelperInterface $resetPasswordHelper
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
         private EntityManagerInterface $entityManager
-    ) {
-    }
+    ) {}
 
     /**
      * Display & process form to request a password reset.
@@ -131,6 +136,15 @@ class ResetPasswordController extends AbstractController
         ]);
     }
 
+    /**
+     * The process of sending the password reset email
+     *
+     * @param string $emailFormData
+     * @param MailerInterface $mailer
+     * @param TranslatorInterface $translator
+     * @return RedirectResponse
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+     */
     private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer, TranslatorInterface $translator): RedirectResponse
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
@@ -167,8 +181,6 @@ class ResetPasswordController extends AbstractController
                 'resetToken' => $resetToken,
             ])
         ;
-
-        dump($mailer->send($email)); die();
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);

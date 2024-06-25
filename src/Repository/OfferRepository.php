@@ -12,11 +12,21 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class OfferRepository extends ServiceEntityRepository implements \Countable
 {
+    /**
+     * The constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Offer::class);
     }
 
+    /**
+     * Count the number of offers with visibility set to true
+     *
+     * @return int
+     */
     public function countVisible(): int
     {
         return $this->createQueryBuilder('o')
@@ -27,6 +37,13 @@ class OfferRepository extends ServiceEntityRepository implements \Countable
             ->getSingleScalarResult();
     }
 
+    /**
+     * Paginate the offers with visibility set to true
+     *
+     * @param int $page
+     * @param int $perPage
+     * @return array
+     */
     public function paginate(int $page, int $perPage): array
     {
         $offset = ($page - 1) * $perPage;
@@ -41,6 +58,12 @@ class OfferRepository extends ServiceEntityRepository implements \Countable
             ->getResult();
     }
 
+    /**
+     * Find offers by search data and visibility set to true
+     *
+     * @param string|null $query
+     * @return array
+     */
     public function findByQuery(?string $query): array
     {
         $qb = $this->createQueryBuilder('o')

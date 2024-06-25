@@ -9,6 +9,12 @@ use Faker;
 
 class OfferFixtures extends Fixture
 {
+    /**
+     * This method loads some fake data in the database
+     *
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create('fr_FR');
@@ -28,6 +34,7 @@ class OfferFixtures extends Fixture
             $offer->setIntershipStart(new \DateTimeImmutable());
             $offer->setIntershipDuration($faker->numberBetween(1, 6));
             $offer->setPremium($faker->boolean);
+            $offer->setBgColor($faker->hexColor);
             $offer->setCategory($this->getReference(OfferCategoryFixtures::OFFER_CATEGORY_REFERENCE));
             $offer->setCompany($this->getReference(CompanyFixtures::COMPANY_REFERENCE));
 

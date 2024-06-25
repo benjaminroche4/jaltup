@@ -17,12 +17,19 @@ class ResetPasswordRequestRepository extends ServiceEntityRepository implements 
 {
     use ResetPasswordRequestRepositoryTrait;
 
+    /**
+     * The constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ResetPasswordRequest::class);
     }
 
     /**
+     * Create a new reset password request
+     *
      * @param User $user
      */
     public function createResetPasswordRequest(object $user, \DateTimeInterface $expiresAt, string $selector, string $hashedToken): ResetPasswordRequestInterface

@@ -9,12 +9,15 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class SubscriptionController extends AbstractController
 {
+    /**
+     * The subscription page
+     *
+     * @return Response
+     */
     #[IsGranted("ROLE_USER")]
     #[Route('/abonnement/individuel', name: 'app_subscription')]
     public function index(): Response
     {
-
-
         return $this->render('subscription/index.html.twig', [
             'controller_name' => 'SubscriptionController',
         ]);

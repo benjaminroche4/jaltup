@@ -11,12 +11,20 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted("ROLE_ADMIN")]
 class AdminController extends AbstractController
 {
+    /**
+     * The constructor
+     *
+     * @param UserRepository $userRepository
+     */
     public function __construct(
         private readonly UserRepository $userRepository,
-    )
-    {
-    }
+    ){}
 
+    /**
+     * The index action
+     *
+     * @return Response
+     */
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {

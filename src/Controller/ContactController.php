@@ -6,25 +6,33 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Service\MailerService;
 use Doctrine\ORM\EntityManagerInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ContactController extends AbstractController
 {
+    /**
+     * The constructor
+     *
+     * @param MailerService $mailerService
+     */
     public function __construct(
         private readonly MailerService $mailerService,
     ) {}
 
+    /**
+     * The contact page
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
     #[Route('/contact', name: 'app_contact')]
-    public function index(
+    public function contact(
         Request $request,
         EntityManagerInterface $entityManager,
-        MailerInterface $mailer,
-        LoggerInterface $logger,
     ): Response
     {
         $contact = new Contact();
@@ -54,6 +62,12 @@ class ContactController extends AbstractController
         ], new Response(null, $form->isSubmitted() && !$form->isValid() ? 422 : 200));
     }
 
+    /**
+     * Send an email to the admin contact
+     *
+     * @param Contact $contact
+     * @return void
+     */
     public function sendEmailToAdminContact(Contact $contact): void
     {
         $this->mailerService->sendEmail(

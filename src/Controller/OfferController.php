@@ -11,19 +11,35 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class OfferController extends AbstractController
 {
+    /**
+     * The constructor
+     *
+     * @param OfferRepository $offerRepository
+     * @param Security $security
+     */
     public function __construct(
         private readonly OfferRepository $offerRepository,
         private readonly Security $security
-    )
-    {
-    }
+    ){}
 
+    /**
+     * The offers page / HomePage
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/', name: 'app_offer')]
-    public function index(Request $request): Response
+    public function offers(Request $request): Response
     {
         return $this->render('offer/index.html.twig');
     }
 
+    /**
+     * The offer detail page
+     *
+     * @param string $slug
+     * @return Response
+     */
     #[Route('/offre/{slug}', name: 'app_offer_details')]
     public function offerDetail(string $slug): Response
     {

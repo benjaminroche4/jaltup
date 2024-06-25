@@ -15,13 +15,26 @@
         {% endblock %}
     </head>
     <body>
-        <ul class="bg-green-300">
+{#        <ul class="bg-green-300">
             <li><a href="{{ path('app_offer') }}">Trouver mon d'alternance ({{ offers.countVisible() }})</a></li>
             <li>Écoles</li>
             <li>Bon plans</li>
             <li><a href="{{ path('app_register') }}">Inscirption</a></li>
             <li><a href="{{ path('app_login') }}">Login</a></li>
-        </ul>
+        </ul>#}
+        <header class="max-w-6xl mx-auto absolute inset-x-0 top-0 z-50">
+            <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Jaltup</span>
+                        <img class="h-8 md:h-10 w-auto" src="{{ asset('logo/logo.png') }}" alt="">
+                    </a>
+                </div>
+                <div class="flex flex-1 justify-end">
+                    <a href="{{ path('app_register') }}" class="text-sm font-semibold leading-6 text-white">S'inscrire <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </nav>
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>

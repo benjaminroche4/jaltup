@@ -24,10 +24,20 @@ class OfferSearch
     #[LiveProp(writable: true, url: true)]
     public ?string $query = null;
 
-    public function __construct(private readonly OfferRepository $offerRepository)
-    {
-    }
+    /**
+     * The constructor
+     *
+     * @param OfferRepository $offerRepository
+     */
+    public function __construct(
+        private readonly OfferRepository $offerRepository
+    ){}
 
+    /**
+     * Get the offers
+     *
+     * @return array
+     */
     public function getOffers(): array
     {
         return $this->offerRepository->findByQuery($this->query);
