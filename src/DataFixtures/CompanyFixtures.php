@@ -11,6 +11,12 @@ class CompanyFixtures extends Fixture
 {
     public const COMPANY_REFERENCE = 52;
 
+    /**
+     * This method loads some fake data in the database
+     *
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create('fr_FR');

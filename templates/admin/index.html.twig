@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    Nombre d'inscrit : {{ users|length }}<br/><br/>
+    {% for user in users %}
+        {{ user.id }}
+        <br/>{{ user.firstName }} . {{ user.lastName }}
+        <br/>{{ user.email }}
+        <br/>{{ user.createdAt|date('d/m/Y') }}
+        <br/><br/>
+    {% endfor %}
+{% endblock %}

@@ -10,55 +10,78 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<Offer>
  */
-class OfferRepository extends ServiceEntityRepository
+class OfferRepository extends ServiceEntityRepository implements \Countable
 {
+    /**
+     * The constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Offer::class);
     }
 
     /**
-     * Find all offers by date desc and visibility
+     * Count the number of offers with visibility set to true
      *
-     * @return Offer[]
+     * @return int
      */
-    public function findAllByDateDescAndVisibility()
+    public function countVisible(): int
     {
+        return $this->createQueryBuilder('o')
+            ->select('count(o.id)')
+            ->where('o.visibility = :visibility')
+            ->setParameter('visibility', true)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * Paginate the offers with visibility set to true
+     *
+     * @param int $page
+     * @param int $perPage
+     * @return array
+     */
+    public function paginate(int $page, int $perPage): array
+    {
+        $offset = ($page - 1) * $perPage;
+
         return $this->createQueryBuilder('o')
             ->where('o.visibility = :visibility')
             ->setParameter('visibility', true)
             ->orderBy('o.createdAt', 'DESC')
+            ->setMaxResults($perPage)
+            ->setFirstResult($offset)
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * Search by Location City / Title / Company Name
+     * Find offers by search data and visibility set to true
      *
-     * @param OfferSearchData $searchData
-     * @return mixed
+     * @param string|null $query
+     * @return array
      */
-    public function findBySearch(OfferSearchData $searchData): mixed
+    public function findByQuery(?string $query): array
     {
-        $offers = $this->createQueryBuilder('o')
+        $qb = $this->createQueryBuilder('o')
             ->join('o.company', 'c')
             ->where('o.visibility = :visibility')
-            ->setParameter('visibility', true)
-            ->orderBy('o.createdAt', 'DESC');
+            ->setParameter('visibility', true);
 
-        if(!empty($searchData->query)) {
-            $offers = $offers
-                ->andWhere(
-                    $offers->expr()->orX(
-                        $offers->expr()->like('o.locationCity', ':query'),
-                        $offers->expr()->like('o.title', ':query'),
-                        $offers->expr()->like('c.name', ':query')
-                    )
+        if ($query) {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->like('o.title', ':query'),
+                    $qb->expr()->like('o.locationCity', ':query'),
+                    $qb->expr()->like('c.name', ':query')
                 )
-                ->setParameter('query', '%' . $searchData->query . '%');
+            )
+                ->setParameter('query', '%' . $query . '%');
         }
 
-        return $offers->getQuery()
-            ->getResult();
+        return $qb->getQuery()->getResult();
     }
 }

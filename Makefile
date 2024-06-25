@@ -6,3 +6,6 @@ watch:
 
 fixture:
 	php bin/console doctrine:fixtures:load
+
+clear:
+	php bin/console cache:clear

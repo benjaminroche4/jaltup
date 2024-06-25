@@ -15,6 +15,16 @@ use App\Security\LoginFormAuthenticator;
 
 class RegistrationController extends AbstractController
 {
+    /**
+     * The registration page
+     *
+     * @param Request $request
+     * @param UserPasswordHasherInterface $userPasswordHasher
+     * @param EntityManagerInterface $entityManager
+     * @param UserAuthenticatorInterface $authenticator
+     * @param LoginFormAuthenticator $formLogin
+     * @return Response
+     */
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request,
                              UserPasswordHasherInterface $userPasswordHasher,

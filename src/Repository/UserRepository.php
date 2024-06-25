@@ -14,6 +14,11 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
+    /**
+     * The constructor
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -57,4 +62,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    /**
+     * Find all users by order in descending order
+     *
+     * @return array
+     */
+    public function findAllByOrderDesc()
+    {
+        return $this->createQueryBuilder('u') // 'u' is an alias for 'User'
+        ->orderBy('u.createdAt', 'DESC') // Order by 'id' in descending order
+        ->getQuery() // Get the query
+        ->getResult(); // Execute the query and get the result
+    }
 }

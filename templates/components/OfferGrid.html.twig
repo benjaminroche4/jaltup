@@ -1,0 +1,200 @@
+<div class="OfferGrid" {{ attributes }}>
+    <div class="mx-auto max-w-sm md:max-w-2xl lg:max-w-5xl gap-10 pt-10">
+        <div class="flex justify-between">
+            <div>
+                <h4 class="font-semibold text-lg">Dernières annonces ({{ offers.countVisible() }})</h4>
+            </div>
+            <div>
+                <p>Dernière update : </p>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if page > 1 %}
+            {# Previous page #}
+            <div id="page--{{ page - 1 }}" data-live-ignore="true"></div>
+        {% endif %}
+
+        {# Current page #}
+        <div id="page--{{ page }}" data-live-ignore="true">
+            <div class="mx-auto max-w-sm md:max-w-2xl lg:max-w-5xl grid grid-cols-3 gap-10 pt-10">
+                <div class="col-span-3">
+                    <div class="grid grid-cols-1 max-w-full md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {% for item in this.items %}
+                            {% if  not is_granted('ROLE_PREMIUM') %}
+                                {% if item.offer.premium == true %}
+                                    <div class="text-gray-900 bg-white border border-gray-300 hover:border-gray-400 flex flex-col justify-between transition duration-100 rounded-xl p-2">
+                                        <div class="p-5 rounded-lg flex items-stretch flex-col h-full" style="background-color: {{ item.offer.bgColor }}">
+                                            <div class="flex justify-between gap-2 items-center">
+                                                <div class="select-none blur-sm">
+                                                    <p class="font-medium text-sm">********</p>
+                                                </div>
+                                                <div>
+                                                    <time datetime="{{ item.offer.createdAt|date("m/d/Y") }}" class="text-gray-900 text-xs bg-white px-2.5 py-1.5 rounded-full font-medium">
+                                                        {% if item.daysSinceCreation == 0 %}
+                                                            Aujourd'hui
+                                                        {% endif %}
+                                                        {% if item.daysSinceCreation == 1 %}
+                                                            Hier
+                                                        {% endif %}
+                                                        {% if item.daysSinceCreation == 2 %}
+                                                            Avant-hier
+                                                        {% endif %}
+                                                        {% if item.daysSinceCreation > 2 %}
+                                                            Il y a {{ item.daysSinceCreation }} jours
+                                                        {% endif %}
+                                                    </time>
+                                                </div>
+                                            </div>
+                                            <div class="relative h-full flex items-center justify-center">
+                                                <div class="absolute z-10">
+                                                    <div class="space-y-4 flex flex-col items-center">
+                                                        <p class="font-semibold text-center">Offre réservée aux Premium</p>
+                                                        <a href="#" type="button" class="rounded-full text-center bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">S'abonner</a>
+                                                    </div>
+                                                </div>
+                                                <div class="blur-md select-none">
+                                                    <div class="flex items-center mt-7 justify-between gap-x-2 mb-7">
+                                                        <div class="flex-1">
+                                                            <h4 class="mt-2 text-2xl capitalize font-medium tracking-wide">**** ***** ****** ********</h4>
+                                                        </div>
+                                                        <div>
+                                                            <img class="h-10 w-10 rounded-full object-cover" src="#TODO DEFAULT LOGO" alt="Compagnie Logo">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex gap-1.5 flex-wrap mt-auto">
+                                                        <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">********</span>
+                                                        <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">********</span>
+                                                        <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">** ****</span>
+                                                        <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">********</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="text-gray-900 bg-white border border-gray-300 hover:border-gray-400 flex flex-col justify-between transition duration-100 rounded-xl p-2">
+                                        <div class="p-5 rounded-lg flex items-stretch flex-col h-full" style="background-color: {{ item.offer.bgColor }}">
+                                            <div class="flex justify-between gap-2 items-center">
+                                                <div>
+                                                    <p class="font-medium text-sm">{{ item.offer.company.name }}</p>
+                                                </div>
+                                                <div>
+                                                    <time datetime="{{ item.offer.createdAt|date("m/d/Y") }}" class="text-gray-900 text-xs bg-white px-2.5 py-1.5 rounded-full font-medium">
+                                                        {% if item.daysSinceCreation == 0 %}
+                                                            Aujourd'hui
+                                                        {% endif %}
+                                                        {% if item.daysSinceCreation == 1 %}
+                                                            Hier
+                                                        {% endif %}
+                                                        {% if item.daysSinceCreation == 2 %}
+                                                            Avant-hier
+                                                        {% endif %}
+                                                        {% if item.daysSinceCreation > 2 %}
+                                                            Il y a {{ item.daysSinceCreation }} jours
+                                                        {% endif %}
+                                                    </time>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center mt-7 justify-between gap-x-2 mb-7">
+                                                <div class="flex-1">
+                                                    <h4 class="mt-2 text-2xl capitalize font-medium tracking-wide">{{ item.offer.title|u.truncate(26, '...')  }}</h4>
+                                                </div>
+                                                <div>
+                                                    <img class="h-10 w-10 rounded-full object-cover" src="{{ item.offer.company.logo }}" alt="{{ item.offer.company.name }} Logo">
+                                                </div>
+                                            </div>
+                                            <div class="flex gap-1.5 flex-wrap mt-auto">
+                                                <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{{ item.offer.studyLevel }}</span>
+                                                <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{% if item.offer.remote == true %}Remote{% else %}Présentiel{% endif %}</span>
+                                                <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{{ item.offer.intershipDuration }} mois</span>
+                                                <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{{ item.offer.category.name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="px-3 py-4">
+                                            <div class="flex justify-between items-center space-x-1.5">
+                                                <div class="space-y-1.5">
+                                                    <p class="font-semibold">Début en {{ item.offer.intershipStart|date("M. Y", "Europe/Paris")|trans }}</p>
+                                                    <p class="text-sm text-gray-600">
+                                                        {{ item.offer.locationCity }}, {{ item.offer.locationCountry }}
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <a href="{{ path('app_offer_details', {'slug': item.offer.slug}) }}" type="button" class="rounded-full bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">Détails</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                <div class="text-gray-900 bg-white border border-gray-300 hover:border-gray-400 flex flex-col justify-between transition duration-100 rounded-xl p-2">
+                                    <div class="p-5 rounded-lg flex items-stretch flex-col h-full" style="background-color: {{ item.offer.bgColor }}">
+                                        <div class="flex justify-between gap-2 items-center">
+                                            <div>
+                                                <p class="font-medium text-sm">{{ item.offer.company.name }}</p>
+                                            </div>
+                                            <div>
+                                                <time datetime="{{ item.offer.createdAt|date("m/d/Y") }}" class="text-gray-900 text-xs bg-white px-2.5 py-1.5 rounded-full font-medium">
+                                                    {% if item.daysSinceCreation == 0 %}
+                                                        Aujourd'hui
+                                                    {% endif %}
+                                                    {% if item.daysSinceCreation == 1 %}
+                                                        Hier
+                                                    {% endif %}
+                                                    {% if item.daysSinceCreation == 2 %}
+                                                        Avant-hier
+                                                    {% endif %}
+                                                    {% if item.daysSinceCreation > 2 %}
+                                                        Il y a {{ item.daysSinceCreation }} jours
+                                                    {% endif %}
+                                                </time>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center mt-7 justify-between gap-x-2 mb-7">
+                                            <div class="flex-1">
+                                                <h4 class="mt-2 text-2xl capitalize font-medium tracking-wide">{{ item.offer.title|u.truncate(26, '...')  }}</h4>
+                                            </div>
+                                            <div>
+                                                <img class="h-10 w-10 rounded-full object-cover" src="{{ item.offer.company.logo }}" alt="{{ item.offer.company.name }} Logo">
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-1.5 flex-wrap mt-auto">
+                                            <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{{ item.offer.studyLevel }}</span>
+                                            <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{% if item.offer.remote == true %}Remote{% else %}Présentiel{% endif %}</span>
+                                            <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{{ item.offer.intershipDuration }} mois</span>
+                                            <span class="text-xs border border-gray-500 text-gray-900 px-2.5 py-1.5 rounded-full whitespace-nowrap">{{ item.offer.category.name }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-3 py-4">
+                                        <div class="flex justify-between items-center space-x-1.5">
+                                            <div class="space-y-1.5">
+                                                <p class="font-semibold">Début en {{ item.offer.intershipStart|date("M Y", "Europe/Paris")|trans }}</p>
+                                                 <p class="text-sm text-gray-600">
+                                                     {{ item.offer.locationCity }}, {{ item.offer.locationCountry }}
+                                                 </p>
+                                            </div>
+                                            <div>
+                                                <a href="{{ path('app_offer_details', {'slug': item.offer.slug}) }}" type="button" class="rounded-full bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">Détails</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="flex justify-center mt-10">
+                {% if this.hasMore and this.items is not empty %}
+                    <button data-action="live#action" data-live-action-param="more" class="rounded-full bg-[#88D1FF] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">
+                        Load More
+                    </button>
+                {% else %}
+                    <span>Rien à afficher</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
