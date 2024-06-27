@@ -3,9 +3,63 @@
 {% block title %}{{ offer.title }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-3xl font-medium">Details</h1>
-    <br/>{{ offer.title }}
-    <br/>{{ offer.createdAt|date('d/m/Y') }}
+    <div class="bg-gray-900">
+        <div class="relative isolate overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
+            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+            <div class="mx-auto max-w-6xl px-6 lg:px-8 mt-5 py-24 sm:py-32">
+                <div>
+                    <nav class="sm:hidden" aria-label="Back">
+                        <a href="{{ path('app_offer') }}" class="flex items-center text-sm font-medium text-gray-400 hover:text-gray-700">
+                            <svg class="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                            </svg>
+                            Revenir
+                        </a>
+                    </nav>
+                    <nav class="hidden sm:flex" aria-label="Breadcrumb">
+                        <ol role="list" class="flex items-center space-x-4">
+                            <li>
+                                <div class="flex">
+                                    <a href="{{ path('app_offer') }}" class="text-sm font-medium text-gray-500 hover:text-gray-200 transition duration-100">Offres</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="flex items-center">
+                                    <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                    </svg>
+                                    <p class="ml-4 text-sm font-medium text-gray-500">{{ offer.category.name }}</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="mx-auto max-w-2xl lg:mx-0 mt-5">
+                    <h2 class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-5xl">{{ offer.title }}</h2>
+                </div>
+            </div>
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+            </div>
+        </div>
+    </div>
+    <time datetime="{{ offer.createdAt|date("m/d/Y") }}">
+        {% if daysSinceCreation == 0 %}
+            Aujourd'hui
+        {% endif %}
+        {% if daysSinceCreation == 1 %}
+            Hier
+        {% endif %}
+        {% if daysSinceCreation == 2 %}
+            Avant-hier
+        {% endif %}
+        {% if daysSinceCreation > 2 %}
+            Il y a {{ daysSinceCreation }} jours
+        {% endif %}
+    </time>
     <br/>{{ offer.description }}
     <br/>{{ offer.sourceLink }}
     <br/>{{ offer.locationCountry }}

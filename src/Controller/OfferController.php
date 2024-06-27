@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\OfferRepository;
+use App\Service\DateCalculatorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +17,12 @@ class OfferController extends AbstractController
      *
      * @param OfferRepository $offerRepository
      * @param Security $security
+     * @param DateCalculatorService $dateCalculatorService
      */
     public function __construct(
         private readonly OfferRepository $offerRepository,
-        private readonly Security $security
+        private readonly Security $security,
+        private readonly DateCalculatorService $dateCalculatorService
     ){}
 
     /**
@@ -63,8 +66,11 @@ class OfferController extends AbstractController
             }
         }
 
+        $daysSinceCreation = $this->dateCalculatorService->calculateDaysSinceCreation($offer);
+
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,
+            'daysSinceCreation' => $daysSinceCreation,
         ]);
     }
 }
