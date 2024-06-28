@@ -84,4 +84,15 @@ class OfferRepository extends ServiceEntityRepository implements \Countable
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findLatestOffer(): ?Offer
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.visibility = :visibility')
+            ->setParameter('visibility', true)
+            ->orderBy('o.createdAt', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

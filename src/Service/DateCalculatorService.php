@@ -11,7 +11,7 @@ use DateTime;
 class DateCalculatorService
 {
     /**
-     * Calculate the days since the creation of an offer
+     * Calculate the days since the creation of an offerL
      *
      * @param Offer $offer
      * @return int

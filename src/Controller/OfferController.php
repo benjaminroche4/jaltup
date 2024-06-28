@@ -34,7 +34,13 @@ class OfferController extends AbstractController
     #[Route('/', name: 'app_offer')]
     public function offers(Request $request): Response
     {
-        return $this->render('offer/index.html.twig');
+        //Retrieve the latest offer date modification
+        $latestOffer = $this->offerRepository->findLatestOffer();
+        $daySinceLastEdit = $this->dateCalculatorService->calculateDaysSinceCreation($latestOffer);
+
+        return $this->render('offer/index.html.twig', [
+            'daySinceLastEdit' => $daySinceLastEdit,
+        ]);
     }
 
     /**
@@ -67,6 +73,7 @@ class OfferController extends AbstractController
         }
 
         $daysSinceCreation = $this->dateCalculatorService->calculateDaysSinceCreation($offer);
+
 
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,

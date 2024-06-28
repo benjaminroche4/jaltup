@@ -3,16 +3,16 @@
 {% block title %}{{ offer.title }}{% endblock %}
 
 {% block body %}
-    <div class="bg-gray-900">
+    <section class="bg-gray-900">
         <div class="relative isolate overflow-hidden">
             <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
                 <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
             </div>
-            <div class="mx-auto max-w-6xl px-6 lg:px-8 mt-5 py-24 sm:py-32">
-                <div>
+            <div class="mx-auto max-w-5xl px-6 lg:px-0 mt-5 py-24 sm:py-32">
+                <div class="mx-auto max-w-2xl lg:mx-0">
                     <nav class="sm:hidden" aria-label="Back">
-                        <a href="{{ path('app_offer') }}" class="flex items-center text-sm font-medium text-gray-400 hover:text-gray-700">
+                        <a href="{{ path('app_offer') }}" class="flex items-center text-sm font-medium text-gray-200 hover:text-white">
                             <svg class="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
                             </svg>
@@ -23,7 +23,7 @@
                         <ol role="list" class="flex items-center space-x-4">
                             <li>
                                 <div class="flex">
-                                    <a href="{{ path('app_offer') }}" class="text-sm font-medium text-gray-500 hover:text-gray-200 transition duration-100">Offres</a>
+                                    <a href="{{ path('app_offer') }}" class="text-sm font-medium text-gray-200 hover:text-white transition duration-100">Offres</a>
                                 </div>
                             </li>
                             <li>
@@ -31,13 +31,13 @@
                                     <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                                     </svg>
-                                    <p class="ml-4 text-sm font-medium text-gray-500">{{ offer.category.name }}</p>
+                                    <p class="ml-4 text-sm font-medium text-gray-200">{{ offer.category.name }}</p>
                                 </div>
                             </li>
                         </ol>
                     </nav>
                 </div>
-                <div class="mx-auto max-w-2xl lg:mx-0 mt-5">
+                <div class="mx-auto max-w-2xl lg:mx-0 mt-8">
                     <h2 class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-5xl">{{ offer.title }}</h2>
                 </div>
             </div>
@@ -45,31 +45,65 @@
                 <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
             </div>
         </div>
-    </div>
-    <time datetime="{{ offer.createdAt|date("m/d/Y") }}">
-        {% if daysSinceCreation == 0 %}
-            Aujourd'hui
-        {% endif %}
-        {% if daysSinceCreation == 1 %}
-            Hier
-        {% endif %}
-        {% if daysSinceCreation == 2 %}
-            Avant-hier
-        {% endif %}
-        {% if daysSinceCreation > 2 %}
-            Il y a {{ daysSinceCreation }} jours
-        {% endif %}
-    </time>
-    <br/>{{ offer.description }}
-    <br/>{{ offer.sourceLink }}
+    </section>
+
+    <section class="bg-gray-50 px-6 py-8 md:py-16 lg:px-8">
+        <div class="max-w-sm md:max-w-2xl lg:max-w-5xl mx-auto">
+            <div class="bg-gray-50 grid grid-cols-3 gap-10">
+                <div class="col-span-3 md:col-span-2">
+                    <div class="bg-white rounded-xl p-6 border border-gray-300">
+                        <div class="p-5 rounded-lg bg-gray-50">
+                            <time class="font-semibold" datetime="{{ offer.createdAt|date("m/d/Y") }}">
+                                Publié {% if daysSinceCreation == 0 %}
+                                    Aujourd'hui
+                                {% endif %}
+                                {% if daysSinceCreation == 1 %}
+                                    Hier
+                                {% endif %}
+                                {% if daysSinceCreation == 2 %}
+                                    Avant-hier
+                                {% endif %}
+                                {% if daysSinceCreation > 2 %}
+                                    Il y a {{ daysSinceCreation }} jours
+                                {% endif %}
+                            </time>
+                            <div class="mt-5 flex justify-start gap-x-3.5 divide-x">
+                                <p>Durée : {{ offer.intershipDuration }} mois</p>
+                                <p>Début en {{ offer.intershipStart|date("M. Y", "Europe/Paris") }}</p>
+                                <p>{{ offer.studyLevel }}</p>
+                                <p>Télétravail : {% if offer.remote == true %}Oui{% else %}Non{% endif %}</p>
+                            </div>
+                        </div>
+                        <p class="mt-10">{{ offer.description|raw }}</p>
+                    </div>
+                </div>
+                <div class="col-span-3 md:col-span-1 ">
+                    <div class="md:sticky bg-white rounded-xl md:top-10 p-2 border border-gray-300">
+                        <div class="mx-auto flex justify-center flex-col">
+                            <div class="text-center p-5 rounded-lg" style="background-color: {{ offer.bgColor }}">
+                                <div class="flex items-center justify-center">
+                                    <img class="rounded-full h-24 w-auto" src="{{ offer.company.logo }}" alt="Logo {{ offer.company.name }}"/>
+                                </div>
+                                <p class="font-semibold mt-3 text-xl">{{ offer.company.name }}</p>
+                                <div class="flex justify-center gap-x-1.5 items-center mt-2">
+                                    {{ ux_icon('material-symbols:link', {class: 'w-4 h-4 text-gray-500'}) }}
+                                    <a href="{{ offer.company.website }}" target="_blank" class="text-sm font-medium text-gray-500">Voir le site</a>
+                                </div>
+                                <p class="mt-4 text-sm">{{ offer.company.shortDescription }}</p>
+                            </div>
+                            <div class="py-3 px-2 flex text-center">
+                                <a href="{{ offer.sourceLink }}" type="button" target="_blank" class="w-full rounded-full bg-gray-900 px-5 py-4 text-sm font-semibold text-white shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">Postuler à l'offre</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
     <br/>{{ offer.locationCountry }}
     <br/>{{ offer.locationCity }}
-    <br/>{% if offer.remote == true %}Oui{% else %}Non{% endif %} télétravail
-    <br/>{{ offer.studyLevel }}
-    <br/>{{ offer.intershipStart|date('d/m/Y') }}
-    <br/>{{ offer.intershipDuration }} mois
-    <br/>{{ offer.company.name }}
-    <br/><img class="rounded-full h-8 w-auto" src="{{ offer.company.logo }}"/>
-    <br/>{{ offer.company.website }}
-    <br/>{{ offer.category.name }}
+
 {% endblock %}

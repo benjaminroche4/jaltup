@@ -1,15 +1,4 @@
 <div class="OfferGrid" {{ attributes }}>
-    <div class="mx-auto max-w-sm md:max-w-2xl lg:max-w-5xl gap-10 pt-10">
-        <div class="flex justify-between">
-            <div class="flex gap-x-3 items-center">
-                <p class="font-semibold text-lg">Annonces</p>
-                <p class="border border-gray-500 px-3.5 py-1 rounded-full text-sm">{{ offers.countVisible() }}</p>
-            </div>
-            <div>
-                <p class="text-sm">Dernière update : </p>
-            </div>
-        </div>
-    </div>
     <div>
         {% if page > 1 %}
             {# Previous page #}
@@ -115,7 +104,7 @@
                                         <div class="px-3 py-4">
                                             <div class="flex justify-between items-center space-x-1.5">
                                                 <div class="space-y-1.5">
-                                                    <p class="font-semibold">Début en {{ item.offer.intershipStart|date("M. Y", "Europe/Paris")|trans }}</p>
+                                                    <p class="font-semibold">Début en {{ item.offer.intershipStart|date("M. Y", "Europe/Paris") }}</p>
                                                     <p class="text-sm text-gray-600">
                                                         {{ item.offer.locationCity }}, {{ item.offer.locationCountry }}
                                                     </p>
@@ -189,11 +178,11 @@
         <div>
             <div class="flex justify-center mt-10">
                 {% if this.hasMore and this.items is not empty %}
-                    <button data-action="live#action" data-live-action-param="more" class="rounded-full bg-[#88D1FF] px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">
-                        Load More
+                    <button data-action="live#action" data-live-action-param="more" class="rounded-full bg-[#88D1FF] px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-transparent border border-gray-900 hover:text-gray-900 transition duration-100">
+                        Charger Plus
                     </button>
                 {% else %}
-                    <span>Rien à afficher</span>
+                    <div class="px-3.5 py-2.5 text-gray-500 border border-gray-400 rounded-full text-sm font-semibold">Fin des offres</div>
                 {% endif %}
             </div>
         </div>

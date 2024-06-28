@@ -3,7 +3,7 @@
 {% block title %}Offres{% endblock %}
 
 {% block body %}
-    <div class="bg-gray-900">
+    <section class="bg-gray-900">
         <div class="relative isolate overflow-hidden pt-10">
             <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -11,11 +11,10 @@
             </div>
             <div class="mx-auto max-w-2xl py-32 px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Trouver votre alternance rapidement et facilement</h1>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+                    <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Trouver votre Alternance Rapidement et Facilement</h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">Jaltup est la première plateforme à centraliser toutes les offres d'alternance vérifiées et à jour disponibles sur le marché européen.</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</a>
-                        <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+                        <a href="#offres" class="rounded-full border border-white px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900 transition duration-100">Commencer ma recherche</a>
                     </div>
                 </div>
             </div>
@@ -23,12 +22,34 @@
                 <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
             </div>
         </div>
-    </div>
-
-
-
-    <section class="px-4 sm:px-6 lg:px-8 bg-gray-50">
-        {{ component('OfferGrid') }}
     </section>
-    {{ component('OfferSearch') }}
+    <section class="bg-gray-50 px-4 sm:px-6 lg:px-8 pb-16" id="offres">
+        <div class="mx-auto max-w-sm md:max-w-2xl lg:max-w-5xl gap-10 pt-10">
+            <div class="flex justify-between items-center">
+                <div class="flex gap-x-3 items-center">
+                    <p class="font-semibold text-lg">Annonces</p>
+                    <p class="border border-gray-500 px-3.5 py-1 rounded-full text-sm">{{ offers.countVisible() }}</p>
+                </div>
+                <div>
+                    <p class="text-xs sm:text-sm text-gray-500">Dernière M.A.J :
+                        {% if daySinceLastEdit == 0 %}
+                            Aujourd'hui
+                        {% endif %}
+                        {% if daySinceLastEdit == 1 %}
+                            Hier
+                        {% endif %}
+                        {% if daySinceLastEdit == 2 %}
+                            Avant-hier
+                        {% endif %}
+                        {% if daySinceLastEdit > 2 %}
+                            Il y a {{ daySinceLastEdit }} jours
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            <div>
+                {{ component('OfferGrid') }}
+            </div>
+        </div>
+    </section>
 {% endblock %}
