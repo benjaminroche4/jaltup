@@ -3,53 +3,47 @@
 {% block title %}{{ offer.title }}{% endblock %}
 
 {% block body %}
-    <section class="bg-gray-900">
-        <div class="relative isolate overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
-            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-            </div>
-            <div class="mx-auto max-w-5xl px-6 lg:px-0 mt-5 py-24 sm:py-32">
-                <div class="mx-auto max-w-2xl lg:mx-0">
-                    <nav class="sm:hidden" aria-label="Back">
-                        <a href="{{ path('app_offer') }}" class="flex items-center text-sm font-medium text-gray-200 hover:text-white">
-                            <svg class="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-                            </svg>
-                            Revenir
-                        </a>
-                    </nav>
-                    <nav class="hidden sm:flex" aria-label="Breadcrumb">
-                        <ol role="list" class="flex items-center space-x-4">
-                            <li>
-                                <div class="flex">
-                                    <a href="{{ path('app_offer') }}" class="text-sm font-medium text-gray-200 hover:text-white transition duration-100">Offres</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="flex items-center">
-                                    <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+    <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
+        <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
+            <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
+            <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="mx-auto max-w-6xl px-6 lg:px-8 mt-5">
+            <div class="mx-auto max-w-2xl lg:mx-0">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol role="list" class="flex items-center space-x-4">
+                        <li>
+                            <div>
+                                <a href="{{ path('app_offer') }}" class="text-gray-300 hover:text-gray-500 transition duration-100">
+                                    <svg class="h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z" clip-rule="evenodd" />
                                     </svg>
-                                    <p class="ml-4 text-sm font-medium text-gray-200">{{ offer.category.name }}</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="mx-auto max-w-2xl lg:mx-0 mt-8">
-                    <h2 class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-5xl">{{ offer.title }}</h2>
-                </div>
-            </div>
-            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+                                    <span class="sr-only">Offres</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="h-5 w-5 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                                </svg>
+                                <p class="ml-4 text-sm font-medium text-gray-400">{{ offer.category.name }}</p>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-5xl mt-6">{{ offer.title }}</h2>
             </div>
         </div>
-    </section>
+    </div>
+
 
     <section class="bg-gray-50 px-6 py-8 md:py-16 lg:px-8">
         <div class="max-w-sm md:max-w-2xl lg:max-w-5xl mx-auto">
-            <div class="bg-gray-50 grid grid-cols-3 gap-10">
+            <div class="bg-gray-50 grid grid-cols-3 gap-5 sm:gap-10">
                 <div class="col-span-3 md:col-span-2">
                     <div class="bg-white rounded-xl p-6 border border-gray-300">
                         <div class="p-5 rounded-lg bg-gray-50">
@@ -67,11 +61,29 @@
                                     Il y a {{ daysSinceCreation }} jours
                                 {% endif %}
                             </time>
-                            <div class="mt-5 flex justify-start gap-x-3.5 divide-x">
-                                <p>Durée : {{ offer.intershipDuration }} mois</p>
-                                <p>Début en {{ offer.intershipStart|date("M. Y", "Europe/Paris") }}</p>
-                                <p>{{ offer.studyLevel }}</p>
-                                <p>Télétravail : {% if offer.remote == true %}Oui{% else %}Non{% endif %}</p>
+                            <div class="mt-6 border-t border-gray-100">
+                                <dl class="divide-y divide-gray-100">
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Durée</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ offer.intershipDuration }} mois</dd>
+                                    </div>
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Début de l'alternance</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ offer.intershipStart|date("M. Y", "Europe/Paris") }}</dd>
+                                    </div>
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Niveau d'étude</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ offer.studyLevel }}</dd>
+                                    </div>
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Télétravail</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"> {% if offer.remote == true %}Autorisé{% else %}Non{% endif %}</dd>
+                                    </div>
+                                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                                        <dt class="text-sm font-medium leading-6 text-gray-900">Lieu</dt>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-x-2">{{ offer.locationCountry }}, {{ offer.locationCity }} {{ ux_icon('circle-flags:fx', {class: 'w-4 h-4'}) }}</dd>
+                                    </div>
+                                </dl>
                             </div>
                         </div>
                         <p class="mt-10">{{ offer.description|raw }}</p>
@@ -100,10 +112,4 @@
             </div>
         </div>
     </section>
-
-
-
-    <br/>{{ offer.locationCountry }}
-    <br/>{{ offer.locationCity }}
-
 {% endblock %}

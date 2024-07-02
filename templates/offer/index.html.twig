@@ -12,7 +12,7 @@
             <div class="mx-auto max-w-2xl py-32 px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
                     <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Trouver votre Alternance Rapidement et Facilement</h1>
-                    <p class="mt-6 text-lg leading-8 text-gray-300">Jaltup est la première plateforme à centraliser toutes les offres d'alternance vérifiées et à jour disponibles sur le marché européen.</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">Jaltup est la première plateforme qui centralise toutes les offres d’alternance vérifiées et à jour en France.</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6">
                         <a href="#offres" class="rounded-full border border-white px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-gray-900 transition duration-100">Commencer ma recherche</a>
                     </div>
@@ -25,13 +25,13 @@
     </section>
     <section class="bg-gray-50 px-4 sm:px-6 lg:px-8 pb-16" id="offres">
         <div class="mx-auto max-w-sm md:max-w-2xl lg:max-w-5xl gap-10 pt-10">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center gap-5">
                 <div class="flex gap-x-3 items-center">
                     <p class="font-semibold text-lg">Annonces</p>
                     <p class="border border-gray-500 px-3.5 py-1 rounded-full text-sm">{{ offers.countVisible() }}</p>
                 </div>
                 <div>
-                    <p class="text-xs sm:text-sm text-gray-500">Dernière M.A.J :
+                    <p class="text-xs sm:text-sm text-right text-gray-500">Dernière M.A.J :
                         {% if daySinceLastEdit == 0 %}
                             Aujourd'hui
                         {% endif %}
