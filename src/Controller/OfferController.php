@@ -63,7 +63,7 @@ class OfferController extends AbstractController
 
             //Si le User n'est pas connecté
             if(!$user) {
-                return $this->redirectToRoute('app_login');
+                return $this->redirectToRoute('app_subscription');
             }
 
             //Si le User n'est pas abonné à l'offre Premium

@@ -1,11 +1,27 @@
-{% extends 'base.html.twig' %}
+{% extends 'auth_base.html.twig' %}
 
-{% block title %}Password Reset Email Sent{% endblock %}
+{% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    <p>
-        If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.
-        This link will expire in {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-    </p>
-{#    <!--<p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p>-->#}
+    <section class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <a href="{{ path('app_offer') }}">
+                <img class="mx-auto h-10 w-auto" src="{{ asset('logo/logo_min.svg') }}" alt="Jaltup Logo">
+            </a>
+            <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Mot de passe oublié</h2>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+            <div class="bg-white px-6 py-12 border border-gray-300 sm:rounded-lg sm:px-12">
+                <p>
+                    Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
+                    Ce lien expirera dans <strong>{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}</strong>.
+                </p>
+            </div>
+
+            <p class="mt-10 text-center text-sm text-gray-500">
+                <a href="{{ path('app_login') }}" class="font-semibold leading-6 text-[#E68C12]">Se connecter</a>
+            </p>
+        </div>
+    </section>
 {% endblock %}

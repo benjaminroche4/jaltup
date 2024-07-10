@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,8 +27,8 @@ class ContactType extends AbstractType
                     new Assert\Length([
                         'min' => 2,
                         'max' => 50,
-                        'minMessage' => 'Votre nom doit comporter au moins {{ limit }} caractères',
-                        'maxMessage' => 'Votre nom ne peut pas dépasser {{ limit }} caractères',
+                        'minMessage' => 'Votre nom doit comporter au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Votre nom ne peut pas dépasser {{ limit }} caractères.',
                     ]),
                 ],
             ])
@@ -35,7 +36,7 @@ class ContactType extends AbstractType
                 'label' => 'Adresse email',
                 'constraints' => [
                     new Assert\Email([
-                        'message' => 'Veuillez saisir une adresse email valide',
+                        'message' => 'Veuillez saisir une adresse email valide.',
                     ]),
                 ],
             ])
@@ -66,7 +67,7 @@ class ContactType extends AbstractType
                 'constraints' => [
                     new Assert\Regex([
                         'pattern' => '/^[\d+]+$/',
-                        'message' => 'Le numéro de téléphone doit contenir uniquement des chiffres ou +.',
+                        'message' => 'Le numéro de téléphone doit contenir uniquement des chiffres.',
                     ]),
                     new Assert\Length([
                         'max' => 13,
@@ -74,15 +75,15 @@ class ContactType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('message', TextType::class, [
+            ->add('message', TextareaType::class, [
                 'required' => false,
                 'label' => 'Message',
                 'constraints' => [
                     new Assert\Length([
                         'min' => 8,
                         'max' => 500,
-                        'minMessage' => 'Votre message doit comporter au moins {{ limit }} caractères',
-                        'maxMessage' => 'Votre message ne peut pas dépasser {{ limit }} caractères',
+                        'minMessage' => 'Votre message doit comporter au moins {{ limit }} caractères.',
+                        'maxMessage' => 'Votre message ne peut pas dépasser {{ limit }} caractères.',
                     ]),
                 ],
             ])

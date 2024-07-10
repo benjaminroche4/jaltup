@@ -46,17 +46,23 @@
                             <a href="{{ path('app_offer') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Offres</a>
                         </div>
                         <div class="pb-6">
-                            <a href="#" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Premium</a>
+                            <a href="{{ path('app_subscription') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Premium</a>
                         </div>
                         <div class="pb-6">
                             <a href="{{ path('app_contact') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Contact</a>
                         </div>
-                        <div class="pb-6">
-                            <a href="{{ path('app_login') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Connexion</a>
-                        </div>
-                        <div class="pb-6">
-                            <a href="{{ path('app_register') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Inscription</a>
-                        </div>
+                        {% if app.user %}
+                            <div class="pb-6">
+                                <a href="{{ path('app_logout') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Déconnexion</a>
+                            </div>
+                        {% else %}
+                            <div class="pb-6">
+                                <a href="{{ path('app_login') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Connexion</a>
+                            </div>
+                            <div class="pb-6">
+                                <a href="{{ path('app_register') }}" class="text-sm leading-6 text-white hover:text-gray-300 transition duration-100">Inscription</a>
+                            </div>
+                        {% endif %}
                     </nav>
                     <div class="mt-10 flex justify-center space-x-10">
                         <img src="{{ asset('logo/logo.png') }}" alt="Logo Jaltup" class="h-16 w-auto">
