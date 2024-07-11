@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block title %}Mot de passe oublié{% endblock %}
+{% block description %}Réinitialisez votre mot de passe pour accéder à nos offres d'alternance. Suivez les étapes simples et retrouvez l'accès à votre compte étudiant rapidement et en toute sécurité.{% endblock %}
+{% block url %}{{ path('app_subscription') }}{% endblock %}
+
+{% block ogTitle %}Jaltup - Mot de passe oublié{% endblock %}
+{% block ogUrl %}https://jaltup.com/reset{% endblock %}
+{% block ogImage %}{{ asset('image/jaltup-og.webp') }}{% endblock %}
+{% block ogImageAlt %}Jaltup{% endblock %}
+{% block ogDescription %}Réinitialisez votre mot de passe pour accéder à nos offres d'alternance. Suivez les étapes simples et retrouvez l'accès à votre compte étudiant rapidement et en toute sécurité.{% endblock %}
 
 {% block body %}
     <h1>Reset your password</h1>

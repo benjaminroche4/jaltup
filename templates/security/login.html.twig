@@ -1,6 +1,15 @@
 {% extends 'auth_base.html.twig' %}
 
-{% block title %}Connexion{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block title %}Se connecter{% endblock %}
+{% block description %}Connectez-vous pour accéder à des offres d'alternance dédiées aux étudiants. Trouvez l'opportunité idéale et lancez votre carrière. Inscription rapide et sécurisée.{% endblock %}
+{% block url %}{{ path('app_login') }}{% endblock %}
+
+{% block ogTitle %}Jaltup - Se connecter{% endblock %}
+{% block ogUrl %}https://jaltup.com/connexion{% endblock %}
+{% block ogImage %}{{ asset('image/jaltup-og.webp') }}{% endblock %}
+{% block ogImageAlt %}Jaltup{% endblock %}
+{% block ogDescription %}Connectez-vous pour accéder à des offres d'alternance dédiées aux étudiants. Trouvez l'opportunité idéale et lancez votre carrière. Inscription rapide et sécurisée.{% endblock %}
 
 {% block body %}
     <section class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">

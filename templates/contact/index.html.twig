@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block title %}Contact{% endblock %}
+{% block description %}Contactez notre équipe pour toute question sur les offres d'alternance. Nous sommes là pour aider les étudiants à trouver des opportunités adaptées. Réponse rapide assurée.{% endblock %}
+{% block url %}{{ path('app_contact') }}{% endblock %}
+
+{% block ogTitle %}Jaltup - Contact{% endblock %}
+{% block ogUrl %}https://jaltup.com/contact{% endblock %}
+{% block ogImage %}{{ asset('image/jaltup-og.webp') }}{% endblock %}
+{% block ogImageAlt %}Jaltup{% endblock %}
+{% block ogDescription %}Contactez notre équipe pour toute question sur les offres d'alternance. Nous sommes là pour aider les étudiants à trouver des opportunités adaptées. Réponse rapide assurée.{% endblock %}
 
 {% block body %}
     <section class="isolate bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 z-50">

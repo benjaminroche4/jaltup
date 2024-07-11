@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SubscriptionController!{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block title %}S'abonner à Jaltup Premium{% endblock %}
+{% block description %}Abonnez-vous pour accéder aux meilleures offres Premium d'alternance{% endblock %}
+{% block url %}{{ path('app_subscription') }}{% endblock %}
+
+{% block ogTitle %}Jaltup - S'abonner à Jaltup Premium{% endblock %}
+{% block ogUrl %}https://jaltup.com/abonnement{% endblock %}
+{% block ogImage %}{{ asset('image/jaltup-og.webp') }}{% endblock %}
+{% block ogImageAlt %}Jaltup{% endblock %}
+{% block ogDescription %}Abonnez-vous pour accéder aux meilleures offres Premium d'alternance{% endblock %}
 
 {% block body %}
     <section class="isolate bg-gray-900 px-6 py-24 sm:py-32 lg:px-8 z-50">
@@ -112,6 +121,4 @@
             </div>
         </div>
     </section>
-
-
 {% endblock %}

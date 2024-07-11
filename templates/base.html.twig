@@ -5,6 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Jaltup - {% block title %}{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta name="robots" content="{% block robots %}{% endblock %}"/>
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo/favicon.ico') }}" sizes="32x32">
+        <link rel="canonical" href="https://jaltup.com{% block url %}{% endblock %}" />
+
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{% block ogTitle %}{% endblock %}">
+        <meta property="og:url" content="{% block ogUrl %}{% endblock %}">
+        <meta property="og:image" content="{% block ogImage %}{% endblock %}">
+        <meta property="og:image:alt" content="{% block ogImageAlt %}{% endblock %}"/>
+        <meta property="og:description" content="{% block ogDescription %}{% endblock %}">
 
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}

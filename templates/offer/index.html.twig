@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Offres{% endblock %}
+{% block robots %}index, follow{% endblock %}
+{% block title %}S'inscrire{% endblock %}
+{% block description %}Trouvez des offres d'alternance adaptées à vos compétences. Plateforme dédiée aux étudiants en recherche d'opportunités. Inscrivez-vous et lancez votre carrière.{% endblock %}
+{% block url %}{{ path('app_offer') }}{% endblock %}
+
+{% block ogTitle %}Jaltup - {% endblock %}
+{% block ogUrl %}https://jaltup.com/{% endblock %}
+{% block ogImage %}{{ asset('image/jaltup-og.webp') }}{% endblock %}
+{% block ogImageAlt %}Jaltup{% endblock %}
+{% block ogDescription %}Trouvez des offres d'alternance adaptées à vos compétences. Plateforme dédiée aux étudiants en recherche d'opportunités. Inscrivez-vous et lancez votre carrière.{% endblock %}
 
 {% block body %}
     <section class="bg-gray-900">

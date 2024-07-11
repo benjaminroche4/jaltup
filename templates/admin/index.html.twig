@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+{% block title %}Admin{% endblock %}
+{% block url %}{{ path('app_admin') }}{% endblock %}
 
 {% block body %}
     Nombre d'inscrit : {{ users|length }}<br/><br/>

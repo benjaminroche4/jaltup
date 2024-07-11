@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block robots %}index, follow{% endblock %}
 {% block title %}{{ offer.title }}{% endblock %}
+{% block description %}{{ offer.description |slice(0, 140)  }}...{% endblock %}
+{% block url %}/offre/{{ offer.slug }}{% endblock %}
+
+{% block ogTitle %}Jaltup - {{ offer.title }}{% endblock %}
+{% block ogUrl %}https://jaltup.com/offre{{ path('app_offer_details', {'slug': offer.slug }) }}{% endblock %}
+{% block ogImage %}{{ asset('image/jaltup-og.webp') }}{% endblock %}
+{% block ogImageAlt %}Jaltup{% endblock %}
+{% block ogDescription %}{{ offer.description |slice(0, 140)  }}...{% endblock %}
 
 {% block body %}
     <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
