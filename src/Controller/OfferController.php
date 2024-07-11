@@ -54,6 +54,8 @@ class OfferController extends AbstractController
     {
         $offer = $this->offerRepository->findOneBy(['slug' => $slug]);
 
+        $daysSinceCreation = $this->dateCalculatorService->calculateDaysSinceCreation($offer);
+
         if (!$offer || !$offer->isVisibility()) {
             throw $this->createNotFoundException('Cette offre n\'existe pas ou n\'est plus active.');
         }
@@ -68,12 +70,9 @@ class OfferController extends AbstractController
 
             //Si le User n'est pas abonné à l'offre Premium
             if (!in_array('ROLE_PREMIUM', $user->getRoles())) {
-                return $this->redirectToRoute('#TODO: Route vers la page d\'abonnement Premium');
+                return $this->redirectToRoute('app_subscription');
             }
         }
-
-        $daysSinceCreation = $this->dateCalculatorService->calculateDaysSinceCreation($offer);
-
 
         return $this->render('offer/offer_details.html.twig', [
             'offer' => $offer,

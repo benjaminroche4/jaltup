@@ -33,7 +33,6 @@ class RegistrationController extends AbstractController
                              LoginFormAuthenticator $formLogin): Response
     {
         if ($this->getUser()) {
-            /** TODO: redirect to app_dashboard */
             return $this->redirectToRoute('app_offer');
         }
 

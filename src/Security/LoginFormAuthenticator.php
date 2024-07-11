@@ -69,7 +69,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        /** TODO: Redirect user app_dashboard */
         return new RedirectResponse($this->urlGenerator->generate('app_offer'));
     }
 

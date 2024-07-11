@@ -63,7 +63,7 @@ class RegistrationFormType extends AbstractType
                 'label' => 'lastName',
                 'constraints' => [
                     new Assert\Length([
-                        'min' => 3,
+                        'min' => 2,
                         'max' => 50,
                         'minMessage' => 'Votre nom doit comporter au moins {{ limit }} caractères',
                         'maxMessage' => 'Votre nom ne peut pas dépasser {{ limit }} caractères',
