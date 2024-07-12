@@ -12,6 +12,24 @@
 {% block ogDescription %}{{ offer.description |slice(0, 140)  }}...{% endblock %}
 
 {% block body %}
+    {% set months = {
+        'January': 'Jan.',
+        'February': 'Fév.',
+        'March': 'Mar.',
+        'April': 'Avr.',
+        'May': 'Mai',
+        'June': 'Juin',
+        'July': 'Juil.',
+        'August': 'Août',
+        'September': 'Sep.',
+        'October': 'Oct.',
+        'November': 'Nov.',
+        'December': 'Déc.'
+    } %}
+
+    {% set month = offer.intershipStart|date("F") %}
+    {% set year = offer.intershipStart|date("Y") %}
+
     <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
         <img src="{{ asset('image/jaltup-alternance.webp') }}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
         <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
@@ -78,7 +96,7 @@
                                     </div>
                                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                         <dt class="text-sm font-medium leading-6 text-gray-900">Début de l'alternance</dt>
-                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ offer.intershipStart|date("M. Y", "Europe/Paris") }}</dd>
+                                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ months[month] }} {{ year }}</dd>
                                     </div>
                                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                                         <dt class="text-sm font-medium leading-6 text-gray-900">Niveau d'étude</dt>

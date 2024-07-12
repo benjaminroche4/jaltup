@@ -11,6 +11,26 @@
                 <div class="col-span-3">
                     <div class="grid grid-cols-1 max-w-full md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {% for item in this.items %}
+
+                            {% set months = {
+                                'January': 'Jan.',
+                                'February': 'Fév.',
+                                'March': 'Mar.',
+                                'April': 'Avr.',
+                                'May': 'Mai',
+                                'June': 'Juin',
+                                'July': 'Juil.',
+                                'August': 'Août',
+                                'September': 'Sep.',
+                                'October': 'Oct.',
+                                'November': 'Nov.',
+                                'December': 'Déc.'
+                            } %}
+
+                            {% set month = item.offer.intershipStart|date("F") %}
+                            {% set year = item.offer.intershipStart|date("Y") %}
+
+
                             {% if  not is_granted('ROLE_PREMIUM') %}
                                 {% if item.offer.premium == true %}
                                     <div class="text-gray-900 bg-white border border-gray-300 hover:border-gray-400 flex flex-col justify-between transition duration-100 rounded-xl p-2">
@@ -104,7 +124,7 @@
                                         <div class="px-3 py-4">
                                             <div class="flex justify-between items-center space-x-1.5">
                                                 <div class="space-y-1.5">
-                                                    <p class="font-semibold">Début en {{ item.offer.intershipStart|date("M. Y", "Europe/Paris") }}</p>
+                                                    <p class="font-semibold">Début en {{ months[month] }} {{ year }}</p>
                                                     <p class="text-sm text-gray-600">
                                                         {{ item.offer.locationCity }}, {{ item.offer.locationCountry }}
                                                     </p>
@@ -158,7 +178,7 @@
                                     <div class="px-3 py-4">
                                         <div class="flex justify-between items-center space-x-1.5">
                                             <div class="space-y-1.5">
-                                                <p class="font-semibold">Début en {{ item.offer.intershipStart|date("M Y", "Europe/Paris")|trans }}</p>
+                                                <p class="font-semibold">Début en {{ months[month] }} {{ year }}</p>
                                                  <p class="text-sm text-gray-600">
                                                      {{ item.offer.locationCity }}, {{ item.offer.locationCountry }}
                                                  </p>
