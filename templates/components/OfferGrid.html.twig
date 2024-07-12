@@ -31,7 +31,7 @@
                             {% set year = item.offer.intershipStart|date("Y") %}
 
 
-                            {% if  not is_granted('ROLE_PREMIUM') %}
+                            {% if not is_granted('ROLE_PREMIUM') %}
                                 {% if item.offer.premium == true %}
                                     <div class="text-gray-900 bg-white border border-gray-300 hover:border-gray-400 flex flex-col justify-between transition duration-100 rounded-xl p-2">
                                         <div class="p-5 rounded-lg flex items-stretch flex-col h-full" style="background-color: {{ item.offer.bgColor }}">

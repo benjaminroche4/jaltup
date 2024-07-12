@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-56D7SJRF');
+        </script>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,6 +33,37 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <!-- Schema.org -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Jaltup",
+                "description": "Trouvez des offres, postulez, échangez avec la communauté et simplifiez votre parcours en tant qu'alternant.",
+                "url": "https://jaltup.com",
+                "logo": "https://jaltup.com/logo/logo.svg",
+                "foundingDate": "2023-12-01",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "contact@jaltup.com",
+                   "contactType": "service client"
+                },
+                "sameAs": [
+                    "https://www.linkedin.com/company/jaltupapp"
+                ]
+            }
+        </script>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-L70SP9N41D"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-L70SP9N41D');
+        </script>
     </head>
     <body>
         <header class="max-w-6xl mx-auto absolute inset-x-0 top-0 z-50">
@@ -76,7 +116,9 @@
                         {% endif %}
                     </nav>
                     <div class="mt-10 flex justify-center space-x-10">
-                        <img src="{{ asset('logo/logo.svg') }}" alt="Logo Jaltup" class="h-24 w-auto">
+                        <a href="{{ path('app_offer') }}">
+                            <img src="{{ asset('logo/logo.svg') }}" alt="Logo Jaltup" class="h-24 w-auto">
+                        </a>
                     </div>
                     <p class="mt-10 text-center text-xs leading-5 text-gray-200">&copy; 2024 Jaltup, SA. Tous droits réservés.</p>
                 </div>

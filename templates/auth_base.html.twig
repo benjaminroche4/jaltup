@@ -24,6 +24,15 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org/",
+                "@type": "WebSite",
+                "name": "Jaltup",
+                "url": "https://jaltup.com"
+            }
+        </script>
     </head>
     <body class="h-full">
         {% block body %}{% endblock %}

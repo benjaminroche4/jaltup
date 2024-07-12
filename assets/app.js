@@ -9,6 +9,11 @@ import './bootstrap.js';
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-import './react/controllers/Header.jsx';
+import './react/controllers/faq.jsx';
+import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+
+Alpine.start()
 
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));

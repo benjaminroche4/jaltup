@@ -216,7 +216,7 @@
         "files": [
             "assets/bootstrap.js",
             "assets/controllers.json",
-            "assets/controllers/Header.jsx"
+            "assets/controllers/faq.jsx"
         ]
     },
     "symfony/translation": {
@@ -278,7 +278,7 @@
             "ref": "e970076b31d602ae6e2106cf91a82c7e1f7ddff2"
         },
         "files": [
-            "assets/react/controllers/Header.jsx"
+            "assets/react/controllers/faq.jsx"
         ]
     },
     "symfony/ux-turbo": {
