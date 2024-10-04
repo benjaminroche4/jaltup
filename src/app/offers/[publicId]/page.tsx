@@ -16,9 +16,17 @@ export default async function OfferPage({ params }: { params: { publicId: string
     const offer = await getOffer(params.publicId);
 
     return (
-        <div>
-            Hello
-            <h1 className="font-semibold text-red-700 capitalize">{offer.title}</h1>
-        </div>
+        <main>
+            <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-3xl p-5 border border-gray-200 flex justify-between">
+                <div>
+                    <h1 className="text-balance text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        {offer.title}
+                    </h1>
+                </div>
+                <div>
+                    <p>Offre premium</p>
+                </div>
+            </div>
+        </main>
     );
 }

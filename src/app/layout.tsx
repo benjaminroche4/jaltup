@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import type { Metadata } from "next";
 import "./globals.css";
+import {ModeToggle} from "@/components/ui/mode-toggle";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,16 +15,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body>
-    <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
+    <body className="max-w-6xl mx-auto">
+      <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          >
+        <ModeToggle/>
+        {children}
+      </ThemeProvider>
+    </body>
     </html>
   );
 }
