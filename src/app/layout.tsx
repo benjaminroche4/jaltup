@@ -14,18 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-    <body className="max-w-6xl mx-auto">
-      <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          >
-        <ModeToggle/>
-        {children}
-      </ThemeProvider>
-    </body>
+    <html lang="fr">
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ModeToggle/>
+            {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

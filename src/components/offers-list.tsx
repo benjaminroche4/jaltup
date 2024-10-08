@@ -1,10 +1,11 @@
-import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Avatar, AvatarFallback, AvatarImage,} from "@/components/ui/avatar"
-import {HeartIcon, MapPin, TimerReset} from "lucide-react";
-import {Badge} from "@/components/ui/badge";
+import {Bookmark, MapPin, Star, TimerReset} from "lucide-react";
 import Link from "next/link";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger,} from "@/components/ui/tooltip"
 import { differenceInDays } from 'date-fns';
+import * as React from "react";
+import {Badge} from "@/components/ui/badge";
 
 type Offer = {
     publicId: string,
@@ -19,7 +20,7 @@ type Offer = {
 
 type job = {
     studyLevel: string,
-    contractType: string,
+    duration: number,
     remote: boolean,
 }
 
@@ -34,71 +35,49 @@ type Place = {
 }
 
 export default async function OffersList() {
-    const offers: Offer[] = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers?order[createdAt]=desc`, { next: { revalidate: 3600 } })
+    //Remove from prod
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+    const offers: Offer[] = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers?order[createdAt]=desc&status=published`, { next: { revalidate: 1 } })
         .then(response => response.json())
         .then(data => data['hydra:member']);
 
     return (
-        <div className="p-12 max-w-7xl">
-            <div className="grid grid-cols-3 gap-4">
+        <div className="max-w-7xl mx-auto px-8 sm:px-12 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
                 {offers.map(offer => {
                     const createdAtDate = new Date(offer.createdAt);
-                    const isNew = differenceInDays(new Date(), createdAtDate) <= 2;
+                    const isNew = differenceInDays(new Date(), createdAtDate) <= 5;
 
                     return (
-                        <Card key={offer.publicId} className="relative dark:bg-dark hover:shadow-md dark:hover:shadow-gray-800 transition duration-200">
-                            <Link href={`/offers/${offer.publicId}`}>
-                                {isNew && (
-                                    <div className="-mt-3.5 absolute right-3">
-                                        <div className="block px-2 py-1 rounded-full text-xs border border-gray-200 text-gray-400 bg-white dark:border-zinc-800 dark:bg-dark">
-                                            Nouveau
-                                        </div>
-                                    </div>
-                                )}
+                        <Card key={offer.publicId} className="relative dark:bg-dark hover:shadow-md dark:hover:shadow-gray-800 transition duration-200 flex flex-col h-full">
+                            <Link href={`/offers/${offer.publicId}`} className="flex flex-col h-full">
                                 <CardHeader>
                                     <div className="flex justify-between">
-                                        <div className="flex flex-row gap-x-4 items-center">
+                                        <div className="flex flex-row gap-x-5 items-center">
                                             <Avatar>
                                                 <AvatarImage
                                                     src={`${process.env.NEXT_PUBLIC_APP_URL}/company/logos/${offer.company.logo}`}/>
                                                 <AvatarFallback>{offer.company.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
-                                            <div>
-                                                <CardTitle className="text-xl tracking-tight">
-                                                    {offer.title.length > 22 ? `${offer.title.substring(0, 22)}...` : offer.title}
-                                                </CardTitle>
-                                                <p className="text-sm dark:text-gray-400 text-gray-500">
-                                                    {offer.company.name.length > 20 ? `${offer.company.name.substring(0, 20)}...` : offer.company.name}
-                                                </p>
-                                            </div>
+                                            {isNew && (
+                                                <Badge variant="outline">Nouveau</Badge>
+                                            )}
                                         </div>
                                         <div>
-                                            <HeartIcon
-                                                className="stroke-gray-300 dark:stroke-zinc-700 hover:fill-red-500 hover:stroke-red-500 dark:hover:stroke-red-500"/>
+                                            <Star className="stroke-gray-300 hover:stroke-zinc-800 hover:fill-zinc-800 dark:stroke-zinc-700 dark:hover:fill-white dark:hover:stroke-white"/>
                                         </div>
                                     </div>
+                                    <div>
+                                        <CardTitle className="text-xl tracking-normal font-bold mt-3">
+                                            {offer.title}
+                                        </CardTitle>
+                                        <p className="text-sm dark:text-gray-400 text-gray-500">
+                                            {offer.company.name}
+                                        </p>
+                                    </div>
                                 </CardHeader>
-                                <CardContent className="space-x-1.5">
-                                    {offer.job.studyLevel && (
-                                        <Badge
-                                            className="bg-gradient-to-r from-green-600 to-green-800 border-none dark:text-white capitalize">
-                                            {offer.job.studyLevel}
-                                        </Badge>
-                                    )}
-                                    {offer.job.contractType && (
-                                        <Badge
-                                            className="bg-gradient-to-r from-cyan-600 to-cyan-800 border-none dark:text-white capitalize">
-                                            {offer.job.contractType}
-                                        </Badge>
-                                    )}
-                                    {offer.job.remote && (
-                                        <Badge
-                                            className="bg-gradient-to-r from-red-600 to-red-800 border-none dark:text-white capitalize">
-                                            Remote
-                                        </Badge>
-                                    )}
-                                </CardContent>
-                                <CardFooter className="flex justify-between">
+                                <CardFooter className="flex justify-between mt-auto">
                                     <div className="dark:text-gray-400 text-gray-500 text-sm flex gap-x-1 items-center">
                                         <MapPin className="h-5 w-auto"/>
                                         {offer.place.city.length > 10 ? `${offer.place.city.substring(0, 10)}...` : offer.place.city}, {offer.place.zipCode}
@@ -106,8 +85,7 @@ export default async function OffersList() {
                                     <TooltipProvider>
                                         <Tooltip>
                                             <TooltipTrigger>
-                                                <div
-                                                    className="dark:text-gray-400 text-gray-500 text-sm flex gap-x-1 items-center">
+                                                <div className="dark:text-gray-400 text-gray-500 text-sm flex gap-x-1 items-center">
                                                     <TimerReset className="h-5 w-auto"/>
                                                     {offer.dayLast} jours restant
                                                 </div>
