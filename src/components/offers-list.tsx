@@ -1,6 +1,6 @@
 import {Card, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Avatar, AvatarFallback, AvatarImage,} from "@/components/ui/avatar"
-import {Bookmark, MapPin, Star, TimerReset} from "lucide-react";
+import {Crown, MapPin, Star, TimerReset} from "lucide-react";
 import Link from "next/link";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger,} from "@/components/ui/tooltip"
 import { differenceInDays } from 'date-fns';
@@ -16,19 +16,17 @@ type Offer = {
     job: job,
     slug: string,
     createdAt: string,
+    premium: boolean,
 }
-
 type job = {
     studyLevel: string,
     duration: number,
     remote: boolean,
 }
-
 type Company = {
     name: string,
     logo: string,
 }
-
 type Place = {
     city: string,
     zipCode: number,
@@ -43,26 +41,34 @@ export default async function OffersList() {
         .then(data => data['hydra:member']);
 
     return (
-        <div className="max-w-7xl mx-auto px-8 sm:px-12 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+        <main className="max-w-7xl mx-auto px-4 sm:px-12 py-12">
+            <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                 {offers.map(offer => {
                     const createdAtDate = new Date(offer.createdAt);
                     const isNew = differenceInDays(new Date(), createdAtDate) <= 5;
 
                     return (
-                        <Card key={offer.publicId} className="relative dark:bg-dark hover:shadow-md dark:hover:shadow-gray-800 transition duration-200 flex flex-col h-full">
+                        <Card key={offer.publicId} className="relative hover:shadow-md dark:hover:shadow-gray-800 transition duration-100 flex flex-col h-full">
                             <Link href={`/offers/${offer.publicId}`} className="flex flex-col h-full">
                                 <CardHeader>
-                                    <div className="flex justify-between">
+                                    <div className="flex justify-between items-center">
                                         <div className="flex flex-row gap-x-5 items-center">
                                             <Avatar>
                                                 <AvatarImage
                                                     src={`${process.env.NEXT_PUBLIC_APP_URL}/company/logos/${offer.company.logo}`}/>
                                                 <AvatarFallback>{offer.company.name.charAt(0)}</AvatarFallback>
                                             </Avatar>
-                                            {isNew && (
-                                                <Badge variant="outline">Nouveau</Badge>
-                                            )}
+                                            <div className="gap-x-1 flex">
+                                                {offer.premium && (
+                                                    <Badge variant='outline' className="bg-yellow-100/10 border border-yellow-500 text-yellow-600 flex gap-x-1">
+                                                        <Crown className="h-3 w-auto"/>
+                                                        Premium
+                                                    </Badge>
+                                                )}
+                                                {isNew && (
+                                                    <Badge variant="outline">Nouveau</Badge>
+                                                )}
+                                            </div>
                                         </div>
                                         <div>
                                             <Star className="stroke-gray-300 hover:stroke-zinc-800 hover:fill-zinc-800 dark:stroke-zinc-700 dark:hover:fill-white dark:hover:stroke-white"/>
@@ -100,7 +106,7 @@ export default async function OffersList() {
                         </Card>
                     );
                 })}
-            </div>
-        </div>
+            </section>
+        </main>
     );
 }
