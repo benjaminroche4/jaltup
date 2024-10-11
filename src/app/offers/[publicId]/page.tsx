@@ -19,6 +19,8 @@ import {
 } from "@/components/ui/breadcrumb"
 import {Button} from "@/components/ui/button";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import Link from "next/link";
+import {Separator} from "@/components/ui/separator";
 
 async function getOffer(publicId: string) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers/${publicId}`, {
@@ -67,8 +69,7 @@ export default async function OfferPage({ params }: { params: { publicId: string
                     </div>
                 </CardHeader>
                 <CardFooter>
-                    <div
-                        className="items-center sm:gap-x-8 text-sm grid grid-cols-2 gap-5 mt-3 sm:flex w-full sm:w-auto">
+                    <div className="items-center sm:gap-x-8 text-sm grid grid-cols-2 gap-5 mt-3 sm:flex w-full sm:w-auto">
                         <div className="dark:text-gray-400 text-gray-500 text-sm flex gap-x-1.5 items-center">
                             <MapPin className="h-5 w-auto"/>
                             {offer.place.city}
@@ -88,23 +89,23 @@ export default async function OfferPage({ params }: { params: { publicId: string
                     </div>
                 </CardFooter>
             </Card>
-            <div className="grid grid-cols-3 mt-8 gap-8">
-                <div className="col-span-3 md:col-span-2">
+            <div className="grid grid-cols-3 mt-6 gap-6 sm:mt-8 sm:gap-8">
+                <div className="col-span-3 lg:col-span-2">
                     <Card>
                         <CardHeader>
                             Description du poste
                         </CardHeader>
                         <CardContent>
-                            <CardDescription>
+                            <CardDescription className="text-md">
                                 {offer.job.description}
                             </CardDescription>
                         </CardContent>
                     </Card>
                 </div>
-                <div className="space-y-8 col-span-3 md:col-span-1">
+                <div className="space-y-6 sm:space-y-8 col-span-3 lg:col-span-1">
                     <Card>
                         <CardHeader>
-                            <div className="flex gap-x-4 items-center">
+                            <div className="flex gap-x-4 items-center justify-center">
                                 <Avatar>
                                     <AvatarImage
                                         src={`${process.env.NEXT_PUBLIC_APP_URL}/company/logos/${offer.company.logo}`}/>
@@ -113,12 +114,32 @@ export default async function OfferPage({ params }: { params: { publicId: string
                                 <h3 className="text-xl font-semibold tracking-wide">{offer.company.name}</h3>
                             </div>
                         </CardHeader>
+                        <CardFooter className="grid grid-cols-3 text-center divide-x">
+                            <Link href="#" target="_blank" className="underline underline-offset-4 text-sm text-muted-foreground">Voir le site</Link>
+                            <p className="text-sm text-muted-foreground">14 offres</p>
+                            <p className="text-sm text-muted-foreground">14 offres</p>
+                        </CardFooter>
                     </Card>
                     <Card>
                         <CardHeader>
-                            Postuler
-                            <Button variant="default" size="lg">Postuler à l'offre</Button>
+                            <div className="grid grid-cols-2 gap-x-4">
+                                <div className="bg-muted rounded-2xl text-center px-2 py-4 space-y-1">
+                                    <p className="text-2xl font-semibold">44</p>
+                                    <p className="text-sm text-muted-foreground">candidatures</p>
+                                </div>
+                                <div className="bg-muted rounded-2xl text-center px-2 py-4 space-y-1">
+                                    <p className="text-2xl font-semibold">{offer.dayLast}</p>
+                                    <p className="text-sm text-muted-foreground">jours restant</p>
+                                </div>
+                            </div>
                         </CardHeader>
+                        <CardFooter>
+                        <Button variant="default" size="xl" className="w-full">
+                                <Link href={offer.url} target="_blank">
+                                    Postuler à l&apos;offre
+                                </Link>
+                            </Button>
+                        </CardFooter>
                     </Card>
                 </div>
             </div>
