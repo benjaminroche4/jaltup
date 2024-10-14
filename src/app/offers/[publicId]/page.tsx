@@ -3,6 +3,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader} from "@/comp
 import {Badge} from "@/components/ui/badge";
 import {
     BriefcaseBusiness,
+    CheckCircle,
     Crown,
     GraduationCap,
     LucideHome,
@@ -20,11 +21,11 @@ import {
 import {Button} from "@/components/ui/button";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import Link from "next/link";
-import {Separator} from "@/components/ui/separator";
+import ReactMarkdown from 'react-markdown';
 
 async function getOffer(publicId: string) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers/${publicId}`, {
-        // cache: 'force-cache' // Utilise la mise en cache si disponible
+        next: { revalidate: 1 }
     });
 
     if (!response.ok) {
@@ -89,20 +90,32 @@ export default async function OfferPage({ params }: { params: { publicId: string
                     </div>
                 </CardFooter>
             </Card>
-            <div className="grid grid-cols-3 mt-6 gap-6 sm:mt-8 sm:gap-8">
+            <div className="grid grid-cols-3 mt-6 gap-6 md:mt-8 md:gap-8">
                 <div className="col-span-3 lg:col-span-2">
                     <Card>
                         <CardHeader>
                             Description du poste
                         </CardHeader>
                         <CardContent>
-                            <CardDescription className="text-md">
-                                {offer.job.description}
+                            <ReactMarkdown className="text-md text-muted-foreground">{offer.job.description}</ReactMarkdown>
+                            <CardDescription className="mt-5">Publié le {new Date(offer.createdAt).toLocaleDateString('fr-FR', {
+                                    weekday: 'long',
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}.
                             </CardDescription>
                         </CardContent>
+                        <CardFooter>
+                            <div className="text-muted-foreground text-sm space-x-2 space-y-2">
+                            {offer.tag.map((tag: string, index: number) => (
+                                    <Badge key={index} variant="secondary">{tag}</Badge>
+                                ))}
+                            </div>
+                        </CardFooter>
                     </Card>
                 </div>
-                <div className="space-y-6 sm:space-y-8 col-span-3 lg:col-span-1">
+                <div className="space-y-6 md:space-y-8 col-span-3 lg:col-span-1">
                     <Card>
                         <CardHeader>
                             <div className="flex gap-x-4 items-center justify-center">
@@ -115,9 +128,20 @@ export default async function OfferPage({ params }: { params: { publicId: string
                             </div>
                         </CardHeader>
                         <CardFooter className="grid grid-cols-3 text-center divide-x">
-                            <Link href="#" target="_blank" className="underline underline-offset-4 text-sm text-muted-foreground">Voir le site</Link>
-                            <p className="text-sm text-muted-foreground">14 offres</p>
-                            <p className="text-sm text-muted-foreground">14 offres</p>
+                            <Link href={offer.company.websiteUrl}  target="_blank" className="underline underline-offset-4 text-sm text-muted-foreground">Voir le site</Link>
+                            <p className="text-sm text-muted-foreground">
+                                {offer.company.offerNumber} {offer.company.offerNumber > 1 ? 'offres' : 'offre'}
+                            </p>
+                            <p className="text-sm text-muted-foreground flex items-center justify-center gap-x-1">
+                                {offer.company.verified ? (
+                                    <>
+                                        Vérifié
+                                        <CheckCircle className="h-4 w-auto" />
+                                    </>
+                                ) : (
+                                    "Non Vérifié"
+                                )}
+                            </p>
                         </CardFooter>
                     </Card>
                     <Card>
