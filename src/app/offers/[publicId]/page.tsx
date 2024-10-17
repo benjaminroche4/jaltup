@@ -98,12 +98,12 @@ export default async function OfferPage({ params }: { params: { publicId: string
                         </CardHeader>
                         <CardContent>
                             <ReactMarkdown className="text-md text-muted-foreground">{offer.job.description}</ReactMarkdown>
-                            <CardDescription className="mt-5">Publié le {new Date(offer.createdAt).toLocaleDateString('fr-FR', {
+                            <CardDescription className="mt-5">Publié le <span className="underline underline-offset-4">{new Date(offer.createdAt).toLocaleDateString('fr-FR', {
                                     weekday: 'long',
                                     year: 'numeric',
                                     month: 'long',
                                     day: 'numeric'
-                                })}.
+                            })}.</span>
                             </CardDescription>
                         </CardContent>
                         <CardFooter>
