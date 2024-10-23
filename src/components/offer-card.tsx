@@ -1,3 +1,5 @@
+'use client'
+
 import { differenceInDays } from 'date-fns'
 import { Crown, MapPin, Star, TimerReset } from 'lucide-react'
 import Link from 'next/link'
@@ -8,7 +10,7 @@ import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Offer } from '@/model/offer'
 
-const OfferCardHeader = (offer: Offer) => {
+const OfferCardHeader = ({ offer }: { offer: Offer }) => {
   const createdAtDate = new Date(offer.createdAt)
   const isNew = differenceInDays(new Date(), createdAtDate) <= 5
 
@@ -47,7 +49,7 @@ const OfferCardHeader = (offer: Offer) => {
   )
 }
 
-const OfferCardFooter = (offer: Offer) => (
+const OfferCardFooter = ({ offer }: { offer: Offer }) => (
   <CardFooter className="mt-auto flex justify-between">
     <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
       <MapPin className="h-5 w-auto" />
@@ -71,15 +73,15 @@ const OfferCardFooter = (offer: Offer) => (
   </CardFooter>
 )
 
-export default function OfferCard(offer: Offer) {
+export default function OfferCard({ offer }: { offer: Offer }) {
   return (
     <Card
       key={offer.publicId}
       className="relative flex h-full flex-col transition duration-100 hover:shadow-md dark:hover:shadow-gray-800"
     >
       <Link href={`/offers/${offer.publicId}`} className="flex h-full flex-col">
-        {OfferCardHeader(offer)}
-        {OfferCardFooter(offer)}
+        <OfferCardHeader offer={offer} />
+        <OfferCardFooter offer={offer} />
       </Link>
     </Card>
   )
