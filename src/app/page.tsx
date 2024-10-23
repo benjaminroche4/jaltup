@@ -2,6 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import * as React from 'react'
+import ErrorBoundary from '@/components/error-boundary'
 import OffersList from '@/components/offers-list'
 
 export default function Home() {
@@ -9,9 +10,11 @@ export default function Home() {
 
   return (
     <main>
-      <QueryClientProvider client={queryClient}>
-        <OffersList />
-      </QueryClientProvider>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
+          <OffersList />
+        </QueryClientProvider>
+      </ErrorBoundary>
     </main>
   )
 }
