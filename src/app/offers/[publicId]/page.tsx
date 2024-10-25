@@ -2,11 +2,15 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import * as React from 'react'
+import { use } from 'react'
 import { OfferLayout } from '@/app/offers/[publicId]/offer-layout'
 import ErrorBoundary from '@/components/error-boundary'
 
-export default function OfferPage({ params }: { params: { publicId: string } }) {
+type Params = Promise<{ publicId: string }>
+
+export default function Page(props: { params: Params }) {
   const queryClient = new QueryClient()
+  const params = use(props.params)
 
   return (
     <main>
