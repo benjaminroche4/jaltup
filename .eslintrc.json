@@ -19,12 +19,6 @@
     "tsconfigRootDir": "."
   },
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "endOfLine": "auto"
-      }
-    ],
     /**
      * Base ESLint rules
      */

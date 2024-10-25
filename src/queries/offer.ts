@@ -17,10 +17,10 @@ const getOffer = async (publicId: string): Promise<Offer> => {
 }
 
 export const useGetOffer = (publicId: string) => {
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['offer', publicId],
     queryFn: () => getOffer(publicId),
   })
 
-  return data
+  return { offer: data, isLoading, isError }
 }

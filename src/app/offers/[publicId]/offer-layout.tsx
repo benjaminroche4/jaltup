@@ -5,12 +5,24 @@ import { ApplyCard } from '@/app/offers/[publicId]/apply-card'
 import { CompanyCard } from '@/app/offers/[publicId]/company-card'
 import { DescriptionCard } from '@/app/offers/[publicId]/description-card'
 import { HeaderCard } from '@/app/offers/[publicId]/header-card'
+import ErrorPage from '@/components/error-page'
+import { Spinner } from '@/components/ui/spinner'
 import { useGetOffer } from '@/queries/offer'
 
 export const OfferLayout = ({ id }: { id: string }) => {
-  const offer = useGetOffer(id)
+  const { offer, isLoading, isError } = useGetOffer(id)
 
-  if (!offer) return null
+  if (isLoading) {
+    return (
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-12">
+        <Spinner size="large" />
+      </div>
+    )
+  }
+
+  if (isError || !offer) {
+    return <ErrorPage />
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-12">

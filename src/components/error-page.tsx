@@ -1,15 +1,28 @@
 'use client'
 
+import Link from 'next/link'
 import * as React from 'react'
 
 const ErrorPage = (): React.ReactNode => (
-  <div className="mx-auto max-w-7xl px-4 py-12 sm:px-12">
-    <h1 className="whitespace-pre-wrap text-3xl font-bold tracking-normal sm:text-4xl">
-      Oups, une erreur est survenue !
-    </h1>
-    <h2 className="whitespace-pre-wrap text-3xl font-bold tracking-normal sm:text-4xl">
-      Veuillez réessayer plus tard.
-    </h2>
-  </div>
+  <section className="relative z-10 bg-sky-600 py-[120px]">
+    <div className="container mx-auto">
+      <div className="-mx-4 flex">
+        <div className="w-full px-4">
+          <div className="mx-auto max-w-[400px] text-center">
+            <h4 className="mb-3 text-[22px] font-semibold leading-tight text-white">
+              Oups, une erreur est survenue !
+            </h4>
+            <p className="mb-8 text-lg text-white">Veuillez réessayer plus tard.</p>
+            <Link
+              href="/"
+              className="inline-block rounded-lg border border-white px-8 py-3 text-center text-base font-semibold text-white transition hover:bg-white hover:text-primary"
+            >
+              Retour
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 )
 export default ErrorPage

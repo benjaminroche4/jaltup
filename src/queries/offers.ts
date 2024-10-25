@@ -13,10 +13,10 @@ const getOffers = async (): Promise<Offer[]> => {
 }
 
 export const useGetOffers = () => {
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['offers'],
     queryFn: getOffers,
   })
 
-  return data
+  return { offers: data, isLoading, isError }
 }
