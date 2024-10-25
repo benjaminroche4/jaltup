@@ -1,17 +1,27 @@
-import { Company } from './company'
-import { job } from './job'
-import { Place } from './place'
+import { z } from 'zod'
+import { CompanySchema } from '@/model/company'
+import { JobSchema } from '@/model/job'
+import { PlaceSchema } from '@/model/place'
 
-export interface Offer {
-  publicId: string
-  title: string
-  url: string
-  place: Place
-  dayLast: number
-  company: Company
-  job: job
-  slug: string
-  createdAt: string
-  premium: boolean
-  tag: string[]
-}
+const OfferSchema = z.object({
+  publicId: z.string(),
+  title: z.string(),
+  url: z.string().url(),
+  dayLast: z.number(),
+  slug: z.string(),
+  createdAt: z.string().datetime({ offset: true }),
+  endDate: z.string().datetime({ offset: true }).optional(),
+  premium: z.boolean(),
+  tag: z.array(z.string()).optional(),
+  place: PlaceSchema,
+  company: CompanySchema,
+  job: JobSchema,
+})
+
+const OffersSchema = z.array(OfferSchema)
+
+export type Offer = z.infer<typeof OfferSchema>
+
+export const validateOffer = (data: unknown): Offer => OfferSchema.parse(data)
+
+export const validateOffers = (data: unknown): Offer[] => OffersSchema.parse(data)

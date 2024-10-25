@@ -1,7 +1,4 @@
 export const OFFER_FIXTURE = {
-  '@context': '/api/contexts/Offer',
-  '@id': '/api/offers/FU5D2I',
-  '@type': 'Offer',
   publicId: 'FU5D2I',
   title: 'Ingénieur en Intelligence Artificielle',
   place: {
@@ -21,8 +18,6 @@ export const OFFER_FIXTURE = {
     startDate: '2024-11-03',
   },
   company: {
-    '@id': '/api/companies/Z2TWVE',
-    '@type': 'Company',
     name: 'Facebook',
     websiteUrl: 'https://www.lesch.com/excepturi-omnis-sint-tempore-voluptatem-voluptatum',
     logo: 'edf.png',
@@ -37,8 +32,6 @@ export const OFFER_FIXTURE = {
   slug: 'ingenieur-en-intelligence-artificielle',
   category: [
     {
-      '@id': '/api/categories/EB63RL',
-      '@type': 'Category',
       name: 'Ingénierie Logicielle',
     },
   ],

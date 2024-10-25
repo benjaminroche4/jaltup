@@ -1,7 +1,14 @@
-export interface job {
-  contractType: string
-  description: string
-  studyLevel: string
-  duration: number
-  remote: boolean
-}
+import { z } from 'zod'
+
+export const JobSchema = z.object({
+  description: z.string(),
+  contractType: z.string(),
+  duration: z.number(),
+  remote: z.boolean(),
+  studyLevel: z.string().optional(),
+  startDate: z.string().date().optional(),
+})
+
+export type Job = z.infer<typeof JobSchema>
+
+export const validateJob = (data: unknown): Job => JobSchema.parse(data)

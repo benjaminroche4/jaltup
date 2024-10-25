@@ -32,7 +32,7 @@ export const OfferLayout = ({ id }: { id: string }) => {
           <DescriptionCard offer={offer} />
         </div>
         <div className="col-span-3 space-y-6 md:space-y-8 lg:col-span-1">
-          <CompanyCard offer={offer} />
+          <CompanyCard company={offer.company} />
           <ApplyCard offer={offer} />
         </div>
       </div>

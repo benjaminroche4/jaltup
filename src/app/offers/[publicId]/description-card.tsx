@@ -24,14 +24,16 @@ export const DescriptionCard = ({ offer }: { offer: Offer }) => (
         </span>
       </CardDescription>
     </CardContent>
-    <CardFooter>
-      <div className="space-x-2 space-y-2 text-sm text-muted-foreground">
-        {offer.tag.map((tag: string) => (
-          <Badge key={offer.publicId} variant="secondary">
-            {tag}
-          </Badge>
-        ))}
-      </div>
-    </CardFooter>
+    {offer.tag ? (
+      <CardFooter>
+        <div className="space-x-2 space-y-2 text-sm text-muted-foreground">
+          {offer.tag.map((tag: string) => (
+            <Badge key={offer.publicId} variant="secondary">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+      </CardFooter>
+    ) : null}
   </Card>
 )

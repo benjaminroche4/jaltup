@@ -1,7 +1,5 @@
 export const OFFERS_FIXTURE = [
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'FU5D2I',
     title: 'Ingénieur en Intelligence Artificielle',
     place: {
@@ -21,8 +19,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-03',
     },
     company: {
-      '@id': '/api/companies/Z2TWVE',
-      '@type': 'Company',
       name: 'Facebook',
       websiteUrl: 'https://www.lesch.com/excepturi-omnis-sint-tempore-voluptatem-voluptatum',
       logo: 'edf.png',
@@ -37,8 +33,6 @@ export const OFFERS_FIXTURE = [
     slug: 'ingenieur-en-intelligence-artificielle',
     category: [
       {
-        '@id': '/api/categories/EB63RL',
-        '@type': 'Category',
         name: 'Ingénierie Logicielle',
       },
     ],
@@ -46,8 +40,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 26,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: '5JVKPG',
     title: 'Responsable Marketing Digital',
     place: {
@@ -67,8 +59,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-06',
     },
     company: {
-      '@id': '/api/companies/62VHE0',
-      '@type': 'Company',
       name: 'Waterman',
       websiteUrl: 'https://www.towne.net/eveniet-aut-alias-quaerat-autem-tempora-perspiciatis',
       logo: 'edf.png',
@@ -89,8 +79,6 @@ export const OFFERS_FIXTURE = [
     slug: 'responsable-marketing-digital',
     category: [
       {
-        '@id': '/api/categories/KH6CBF',
-        '@type': 'Category',
         name: 'Réalité Virtuelle',
       },
     ],
@@ -98,8 +86,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 25,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'YCFAO5',
     title: 'Comptable Senior',
     place: {
@@ -119,8 +105,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-12',
     },
     company: {
-      '@id': '/api/companies/JET7MW',
-      '@type': 'Company',
       name: 'SDV International Logistics',
       websiteUrl: 'http://bashirian.com/aliquam-nulla-officia-similique-quos-dicta.html',
       logo: 'capgemini.png',
@@ -135,8 +119,6 @@ export const OFFERS_FIXTURE = [
     slug: 'comptable-senior',
     category: [
       {
-        '@id': '/api/categories/5W3UWU',
-        '@type': 'Category',
         name: 'Ingénierie Logicielle',
       },
     ],
@@ -144,8 +126,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 25,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: '671AO9',
     title: 'Technicien Réseau et Système',
     place: {
@@ -165,8 +145,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-04',
     },
     company: {
-      '@id': '/api/companies/HTKOW2',
-      '@type': 'Company',
       name: 'Gaumont',
       websiteUrl:
         'https://bahringer.info/consectetur-eos-qui-totam-cupiditate-maxime-impedit-aut.html',
@@ -182,8 +160,6 @@ export const OFFERS_FIXTURE = [
     slug: 'technicien-reseau-et-systeme',
     category: [
       {
-        '@id': '/api/categories/NCF2VR',
-        '@type': 'Category',
         name: 'Internet des Objets (IoT)',
       },
     ],
@@ -191,8 +167,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 24,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'DUKJP8',
     title: 'Data Scientist',
     place: {
@@ -212,8 +186,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-18',
     },
     company: {
-      '@id': '/api/companies/QFS627',
-      '@type': 'Company',
       name: 'Google',
       websiteUrl: 'https://davis.org/explicabo-qui-laboriosam-qui-quaerat-nobis-ad.html',
       logo: 'capgemini.png',
@@ -228,8 +200,6 @@ export const OFFERS_FIXTURE = [
     slug: 'data-scientist',
     category: [
       {
-        '@id': '/api/categories/P54XHG',
-        '@type': 'Category',
         name: 'Internet des Objets (IoT)',
       },
     ],
@@ -237,8 +207,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 23,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'IIR77G',
     title: 'Comptable Senior',
     place: {
@@ -258,8 +226,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-04',
     },
     company: {
-      '@id': '/api/companies/N85AIS',
-      '@type': 'Company',
       name: 'Capgemini',
       websiteUrl: 'https://www.baumbach.biz/quas-sunt-id-occaecati-aut',
       logo: 'total.png',
@@ -274,8 +240,6 @@ export const OFFERS_FIXTURE = [
     slug: 'comptable-senior',
     category: [
       {
-        '@id': '/api/categories/W0LVAE',
-        '@type': 'Category',
         name: 'Ressources Humaines',
       },
     ],
@@ -283,8 +247,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 21,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'KIQ8F2',
     title: 'Responsable Marketing Digital',
     place: {
@@ -304,8 +266,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-10-29',
     },
     company: {
-      '@id': '/api/companies/0ELOYI',
-      '@type': 'Company',
       name: 'Google',
       websiteUrl:
         'https://www.kshlerin.com/exercitationem-perferendis-consequatur-et-sapiente-est-et-consequatur-perspiciatis',
@@ -321,8 +281,6 @@ export const OFFERS_FIXTURE = [
     slug: 'responsable-marketing-digital',
     category: [
       {
-        '@id': '/api/categories/YHR8TP',
-        '@type': 'Category',
         name: 'Marketing Digital',
       },
     ],
@@ -330,8 +288,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 21,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'KX6YG0',
     title: 'Analyste Financier',
     place: {
@@ -351,8 +307,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-05',
     },
     company: {
-      '@id': '/api/companies/FFMBJX',
-      '@type': 'Company',
       name: 'Carrefour',
       websiteUrl:
         'http://www.rodriguez.org/id-perferendis-quidem-quia-et-cumque-ratione-laborum-in',
@@ -368,8 +322,6 @@ export const OFFERS_FIXTURE = [
     slug: 'analyste-financier',
     category: [
       {
-        '@id': '/api/categories/D56RMI',
-        '@type': 'Category',
         name: 'Informatique en Nuage',
       },
     ],
@@ -377,8 +329,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 20,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: 'QT4I0B',
     title: 'Responsable Logistique',
     place: {
@@ -398,8 +348,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-09',
     },
     company: {
-      '@id': '/api/companies/BY7NMS',
-      '@type': 'Company',
       name: 'Laboratoires Expanscience',
       websiteUrl: 'http://www.prohaska.com/et-id-cupiditate-ipsam-quasi-quod-delectus-dolores',
       logo: 'capgemini.png',
@@ -414,8 +362,6 @@ export const OFFERS_FIXTURE = [
     slug: 'responsable-logistique',
     category: [
       {
-        '@id': '/api/categories/VUJ2M2',
-        '@type': 'Category',
         name: 'Apprentissage Automatique',
       },
     ],
@@ -423,8 +369,6 @@ export const OFFERS_FIXTURE = [
     dayLast: 20,
   },
   {
-    '@id': '/api/offers/count',
-    '@type': 'Offer',
     publicId: '51UAP6',
     title: 'Consultant en Ressources Humaines',
     place: {
@@ -444,8 +388,6 @@ export const OFFERS_FIXTURE = [
       startDate: '2024-11-03',
     },
     company: {
-      '@id': '/api/companies/8DB5SQ',
-      '@type': 'Company',
       name: 'Total',
       websiteUrl: 'https://www.bradtke.net/pariatur-qui-amet-velit-labore-voluptatem-architecto',
       logo: 'edf.png',
@@ -466,8 +408,6 @@ export const OFFERS_FIXTURE = [
     slug: 'consultant-en-ressources-humaines',
     category: [
       {
-        '@id': '/api/categories/5DD0VV',
-        '@type': 'Category',
         name: 'Cybersécurité',
       },
     ],
