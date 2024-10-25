@@ -39,7 +39,10 @@ export const HeaderCard = ({ offer }: { offer: Offer }) => (
               Premium
             </Badge>
           ) : null}
-          <Star className="stroke-gray-300 hover:fill-zinc-800 hover:stroke-zinc-800 dark:stroke-zinc-700 dark:hover:fill-white dark:hover:stroke-white" />
+          <Star
+            className="stroke-gray-300 hover:fill-zinc-800 hover:stroke-zinc-800 dark:stroke-zinc-700 dark:hover:fill-white
+              dark:hover:stroke-white"
+          />
         </div>
       </div>
       <div className="sm:max-w-3xl">

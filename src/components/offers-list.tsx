@@ -15,7 +15,7 @@ export default function OffersList() {
   if (isLoading) {
     return (
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-12">
-        <Spinner size="large" />
+        <Spinner size="large">Chargement ...</Spinner>
       </main>
     )
   }

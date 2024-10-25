@@ -15,7 +15,8 @@ const ErrorPage = (): React.ReactNode => (
             <p className="mb-8 text-lg text-white">Veuillez réessayer plus tard.</p>
             <Link
               href="/"
-              className="inline-block rounded-lg border border-white px-8 py-3 text-center text-base font-semibold text-white transition hover:bg-white hover:text-primary"
+              className="inline-block rounded-lg border border-white px-8 py-3 text-center text-base font-semibold text-white
+                transition hover:bg-white hover:text-primary"
             >
               Retour
             </Link>

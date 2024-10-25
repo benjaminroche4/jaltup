@@ -38,7 +38,10 @@ const OfferCardHeader = ({ offer }: { offer: Offer }) => {
           </div>
         </div>
         <div>
-          <Star className="stroke-gray-300 hover:fill-zinc-800 hover:stroke-zinc-800 dark:stroke-zinc-700 dark:hover:fill-white dark:hover:stroke-white" />
+          <Star
+            className="stroke-gray-300 hover:fill-zinc-800 hover:stroke-zinc-800 dark:stroke-zinc-700 dark:hover:fill-white
+              dark:hover:stroke-white"
+          />
         </div>
       </div>
       <div>
