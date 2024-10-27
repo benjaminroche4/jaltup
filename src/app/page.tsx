@@ -5,12 +5,15 @@ import * as React from 'react'
 import { useState } from 'react'
 import { ErrorBoundary } from '@/components/error-boundary'
 import { OffersList } from '@/components/offers-list'
+import { Paginator } from '@/components/paginator'
 import { Search } from '@/components/search'
 
 export default function Home() {
   const queryClient = new QueryClient()
   const [searchText, setSearchText] = useState('')
   const [searchPlace, setSearchPlace] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   return (
     <main>
@@ -24,7 +27,22 @@ export default function Home() {
                 searchPlace={searchPlace}
                 setSearchPlace={setSearchPlace}
               />
-              <OffersList searchText={searchText} searchPlace={searchPlace} />
+              <OffersList
+                searchText={searchText}
+                searchPlace={searchPlace}
+                currentPage={currentPage}
+                setTotalPages={setTotalPages}
+              />
+              {totalPages > 1 ? (
+                <Paginator
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={function (pageNumber: number): void {
+                    setCurrentPage(pageNumber)
+                  }}
+                  showPreviousNext={true}
+                />
+              ) : null}
             </div>
           </main>
         </QueryClientProvider>

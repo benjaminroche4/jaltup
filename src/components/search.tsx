@@ -18,7 +18,7 @@ export const Search = ({
   searchPlace,
   setSearchPlace,
 }: SearchBarProps) => {
-  const { data } = useGetOffersCount()
+  const { count } = useGetOffersCount()
 
   return (
     <Card
@@ -26,7 +26,7 @@ export const Search = ({
         dark:hover:shadow-gray-800"
     >
       <CardTitle className="text-xl font-bold tracking-normal">
-        Trouver une alternance parmi {data?.count} annonces.
+        Trouver une alternance parmi {count ?? ''} annonces.
       </CardTitle>
       <div className="flex flex-col gap-6 md:flex-row">
         <Input

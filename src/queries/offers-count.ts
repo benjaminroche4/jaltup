@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { EntityConsole } from '@/lib/entity-console'
-import { Count, validateCount } from '@/model/count'
+import { validateCount } from '@/model/count'
 
-const getOffersCount = async (): Promise<Count> => {
+const getOffersCount = async (): Promise<number> => {
   const baseurl = `${process.env.NEXT_PUBLIC_API_URL}/offers/count`
 
   const response = await fetch(baseurl, {
@@ -13,9 +13,12 @@ const getOffersCount = async (): Promise<Count> => {
     throw new Error(`failed to fetch offers: status='${response.statusText}'`)
   }
 
-  const offers = response.json().then((data) => validateCount(data))
+  const count = response
+    .json()
+    .then((data) => validateCount(data))
+    .then((data) => data.count)
 
-  return offers
+  return count
 }
 
 export const useGetOffersCount = () => {
@@ -29,5 +32,5 @@ export const useGetOffersCount = () => {
     EntityConsole.log(error)
   }
 
-  return { data, isLoading, isError }
+  return { count: data, isLoading, isError }
 }

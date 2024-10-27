@@ -1,9 +1,16 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { z } from 'zod'
 import { EntityConsole } from '@/lib/entity-console'
 import { Offer, validateOffers } from '@/model/offer'
 
-const getOffers = async (title?: string, place?: string): Promise<Offer[] | undefined> => {
+export interface OffersType {
+  items: Offer[]
+  total: number
+}
+
+const getOffers = async (title?: string, place?: string, page?: number): Promise<OffersType> => {
   const baseurl = `${process.env.NEXT_PUBLIC_API_URL}/offers`
+  const zbPage = page && page > 0 ? page - 1 : undefined
 
   const params: string[] = ['order[createdAt]=desc', 'status=published']
   if (title && title.length > 0) {
@@ -11,6 +18,9 @@ const getOffers = async (title?: string, place?: string): Promise<Offer[] | unde
   }
   if (place && place.length > 0) {
     params.push(`place=${place}`)
+  }
+  if (zbPage) {
+    params.push(`page=${zbPage}`)
   }
   const url = params.length > 0 ? `${baseurl}?${params.join('&')}` : baseurl
 
@@ -20,18 +30,17 @@ const getOffers = async (title?: string, place?: string): Promise<Offer[] | unde
     throw new Error(`failed to fetch offers: status='${response.statusText}'`)
   }
 
-  const offers = response
-    .json()
-    .then((data) => data['hydra:member'])
-    .then((data) => validateOffers(data))
+  const json = await response.json()
+  const items = validateOffers(json['hydra:member'])
+  const total = z.number().parse(json['hydra:totalItems'])
 
-  return offers
+  return { items, total }
 }
 
-export const useGetOffers = (title?: string, place?: string) => {
+export const useGetOffers = (title?: string, place?: string, page?: number) => {
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['offers'],
-    queryFn: () => getOffers(title, place),
+    queryFn: () => getOffers(title, place, page),
     throwOnError: true,
     staleTime: 60000, // a minute in milliseconds
   })
