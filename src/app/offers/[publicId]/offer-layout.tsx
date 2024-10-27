@@ -5,7 +5,7 @@ import { ApplyCard } from '@/app/offers/[publicId]/apply-card'
 import { CompanyCard } from '@/app/offers/[publicId]/company-card'
 import { DescriptionCard } from '@/app/offers/[publicId]/description-card'
 import { HeaderCard } from '@/app/offers/[publicId]/header-card'
-import ErrorPage from '@/components/error-page'
+import { ErrorPage } from '@/components/error-page'
 import { Spinner } from '@/components/ui/spinner'
 import { useGetOffer } from '@/queries/offer'
 

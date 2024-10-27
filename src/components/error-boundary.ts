@@ -1,5 +1,6 @@
 import React, { Component, ErrorInfo } from 'react'
-import ErrorPage from '@/components/error-page'
+import { ErrorPage } from '@/components/error-page'
+import { EntityConsole } from '@/lib/entity-console'
 
 interface Props {
   children: React.ReactNode
@@ -9,15 +10,14 @@ interface State {
   hasError: boolean
 }
 
-class ErrorBoundary extends Component<Props, State> {
+export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = { hasError: false }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // eslint-disable-next-line no-console
-    console.error('ErrorBoundary caught an error: ', error, errorInfo)
+    EntityConsole.error('ErrorBoundary caught an error: ', error, errorInfo)
     this.setState({ hasError: true })
   }
 
@@ -29,5 +29,3 @@ class ErrorBoundary extends Component<Props, State> {
     return this.props.children
   }
 }
-
-export default ErrorBoundary
