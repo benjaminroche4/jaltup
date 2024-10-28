@@ -10,11 +10,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import { useCurrentPage, useSetCurrentPage, useTotalPages } from '@/store/filtersStore'
 
 interface PaginatorProps {
-  currentPage: number
-  totalPages: number
-  onPageChange: (pageNumber: number) => void
   showPreviousNext: boolean
 }
 
@@ -68,12 +66,11 @@ const generatePaginationLinks = (
   return pages
 }
 
-export const Paginator = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-  showPreviousNext,
-}: PaginatorProps) => {
+export const Paginator = ({ showPreviousNext }: PaginatorProps) => {
+  const currentPage = useCurrentPage()
+  const totalPages = useTotalPages()
+  const setCurrentPage = useSetCurrentPage()
+
   const showPrevious = showPreviousNext && totalPages && currentPage - 1 > 0
   const showNext = showPreviousNext && totalPages && currentPage < totalPages
 
@@ -82,13 +79,13 @@ export const Paginator = ({
       <PaginationContent>
         {showPrevious ? (
           <PaginationItem>
-            <PaginationPrevious href="#" onClick={() => onPageChange(currentPage - 1)} />
+            <PaginationPrevious href="#" onClick={() => setCurrentPage(currentPage - 1)} />
           </PaginationItem>
         ) : null}
-        {generatePaginationLinks(currentPage, totalPages, onPageChange)}
+        {generatePaginationLinks(currentPage, totalPages, setCurrentPage)}
         {showNext ? (
           <PaginationItem>
-            <PaginationNext href="#" onClick={() => onPageChange(currentPage + 1)} />
+            <PaginationNext href="#" onClick={() => setCurrentPage(currentPage + 1)} />
           </PaginationItem>
         ) : null}
       </PaginationContent>

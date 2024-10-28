@@ -8,26 +8,27 @@ import { Spinner } from '@/components/ui/spinner'
 import { useDebounce } from '@/lib/debounce'
 import { EntityConsole } from '@/lib/entity-console'
 import { useGetOffers } from '@/queries/offers'
+import {
+  useCurrentPage,
+  useSearchPlace,
+  useSearchText,
+  useSetNbResults,
+  useSetTotalPages,
+} from '@/store/filtersStore'
 
 const NB_ITEMS_PER_PAGE = 25 // number of displayed items per page.
 
 const DEBOUNCE_DELAY = 500 // milliseconds.
 
-interface OffersListProps {
-  searchText: string
-  searchPlace: string
-  currentPage?: number
-  setTotalPages: React.Dispatch<React.SetStateAction<number>>
-}
-
-export const OffersList = ({
-  searchText,
-  searchPlace,
-  currentPage,
-  setTotalPages,
-}: OffersListProps) => {
+export const OffersList = () => {
   //Remove from prod
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+
+  const searchText = useSearchText()
+  const searchPlace = useSearchPlace()
+  const currentPage = useCurrentPage()
+  const setTotalPages = useSetTotalPages()
+  const setNbResults = useSetNbResults()
 
   const debouncedSearchText = useDebounce(searchText, DEBOUNCE_DELAY)
   const debouncedSearchPlace = useDebounce(searchPlace, DEBOUNCE_DELAY)
@@ -50,6 +51,7 @@ export const OffersList = ({
   }
 
   setTotalPages(Math.floor(offers.total / NB_ITEMS_PER_PAGE) + 1)
+  setNbResults(offers.total)
 
   if (offers.total > 0) {
     return (
