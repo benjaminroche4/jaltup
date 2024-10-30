@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import * as React from 'react'
 
-const ErrorPage = (): React.ReactNode => (
+export const ErrorPage = (): React.ReactNode => (
   <section className="relative z-10 bg-sky-600 py-[120px]">
     <div className="container mx-auto">
       <div className="-mx-4 flex">
@@ -26,4 +26,3 @@ const ErrorPage = (): React.ReactNode => (
     </div>
   </section>
 )
-export default ErrorPage
