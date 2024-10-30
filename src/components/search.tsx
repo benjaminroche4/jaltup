@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { Card, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -20,10 +21,12 @@ export const Search = () => {
   const setSearchText = useSetSearchText()
   const setSearchPlace = useSetSearchPlace()
 
+  const t = useTranslations('Search')
+
   const title =
     (searchText || searchPlace) && nbResults > 0
-      ? `Résultats trouvés (${nbResults})`
-      : `Trouver une alternance parmi ${count ?? 0} annonces.`
+      ? t('title1', { nb: nbResults })
+      : t('title2', { nb: count })
 
   return (
     <Card
@@ -34,7 +37,7 @@ export const Search = () => {
       <div className="flex flex-col gap-6 md:flex-row">
         <Input
           className="md:basis-3/4"
-          placeholder="Recherche par intitulé, mot clé..."
+          placeholder={t('placeholderText')}
           value={searchText}
           onInput={(event: React.FormEvent<HTMLInputElement>) =>
             setSearchText(event.currentTarget.value)
@@ -42,7 +45,7 @@ export const Search = () => {
         />
         <Input
           className="md:basis-1/4"
-          placeholder="Ville..."
+          placeholder={t('placeholderPlace')}
           value={searchPlace}
           onInput={(event: React.FormEvent<HTMLInputElement>) =>
             setSearchPlace(event.currentTarget.value)

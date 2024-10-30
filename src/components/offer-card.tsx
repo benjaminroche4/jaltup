@@ -1,18 +1,18 @@
 'use client'
 
-import { differenceInDays } from 'date-fns'
-import { Crown, MapPin, Star, TimerReset } from 'lucide-react'
+import { MapPin, Star, TimerReset } from 'lucide-react'
 import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
+import { NewBadge } from '@/components/new-badge'
+import { PremiumBadge } from '@/components/premium-badge'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
 import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Offer } from '@/model/offer'
 
 const OfferCardHeader = ({ offer }: { offer: Offer }) => {
   const createdAtDate = new Date(offer.createdAt)
-  const isNew = differenceInDays(new Date(), createdAtDate) <= 5
 
   return (
     <CardHeader>
@@ -25,16 +25,8 @@ const OfferCardHeader = ({ offer }: { offer: Offer }) => {
             <AvatarFallback>{offer.company.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="flex gap-x-1">
-            {offer.premium ? (
-              <Badge
-                variant="outline"
-                className="flex gap-x-1 border border-yellow-500 bg-yellow-100/10 text-yellow-600"
-              >
-                <Crown className="h-3 w-auto" />
-                Premium
-              </Badge>
-            ) : null}
-            {isNew ? <Badge variant="outline">Nouveau</Badge> : null}
+            <PremiumBadge offer={offer} />
+            <NewBadge date={createdAtDate} />
           </div>
         </div>
         <div>
@@ -52,38 +44,47 @@ const OfferCardHeader = ({ offer }: { offer: Offer }) => {
   )
 }
 
-const OfferCardFooter = ({ offer }: { offer: Offer }) => (
-  <CardFooter className="mt-auto flex justify-between">
-    <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
-      <MapPin className="h-5 w-auto" />
-      {offer.place.city.length > 10
-        ? `${offer.place.city.substring(0, 10)}...`
-        : offer.place.city}, {offer.place.zipCode}
-    </div>
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>
-          <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
-            <TimerReset className="h-5 w-auto" />
-            {offer.dayLast} jours restant
-          </div>
-        </TooltipTrigger>
-        <TooltipContent>
-          <p>Pour postuler à l&#39;offre.</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  </CardFooter>
-)
+const OfferCardFooter = ({ offer }: { offer: Offer }) => {
+  const t = useTranslations()
 
-export const OfferCard = ({ offer }: { offer: Offer }) => (
-  <Card
-    key={offer.publicId}
-    className="relative flex h-full flex-col transition duration-100 hover:shadow-md dark:hover:shadow-gray-800"
-  >
-    <Link href={`/offers/${offer.publicId}`} className="flex h-full flex-col">
-      <OfferCardHeader offer={offer} />
-      <OfferCardFooter offer={offer} />
-    </Link>
-  </Card>
-)
+  return (
+    <CardFooter className="mt-auto flex justify-between">
+      <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
+        <MapPin className="h-5 w-auto" />
+        {offer.place.city.length > 10
+          ? `${offer.place.city.substring(0, 10)}...`
+          : offer.place.city}
+        , {offer.place.zipCode}
+      </div>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
+              <TimerReset className="h-5 w-auto" />
+              {offer.dayLast} {t('Offer.daysLeft')}
+            </div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{t('Offer.applyJob')}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </CardFooter>
+  )
+}
+
+export const OfferCard = ({ offer }: { offer: Offer }) => {
+  const locale = useLocale()
+
+  return (
+    <Card
+      key={offer.publicId}
+      className="relative flex h-full flex-col transition duration-100 hover:shadow-md dark:hover:shadow-gray-800"
+    >
+      <Link href={`${locale}/offers/${offer.publicId}`} className="flex h-full flex-col">
+        <OfferCardHeader offer={offer} />
+        <OfferCardFooter offer={offer} />
+      </Link>
+    </Card>
+  )
+}

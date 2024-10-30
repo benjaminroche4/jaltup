@@ -1,0 +1,47 @@
+{
+  "Common": {
+    "back": "Retour",
+    "loading": "Chargement ...",
+    "next": "Suiv.",
+    "prev": "Préc.",
+    "ascending": "Croissant",
+    "descending": "Décroissant",
+    "order": "Tri: {value}",
+    "premium": "Premium",
+    "new": "Nouveau",
+    "noResultFound": "Désolé, nous n'avons trouvé aucune offre correspondant à vos critères de recherche !"
+  },
+  "Search": {
+    "title1": "Résultats trouvés ({nb})",
+    "title2": "Trouver une alternance parmi {nb} annonces.",
+    "placeholderText": "Recherche par intitulé, mot clé...",
+    "placeholderPlace": "Ville..."
+  },
+  "Offer": {
+    "offer": "Offre",
+    "offers": "Offres",
+    "publishedOn": "Publié le ",
+    "description": "Description du poste",
+    "applications": "candidatures",
+    "daysLeft": "jours restant",
+    "applyJob": "Postuler à l'offre",
+    "telework": "Télétravail",
+    "onSite": "Sur site"
+  },
+  "Company": {
+    "visitWebSite": "Voir le site",
+    "checked": "Vérifié",
+    "notChecked": "Non Vérifié"
+  },
+  "ErrorPage": {
+    "title": "Oups, une erreur est survenue !",
+    "text": "Veuillez réessayer plus tard."
+  },
+  "LocaleSwitcher": {
+    "locale": "{locale, select, fr {Français(fr)} en {Anglais(en)} other {Inconnu}}"
+  },
+  "ModeToggle": {
+    "label": "Changer le thème",
+    "theme": "{theme, select, light {Clair} dark {Foncé} system {Système} other {Inconnu}}"
+  }
+}

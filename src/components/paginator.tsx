@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import {
   Pagination,
@@ -22,6 +23,7 @@ const generatePaginationLinks = (
   onPageChange: (page: number) => void,
 ) => {
   const pages: JSX.Element[] = []
+
   if (totalPages <= 6) {
     for (let i = 1; i <= totalPages; i++) {
       pages.push(
@@ -67,6 +69,7 @@ const generatePaginationLinks = (
 }
 
 export const Paginator = ({ showPreviousNext }: PaginatorProps) => {
+  const t = useTranslations()
   const currentPage = useCurrentPage()
   const totalPages = useTotalPages()
   const setCurrentPage = useSetCurrentPage()
@@ -79,13 +82,21 @@ export const Paginator = ({ showPreviousNext }: PaginatorProps) => {
       <PaginationContent>
         {showPrevious ? (
           <PaginationItem>
-            <PaginationPrevious href="#" onClick={() => setCurrentPage(currentPage - 1)} />
+            <PaginationPrevious
+              label={t('Common.prev')}
+              href="#"
+              onClick={() => setCurrentPage(currentPage - 1)}
+            />
           </PaginationItem>
         ) : null}
         {generatePaginationLinks(currentPage, totalPages, setCurrentPage)}
         {showNext ? (
           <PaginationItem>
-            <PaginationNext href="#" onClick={() => setCurrentPage(currentPage + 1)} />
+            <PaginationNext
+              label={t('Common.next')}
+              href="#"
+              onClick={() => setCurrentPage(currentPage + 1)}
+            />
           </PaginationItem>
         ) : null}
       </PaginationContent>

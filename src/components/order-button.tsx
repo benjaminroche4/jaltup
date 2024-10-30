@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import {
@@ -9,26 +10,30 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-const ASCENDING = 'Ascendant'
-const DESCENDING = 'Descendant'
-
 interface OrderButtonProps {
   ascending: boolean
   setAscending: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export function OrderButton({ ascending, setAscending }: OrderButtonProps) {
+  const t = useTranslations('Common')
+
+  const ascendingText = t('ascending')
+  const descendingText = t('descending')
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">{ascending ? `Tri: ${ASCENDING}` : `Tri: ${DESCENDING}`}</Button>
+        <Button variant="outline">
+          {t('order', { value: ascending ? ascendingText : descendingText })}
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuCheckboxItem checked={ascending} onCheckedChange={() => setAscending(true)}>
-          {ASCENDING}
+          {ascendingText}
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem checked={!ascending} onCheckedChange={() => setAscending(false)}>
-          {DESCENDING}
+          {descendingText}
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>

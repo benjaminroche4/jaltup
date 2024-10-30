@@ -1,0 +1,47 @@
+{
+  "Common": {
+    "back": "Back",
+    "loading": "Loading ...",
+    "next": "Next",
+    "prev": "Previous",
+    "ascending": "Ascending",
+    "descending": "Descending",
+    "order": "Order: {value}",
+    "premium": "Premium",
+    "new": "New",
+    "noResultFound": "Sorry, we did not find any offers matching your search criteria!"
+  },
+  "Search": {
+    "title1": "Results found ({nb})",
+    "title2": "Find an alternated training among {nb} ads.",
+    "placeholderText": "Search by title, keyword...",
+    "placeholderPlace": "City..."
+  },
+  "Offer": {
+    "offer": "Offer",
+    "offers": "Offers",
+    "publishedOn": "Published on ",
+    "description": "Job Description",
+    "applications": "applications",
+    "daysLeft": "days remaining",
+    "applyJob": "Apply for the offer",
+    "telework": "Telework",
+    "onSite": "On site"
+  },
+  "Company": {
+    "visitWebSite": "Visit web site",
+    "checked": "Verified",
+    "notChecked": "Not Verified"
+  },
+  "ErrorPage": {
+    "title": "Oops, an error has occurred!",
+    "text": "Please try again later."
+  },
+  "LocaleSwitcher": {
+    "locale": "{locale, select, fr {French(fr)} en {English(en)} other {Unknown}}"
+  },
+  "ModeToggle": {
+    "label": "Toggle theme",
+    "theme": "{theme, select, light {Light} dark {Dark} system {System} other {Inconnu}}"
+  }
+}
