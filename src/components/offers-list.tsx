@@ -1,9 +1,10 @@
 'use client'
 
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { OfferCard } from './offer-card'
 import { ErrorPage } from '@/components/error-page'
+import { OrderButton } from '@/components/order-button'
 import { Spinner } from '@/components/ui/spinner'
 import { useDebounce } from '@/lib/debounce'
 import { EntityConsole } from '@/lib/entity-console'
@@ -29,6 +30,7 @@ export const OffersList = () => {
   const currentPage = useCurrentPage()
   const setTotalPages = useSetTotalPages()
   const setNbResults = useSetNbResults()
+  const [ascending, setAscending] = useState<boolean>(false)
 
   const debouncedSearchText = useDebounce(searchText, DEBOUNCE_DELAY)
   const debouncedSearchPlace = useDebounce(searchPlace, DEBOUNCE_DELAY)
@@ -36,11 +38,12 @@ export const OffersList = () => {
     debouncedSearchText,
     debouncedSearchPlace,
     currentPage,
+    ascending,
   )
 
   useEffect(() => {
     refetch().catch((err) => EntityConsole.log(err))
-  }, [debouncedSearchText, debouncedSearchPlace, currentPage, refetch])
+  }, [debouncedSearchText, debouncedSearchPlace, currentPage, ascending, refetch])
 
   if (isLoading) {
     return <Spinner size="large">Chargement ...</Spinner>
@@ -55,10 +58,15 @@ export const OffersList = () => {
 
   if (offers.total > 0) {
     return (
-      <section className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {offers.items.map((offer) => (
-          <OfferCard key={offer.publicId} offer={offer} />
-        ))}
+      <section className="w-full">
+        <div className="items-start py-4">
+          <OrderButton ascending={ascending} setAscending={setAscending} />
+        </div>
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {offers.items.map((offer) => (
+            <OfferCard key={offer.publicId} offer={offer} />
+          ))}
+        </div>
       </section>
     )
   }

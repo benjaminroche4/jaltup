@@ -8,11 +8,17 @@ export interface OffersType {
   total: number
 }
 
-const getOffers = async (title?: string, place?: string, page?: number): Promise<OffersType> => {
+const getOffers = async (
+  title?: string,
+  place?: string,
+  page?: number,
+  ascending?: boolean,
+): Promise<OffersType> => {
   const baseurl = `${process.env.NEXT_PUBLIC_API_URL}/offers`
   const zbPage = page && page > 0 ? page - 1 : undefined
+  const order = ascending ? 'asc' : 'desc'
 
-  const params: string[] = ['order[createdAt]=desc', 'status=published']
+  const params: string[] = [`order[createdAt]=${order}`, 'status=published']
   if (title && title.length > 0) {
     params.push(`title=${title}`)
   }
@@ -37,10 +43,15 @@ const getOffers = async (title?: string, place?: string, page?: number): Promise
   return { items, total }
 }
 
-export const useGetOffers = (title?: string, place?: string, page?: number) => {
+export const useGetOffers = (
+  title?: string,
+  place?: string,
+  page?: number,
+  ascending?: boolean,
+) => {
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['offers'],
-    queryFn: () => getOffers(title, place, page),
+    queryFn: () => getOffers(title, place, page, ascending),
     throwOnError: true,
     staleTime: 60000, // a minute in milliseconds
   })
