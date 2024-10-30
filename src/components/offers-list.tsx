@@ -34,12 +34,12 @@ export const OffersList = () => {
 
   const debouncedSearchText = useDebounce(searchText, DEBOUNCE_DELAY)
   const debouncedSearchPlace = useDebounce(searchPlace, DEBOUNCE_DELAY)
-  const { offers, isLoading, isError, refetch } = useGetOffers(
-    debouncedSearchText,
-    debouncedSearchPlace,
-    currentPage,
+  const { offers, isLoading, isError, refetch } = useGetOffers({
+    title: debouncedSearchText,
+    place: debouncedSearchPlace,
+    page: currentPage,
     ascending,
-  )
+  })
 
   useEffect(() => {
     refetch().catch((err) => EntityConsole.log(err))

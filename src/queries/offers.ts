@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { z } from 'zod'
 import { EntityConsole } from '@/lib/entity-console'
 import { Offer, validateOffers } from '@/model/offer'
@@ -8,27 +8,29 @@ export interface OffersType {
   total: number
 }
 
-const getOffers = async (
-  title?: string,
-  place?: string,
-  page?: number,
-  ascending?: boolean,
-): Promise<OffersType> => {
-  const baseurl = `${process.env.NEXT_PUBLIC_API_URL}/offers`
-  const zbPage = page && page > 0 ? page - 1 : undefined
-  const order = ascending ? 'asc' : 'desc'
+export interface GetOffersParams {
+  title?: string
+  place?: string
+  page?: number
+  ascending?: boolean
+}
 
-  const params: string[] = [`order[createdAt]=${order}`, 'status=published']
-  if (title && title.length > 0) {
-    params.push(`title=${title}`)
+const getOffers = async (params: GetOffersParams): Promise<OffersType> => {
+  const baseurl = `${process.env.NEXT_PUBLIC_API_URL}/offers`
+  const zbPage = params.page && params.page > 0 ? params.page - 1 : undefined
+  const order = params.ascending ? 'asc' : 'desc'
+
+  const urlParams: string[] = [`order[createdAt]=${order}`, 'status=published']
+  if (params.title && params.title.length > 0) {
+    urlParams.push(`title=${params.title.toLocaleLowerCase()}`)
   }
-  if (place && place.length > 0) {
-    params.push(`place=${place}`)
+  if (params.place && params.place.length > 0) {
+    urlParams.push(`place=${params.place.toLocaleLowerCase()}`)
   }
   if (zbPage) {
-    params.push(`page=${zbPage}`)
+    urlParams.push(`page=${zbPage}`)
   }
-  const url = params.length > 0 ? `${baseurl}?${params.join('&')}` : baseurl
+  const url = urlParams.length > 0 ? `${baseurl}?${urlParams.join('&')}` : baseurl
 
   const response = await fetch(url, { next: { revalidate: 1 } })
 
@@ -43,15 +45,10 @@ const getOffers = async (
   return { items, total }
 }
 
-export const useGetOffers = (
-  title?: string,
-  place?: string,
-  page?: number,
-  ascending?: boolean,
-) => {
+export const useGetOffers = (params: GetOffersParams) => {
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: ['offers'],
-    queryFn: () => getOffers(title, place, page, ascending),
+    queryFn: () => getOffers(params),
     throwOnError: true,
     staleTime: 60000, // a minute in milliseconds
   })
@@ -61,10 +58,4 @@ export const useGetOffers = (
   }
 
   return { offers: data, isLoading, isError, refetch }
-}
-
-export const useInvalidateOffers = () => {
-  const queryClient = useQueryClient()
-
-  return () => queryClient.invalidateQueries({ queryKey: ['offers'], exact: true })
 }
