@@ -22,10 +22,10 @@ const getOffers = async (params: GetOffersParams): Promise<OffersType> => {
 
   const urlParams: string[] = [`order[createdAt]=${order}`, 'status=published']
   if (params.title && params.title.length > 0) {
-    urlParams.push(`title=${params.title.toLocaleLowerCase()}`)
+    urlParams.push(`title=${encodeURIComponent(params.title.toLocaleLowerCase())}`)
   }
   if (params.place && params.place.length > 0) {
-    urlParams.push(`place=${params.place.toLocaleLowerCase()}`)
+    urlParams.push(`place=${encodeURIComponent(params.place.toLocaleLowerCase())}`)
   }
   if (zbPage) {
     urlParams.push(`page=${zbPage}`)
