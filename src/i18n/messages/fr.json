@@ -11,6 +11,13 @@
     "new": "Nouveau",
     "noResultFound": "Désolé, nous n'avons trouvé aucune offre correspondant à vos critères de recherche !"
   },
+  "NavBar": {
+    "offers": "Offres",
+    "companies": "Entreprises",
+    "trainings": "Formations",
+    "login": "Se Connecter",
+    "subscribe": "S'inscrire"
+  },
   "Search": {
     "title1": "Résultats trouvés ({nb})",
     "title2": "Trouver une alternance parmi {nb} annonces.",
