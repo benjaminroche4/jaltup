@@ -47,6 +47,13 @@ export const OffersList = () => {
     refetch().catch((err) => EntityConsole.log(err))
   }, [debouncedSearchText, debouncedSearchPlace, currentPage, ascending, refetch])
 
+  useEffect(() => {
+    if (offers) {
+      setTotalPages(Math.floor(offers.total / NB_ITEMS_PER_PAGE) + 1)
+      setNbResults(offers.total)
+    }
+  }, [offers, offers?.total, setNbResults, setTotalPages])
+
   if (isLoading) {
     return <Spinner size="large">{t('Common.loading')}</Spinner>
   }
@@ -54,9 +61,6 @@ export const OffersList = () => {
   if (isError || !offers) {
     return <ErrorPage />
   }
-
-  setTotalPages(Math.floor(offers.total / NB_ITEMS_PER_PAGE) + 1)
-  setNbResults(offers.total)
 
   if (offers.total > 0) {
     return (
