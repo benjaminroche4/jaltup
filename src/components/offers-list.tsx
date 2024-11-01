@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { OfferCard } from './offer-card'
@@ -25,6 +26,7 @@ export const OffersList = () => {
   //Remove from prod
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
+  const t = useTranslations()
   const searchText = useSearchText()
   const searchPlace = useSearchPlace()
   const currentPage = useCurrentPage()
@@ -46,7 +48,7 @@ export const OffersList = () => {
   }, [debouncedSearchText, debouncedSearchPlace, currentPage, ascending, refetch])
 
   if (isLoading) {
-    return <Spinner size="large">Chargement ...</Spinner>
+    return <Spinner size="large">{t('Common.loading')}</Spinner>
   }
 
   if (isError || !offers) {
@@ -58,8 +60,8 @@ export const OffersList = () => {
 
   if (offers.total > 0) {
     return (
-      <section className="w-full">
-        <div className="items-start py-4">
+      <section className="flex w-full flex-col gap-4">
+        <div className="items-start">
           <OrderButton ascending={ascending} setAscending={setAscending} />
         </div>
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -73,9 +75,7 @@ export const OffersList = () => {
 
   return (
     <section className="mx-auto text-center">
-      <h4 className="mb-3 text-[22px] font-semibold leading-tight">
-        Désolé, nous n&apos;avons trouvé aucune offre correspondant à vos critères de recherche !
-      </h4>
+      <h4 className="mb-3 text-[22px] font-semibold leading-tight">{t('Common.noResultFound')}</h4>
     </section>
   )
 }

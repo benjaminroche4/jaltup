@@ -1,21 +1,23 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import * as React from 'react'
-import { ApplyCard } from '@/app/offers/[publicId]/apply-card'
-import { CompanyCard } from '@/app/offers/[publicId]/company-card'
-import { DescriptionCard } from '@/app/offers/[publicId]/description-card'
-import { HeaderCard } from '@/app/offers/[publicId]/header-card'
+import { ApplyCard } from '@/app/[locale]/offers/[publicId]/apply-card'
+import { CompanyCard } from '@/app/[locale]/offers/[publicId]/company-card'
+import { DescriptionCard } from '@/app/[locale]/offers/[publicId]/description-card'
+import { HeaderCard } from '@/app/[locale]/offers/[publicId]/header-card'
 import { ErrorPage } from '@/components/error-page'
 import { Spinner } from '@/components/ui/spinner'
 import { useGetOffer } from '@/queries/offer'
 
 export const OfferLayout = ({ id }: { id: string }) => {
   const { offer, isLoading, isError } = useGetOffer(id)
+  const t = useTranslations()
 
   if (isLoading) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-12">
-        <Spinner size="large">Chargement ...</Spinner>
+        <Spinner size="large">{t('Common.loading')}</Spinner>
       </div>
     )
   }
