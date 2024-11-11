@@ -1,0 +1,103 @@
+'use client'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
+import * as React from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { ErrorBoundary } from '@/components/error-boundary'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Spinner } from '@/components/ui/spinner'
+import { EntityConsole } from '@/lib/entity-console'
+import { Token } from '@/model/token'
+import { useLogin } from '@/queries/login'
+
+const LoginContent = () => {
+  const t = useTranslations('Login')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [disabled, setSisabled] = useState(true)
+  const { mutate, isLoading, isError, error } = useLogin()
+
+  useEffect(() => {
+    setSisabled(email.length === 0 || password.length === 0)
+  }, [email.length, password.length])
+
+  const onClick = useCallback(() => {
+    mutate(
+      {
+        email,
+        password,
+      },
+      {
+        onError: (err: Error) => {
+          EntityConsole.error('error = ', err)
+        },
+        onSuccess: (data: Token) => {
+          EntityConsole.log('token = ', data.token)
+        },
+      },
+    )
+  }, [mutate, email, password])
+
+  return (
+    <Card className="mx-auto my-20 w-[350px]">
+      <CardHeader>
+        <CardTitle>{t('title')}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <span>{t('email')}</span>
+              <Input
+                id="name"
+                placeholder="jdoe@domain.com"
+                value={email}
+                onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                  setEmail(event.currentTarget.value)
+                }
+              />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <span>{t('password')}</span>
+              <Input
+                id="password"
+                placeholder="password"
+                value={password}
+                onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                  setPassword(event.currentTarget.value)
+                }
+              />
+            </div>
+          </div>
+        </form>
+        {isError && error ? (
+          <div className="my-3 text-red-600">
+            {t('failedToLogin')} : {error.message}
+          </div>
+        ) : null}
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline" onClick={onClick} disabled={disabled}>
+          {isLoading ? <Spinner size="small" /> : t('submit')}
+        </Button>
+      </CardFooter>
+    </Card>
+  )
+}
+
+export default function Page() {
+  const queryClient = new QueryClient()
+
+  return (
+    <main>
+      <ErrorBoundary>
+        <QueryClientProvider client={queryClient}>
+          <LoginContent />
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </main>
+  )
+}

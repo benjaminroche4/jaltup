@@ -2,7 +2,7 @@
 
 import { HomeIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { ModeToggle } from '@/components/ui/mode-toggle'
@@ -17,7 +17,7 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
         <HomeIcon className="size-[1.2rem] scale-100 transition-all" />
       </Link>
       <Link
-        href=""
+        href="/"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         {t('offers')}
@@ -40,6 +40,7 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
 
 export const NavBar = () => {
   const t = useTranslations('NavBar')
+  const locale = useLocale()
 
   return (
     <header
@@ -51,7 +52,7 @@ export const NavBar = () => {
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center gap-3">
             <Link
-              href=""
+              href={`/${locale}/login`}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               {t('login')}

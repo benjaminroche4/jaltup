@@ -18,6 +18,13 @@
     "login": "Se Connecter",
     "subscribe": "S'inscrire"
   },
+  "Login": {
+    "title": "Se connecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Valider",
+    "failedToLogin": "Echec de connection"
+  },
   "Search": {
     "title1": "Résultats trouvés ({nb})",
     "title2": "Trouver une alternance parmi {nb} annonces.",

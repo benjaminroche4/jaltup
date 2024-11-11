@@ -18,6 +18,13 @@
     "login": "Login",
     "subscribe": "Subscribe"
   },
+  "Login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "failedToLogin": "Failed to login"
+  },
   "Search": {
     "title1": "Results found ({nb})",
     "title2": "Find an alternated training among {nb} ads.",
