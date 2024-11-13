@@ -11,6 +11,13 @@
     "new": "New",
     "noResultFound": "Sorry, we did not find any offers matching your search criteria!"
   },
+  "NavBar": {
+    "offers": "Offers",
+    "companies": "Companies",
+    "trainings": "Trainings",
+    "login": "Login",
+    "subscribe": "Subscribe"
+  },
   "Search": {
     "title1": "Results found ({nb})",
     "title2": "Find an alternated training among {nb} ads.",

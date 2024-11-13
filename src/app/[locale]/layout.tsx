@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import * as React from 'react'
-import { LocaleSwitcher } from '@/components/locale-switcher'
+import { NavBar } from '@/components/nav-bar'
 import { ThemeProvider } from '@/components/theme-provider'
-import { ModeToggle } from '@/components/ui/mode-toggle'
 import '../globals.css'
 
 export const metadata: Metadata = {
@@ -30,8 +29,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <ModeToggle />
-            <LocaleSwitcher />
+            <NavBar />
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>
