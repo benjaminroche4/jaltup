@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const UserSchema = z.object({
-  publicId: z.string(),
+  publicId: z.string().optional(),
   email: z.string(),
   roles: z.array(z.string()).optional(),
 })

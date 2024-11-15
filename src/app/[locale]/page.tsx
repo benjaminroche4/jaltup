@@ -8,6 +8,7 @@ import { Paginator } from '@/components/paginator'
 import { Search } from '@/components/search'
 import { useTotalPages } from '@/store/filtersStore'
 
+// eslint-disable-next-line import/no-default-export
 export default function Home() {
   const queryClient = new QueryClient()
   const totalPages = useTotalPages()

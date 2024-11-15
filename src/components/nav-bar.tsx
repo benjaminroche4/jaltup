@@ -2,10 +2,12 @@
 
 import { HomeIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { ModeToggle } from '@/components/ui/mode-toggle'
+import { isLogged, useLogout } from '@/lib/auth-service'
 import { cn } from '@/lib/utils'
 
 const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
@@ -41,6 +43,9 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
 export const NavBar = () => {
   const t = useTranslations('NavBar')
   const locale = useLocale()
+  const router = useRouter()
+  const { logout } = useLogout()
+  const logged = isLogged()
 
   return (
     <header
@@ -51,12 +56,25 @@ export const NavBar = () => {
         <MainMenu />
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center gap-3">
-            <Link
-              href={`/${locale}/login`}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-              {t('login')}
-            </Link>
+            {logged ? (
+              <Link
+                href=""
+                onClick={() => {
+                  logout()
+                  router.push('/')
+                }}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                {t('logout')}
+              </Link>
+            ) : (
+              <Link
+                href={`/${locale}/login`}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                {t('login')}
+              </Link>
+            )}
             <Link
               href=""
               className="rounded-xl border bg-slate-200 p-2 text-sm font-medium text-muted-foreground transition-colors

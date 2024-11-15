@@ -1,6 +1,7 @@
 'use client'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useCallback, useEffect, useState } from 'react'
@@ -9,8 +10,8 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
+import { setSession } from '@/lib/auth-service'
 import { EntityConsole } from '@/lib/entity-console'
-import { Token } from '@/model/token'
 import { useLogin } from '@/queries/login'
 
 const LoginContent = () => {
@@ -19,6 +20,7 @@ const LoginContent = () => {
   const [password, setPassword] = useState('')
   const [disabled, setSisabled] = useState(true)
   const { mutate, isLoading, isError, error } = useLogin()
+  const router = useRouter()
 
   useEffect(() => {
     setSisabled(email.length === 0 || password.length === 0)
@@ -34,12 +36,13 @@ const LoginContent = () => {
         onError: (err: Error) => {
           EntityConsole.error('error = ', err)
         },
-        onSuccess: (data: Token) => {
-          EntityConsole.log('token = ', data.token)
+        onSuccess: (data) => {
+          setSession(data)
+          router.push('/')
         },
       },
     )
-  }, [mutate, email, password])
+  }, [mutate, email, password, router])
 
   return (
     <Card className="mx-auto my-20 w-[350px]">
@@ -88,6 +91,7 @@ const LoginContent = () => {
   )
 }
 
+// eslint-disable-next-line import/no-default-export
 export default function Page() {
   const queryClient = new QueryClient()
 

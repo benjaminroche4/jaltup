@@ -15,7 +15,8 @@
     "offers": "Offres",
     "companies": "Entreprises",
     "trainings": "Formations",
-    "login": "Se Connecter",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
     "subscribe": "S'inscrire"
   },
   "Login": {

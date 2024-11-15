@@ -1,6 +1,7 @@
 import { getRequestConfig } from 'next-intl/server'
 import { routing } from './routing'
 
+// eslint-disable-next-line import/no-default-export
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale
 
