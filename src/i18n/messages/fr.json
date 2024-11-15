@@ -24,6 +24,7 @@
     "email": "E-mail",
     "password": "Mot de passe",
     "submit": "Valider",
+    "cancel": "Retour",
     "failedToLogin": "Echec de connection"
   },
   "Search": {

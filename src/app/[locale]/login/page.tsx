@@ -26,7 +26,7 @@ const LoginContent = () => {
     setSisabled(email.length === 0 || password.length === 0)
   }, [email.length, password.length])
 
-  const onClick = useCallback(() => {
+  const onOK = useCallback(() => {
     mutate(
       {
         email,
@@ -43,6 +43,10 @@ const LoginContent = () => {
       },
     )
   }, [mutate, email, password, router])
+
+  const onCancel = useCallback(() => {
+    router.back()
+  }, [router])
 
   return (
     <Card className="mx-auto my-20 w-[350px]">
@@ -83,8 +87,11 @@ const LoginContent = () => {
         ) : null}
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={onClick} disabled={disabled}>
+        <Button variant="outline" onClick={onOK} disabled={disabled}>
           {isLoading ? <Spinner size="small" /> : t('submit')}
+        </Button>
+        <Button variant="outline" onClick={onCancel}>
+          {isLoading ? <Spinner size="small" /> : t('cancel')}
         </Button>
       </CardFooter>
     </Card>
