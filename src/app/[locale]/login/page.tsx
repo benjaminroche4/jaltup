@@ -38,7 +38,7 @@ const LoginContent = () => {
         },
         onSuccess: (data) => {
           setSession(data)
-          router.push('/')
+          router.back()
         },
       },
     )
