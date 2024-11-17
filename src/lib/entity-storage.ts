@@ -6,6 +6,8 @@ interface EntityStorageType<T> {
   date?: number
 }
 
+const isClientSide = () => typeof window !== 'undefined'
+
 // eslint-disable-next-line import/no-default-export
 export default class EntityStorage {
   public static set<T>(
@@ -16,12 +18,26 @@ export default class EntityStorage {
     const data: EntityStorageType<T> = expirationDate ? { value, date: expirationDate } : { value }
     EntityConsole.log(`[EntityStorage] set :`, key)
 
-    secureLocalStorage.setItem(key, data)
+    if (isClientSide() && process.env.NODE_ENV == 'development') {
+      localStorage.setItem(key, JSON.stringify(data))
+    } else {
+      secureLocalStorage.setItem(key, data)
+    }
   }
 
   public static get<T>(key: string): T | undefined {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    const data = secureLocalStorage.getItem(key) as EntityStorageType<T> | null
+    let data = null
+
+    if (isClientSide() && process.env.NODE_ENV == 'development') {
+      const value = localStorage.getItem(key)
+      if (value !== null) {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+        data = JSON.parse(value) as EntityStorageType<T> | null
+      }
+    } else {
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      data = secureLocalStorage.getItem(key) as EntityStorageType<T> | null
+    }
     if (data) {
       EntityConsole.log(`[EntityStorage] Get key ${key}`)
 
@@ -44,11 +60,19 @@ export default class EntityStorage {
 
   public static remove(key: string) {
     EntityConsole.log(`[EntityStorage] remove : ${key}`)
-    secureLocalStorage.removeItem(key)
+    if (isClientSide() && process.env.NODE_ENV == 'development') {
+      localStorage.removeItem(key)
+    } else {
+      secureLocalStorage.removeItem(key)
+    }
   }
 
   public static clear() {
     EntityConsole.log(`[EntityStorage] clear`)
-    secureLocalStorage.clear()
+    if (isClientSide() && process.env.NODE_ENV == 'development') {
+      localStorage.clear()
+    } else {
+      secureLocalStorage.clear()
+    }
   }
 }
