@@ -1,5 +1,7 @@
 {
   "Common": {
+    "ok": "Ok",
+    "cancel": "Annuler",
     "back": "Retour",
     "loading": "Chargement ...",
     "next": "Suiv.",
@@ -17,7 +19,8 @@
     "trainings": "Formations",
     "login": "Se connecter",
     "logout": "Se déconnecter",
-    "subscribe": "S'inscrire"
+    "subscribe": "S'inscrire",
+    "confirm": "Etes-vous sûr de vouloir vous déconnecter ?"
   },
   "Login": {
     "title": "Se connecter",

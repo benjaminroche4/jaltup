@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
+import { useState } from 'react'
+import { Confirmation } from '@/components/confirmation'
 import { LocaleSwitcher } from '@/components/locale-switcher'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { isLogged, useLogout } from '@/lib/auth-service'
@@ -46,6 +48,7 @@ export const NavBar = () => {
   const router = useRouter()
   const { logout } = useLogout()
   const logged = isLogged()
+  const [open, setOpen] = useState(false)
 
   return (
     <header
@@ -54,14 +57,23 @@ export const NavBar = () => {
     >
       <div className="container flex max-w-screen-2xl flex-wrap items-center p-3 px-6">
         <MainMenu />
+
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center gap-3">
+            <Confirmation
+              title={t('confirm')}
+              open={open}
+              setOpen={setOpen}
+              onOk={() => {
+                logout()
+                router.push('/')
+              }}
+            />
             {logged ? (
               <Link
                 href=""
                 onClick={() => {
-                  logout()
-                  router.push('/')
+                  setOpen(true)
                 }}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
               >

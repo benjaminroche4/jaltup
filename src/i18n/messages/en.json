@@ -1,5 +1,7 @@
 {
   "Common": {
+    "ok": "Ok",
+    "cancel": "Cancel",
     "back": "Back",
     "loading": "Loading ...",
     "next": "Next",
@@ -17,7 +19,8 @@
     "trainings": "Trainings",
     "login": "Login",
     "logout": "Logout",
-    "subscribe": "Subscribe"
+    "subscribe": "Subscribe",
+    "confirm": "Are you sure you want to logout ?"
   },
   "Login": {
     "title": "Login",
