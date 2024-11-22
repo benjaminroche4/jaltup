@@ -6,6 +6,7 @@ import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 import { useGetOffersCount } from '@/queries/offers-count'
 import {
   useNbResults,
@@ -24,6 +25,7 @@ interface SearchInputProps {
 const SearchInput = ({ text, setText, placeholder }: SearchInputProps) => (
   <div className="relative">
     <Input
+      className={cn('pr-10')}
       placeholder={placeholder}
       value={text}
       onInput={(event: React.FormEvent<HTMLInputElement>) => setText(event.currentTarget.value)}

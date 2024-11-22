@@ -9,6 +9,7 @@ import { ErrorBoundary } from '@/components/error-boundary'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
+import { PasswordInput } from '@/components/ui/password-input'
 import { Spinner } from '@/components/ui/spinner'
 import { setSession } from '@/lib/auth-service'
 import { EntityConsole } from '@/lib/entity-console'
@@ -69,7 +70,7 @@ const LoginContent = () => {
             </div>
             <div className="flex flex-col space-y-1.5">
               <span>{t('password')}</span>
-              <Input
+              <PasswordInput
                 id="password"
                 placeholder="password"
                 value={password}
@@ -91,7 +92,7 @@ const LoginContent = () => {
           {isLoading ? <Spinner size="small" /> : t('submit')}
         </Button>
         <Button variant="outline" onClick={onCancel}>
-          {isLoading ? <Spinner size="small" /> : t('cancel')}
+          {t('cancel')}
         </Button>
       </CardFooter>
     </Card>
