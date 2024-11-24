@@ -22,6 +22,19 @@ export const isAdmin = () => {
   return roles.includes('ROLE_ADMIN')
 }
 
+export const isPremium = () => {
+  const data = EntityStorage.get<Session>(SESSION_KEY_NAME)
+  const roles = data?.decoded.roles ?? []
+  return roles.includes('PREMIUM')
+}
+
+export const getUsername = () => {
+  const data = EntityStorage.get<Session>(SESSION_KEY_NAME)
+  return data?.decoded.username
+}
+
+export const getUserAvatar = () => 'https://github.com/shadcn.png'
+
 export const logout = () => {
   EntityStorage.remove(SESSION_KEY_NAME)
 }

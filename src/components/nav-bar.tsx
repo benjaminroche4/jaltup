@@ -8,8 +8,9 @@ import * as React from 'react'
 import { useState } from 'react'
 import { Confirmation } from '@/components/confirmation'
 import { LocaleSwitcher } from '@/components/locale-switcher'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { ModeToggle } from '@/components/ui/mode-toggle'
-import { isLogged, useLogout } from '@/lib/auth-service'
+import { getUserAvatar, getUsername, isLogged, useLogout } from '@/lib/auth-service'
 import { cn } from '@/lib/utils'
 
 const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
@@ -48,7 +49,7 @@ export const NavBar = () => {
   const router = useRouter()
   const { logout } = useLogout()
   const logged = isLogged()
-  const [open, setOpen] = useState(false)
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false)
 
   return (
     <header
@@ -62,8 +63,8 @@ export const NavBar = () => {
           <nav className="flex items-center gap-3">
             <Confirmation
               title={t('confirm')}
-              open={open}
-              setOpen={setOpen}
+              open={isLogoutConfirmOpen}
+              setOpen={setIsLogoutConfirmOpen}
               onOk={() => {
                 logout()
                 router.push('/')
@@ -73,7 +74,7 @@ export const NavBar = () => {
               <Link
                 href=""
                 onClick={() => {
-                  setOpen(true)
+                  setIsLogoutConfirmOpen(true)
                 }}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
               >
@@ -96,6 +97,12 @@ export const NavBar = () => {
             </Link>
             <LocaleSwitcher />
             <ModeToggle />
+            {logged ? (
+              <Avatar>
+                <AvatarImage src={getUserAvatar()} />
+                <AvatarFallback>{(getUsername() ?? '?').charAt(0)}</AvatarFallback>
+              </Avatar>
+            ) : null}
           </nav>
         </div>
       </div>
