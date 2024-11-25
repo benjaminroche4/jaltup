@@ -8,8 +8,13 @@ html {
   font-family: Poppins, serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: Inconsolata, serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Poppins, serif;
   text-wrap: balance;
 }
 

@@ -1,5 +1,7 @@
 {
   "Common": {
+    "ok": "Ok",
+    "cancel": "Cancel",
     "back": "Back",
     "loading": "Loading ...",
     "next": "Next",
@@ -16,7 +18,17 @@
     "companies": "Companies",
     "trainings": "Trainings",
     "login": "Login",
-    "subscribe": "Subscribe"
+    "logout": "Logout",
+    "subscribe": "Subscribe",
+    "confirm": "Are you sure you want to logout ?"
+  },
+  "Login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "failedToLogin": "Failed to login"
   },
   "Search": {
     "title1": "Results found ({nb})",

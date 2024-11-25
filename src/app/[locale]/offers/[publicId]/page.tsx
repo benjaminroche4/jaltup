@@ -8,6 +8,7 @@ import { ErrorBoundary } from '@/components/error-boundary'
 
 type Params = Promise<{ publicId: string }>
 
+// eslint-disable-next-line import/no-default-export
 export default function Page(props: { params: Params }) {
   const queryClient = new QueryClient()
   const params = use(props.params)

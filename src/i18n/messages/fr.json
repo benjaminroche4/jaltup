@@ -1,5 +1,7 @@
 {
   "Common": {
+    "ok": "Ok",
+    "cancel": "Annuler",
     "back": "Retour",
     "loading": "Chargement ...",
     "next": "Suiv.",
@@ -15,8 +17,18 @@
     "offers": "Offres",
     "companies": "Entreprises",
     "trainings": "Formations",
-    "login": "Se Connecter",
-    "subscribe": "S'inscrire"
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "subscribe": "S'inscrire",
+    "confirm": "Etes-vous sûr de vouloir vous déconnecter ?"
+  },
+  "Login": {
+    "title": "Se connecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Valider",
+    "cancel": "Retour",
+    "failedToLogin": "Echec de connection"
   },
   "Search": {
     "title1": "Résultats trouvés ({nb})",

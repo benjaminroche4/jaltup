@@ -2,10 +2,15 @@
 
 import { HomeIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
+import { useState } from 'react'
+import { Confirmation } from '@/components/confirmation'
 import { LocaleSwitcher } from '@/components/locale-switcher'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { ModeToggle } from '@/components/ui/mode-toggle'
+import { getUserAvatar, getUsername, isLogged, useLogout } from '@/lib/auth-service'
 import { cn } from '@/lib/utils'
 
 const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {
@@ -17,7 +22,7 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
         <HomeIcon className="size-[1.2rem] scale-100 transition-all" />
       </Link>
       <Link
-        href=""
+        href="/"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         {t('offers')}
@@ -40,6 +45,11 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
 
 export const NavBar = () => {
   const t = useTranslations('NavBar')
+  const locale = useLocale()
+  const router = useRouter()
+  const { logout } = useLogout()
+  const logged = isLogged()
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false)
 
   return (
     <header
@@ -48,14 +58,36 @@ export const NavBar = () => {
     >
       <div className="container flex max-w-screen-2xl flex-wrap items-center p-3 px-6">
         <MainMenu />
+
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex items-center gap-3">
-            <Link
-              href=""
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-              {t('login')}
-            </Link>
+            <Confirmation
+              title={t('confirm')}
+              open={isLogoutConfirmOpen}
+              setOpen={setIsLogoutConfirmOpen}
+              onOk={() => {
+                logout()
+                router.push('/')
+              }}
+            />
+            {logged ? (
+              <Link
+                href=""
+                onClick={() => {
+                  setIsLogoutConfirmOpen(true)
+                }}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                {t('logout')}
+              </Link>
+            ) : (
+              <Link
+                href={`/${locale}/login`}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                {t('login')}
+              </Link>
+            )}
             <Link
               href=""
               className="rounded-xl border bg-slate-200 p-2 text-sm font-medium text-muted-foreground transition-colors
@@ -65,6 +97,12 @@ export const NavBar = () => {
             </Link>
             <LocaleSwitcher />
             <ModeToggle />
+            {logged ? (
+              <Avatar>
+                <AvatarImage src={getUserAvatar()} />
+                <AvatarFallback>{(getUsername() ?? '?').charAt(0)}</AvatarFallback>
+              </Avatar>
+            ) : null}
           </nav>
         </div>
       </div>
