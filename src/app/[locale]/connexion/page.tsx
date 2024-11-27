@@ -39,7 +39,7 @@ const LoginContent = () => {
         },
         onSuccess: (data) => {
           setSession(data)
-          router.back()
+          router.replace('/')
         },
       },
     )
@@ -60,7 +60,7 @@ const LoginContent = () => {
             <div className="flex flex-col space-y-1.5">
               <span>{t('email')}</span>
               <Input
-                id="name"
+                id="email"
                 placeholder="jdoe@domain.com"
                 value={email}
                 onInput={(event: React.FormEvent<HTMLInputElement>) =>
