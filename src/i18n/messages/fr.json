@@ -33,6 +33,16 @@
     "cancel": "Retour",
     "failedToLogin": "Echec de connection"
   },
+  "Subscribe": {
+    "title": "Formulaire d'inscription",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "terms": "Accepter les termes et conditions",
+    "submit": "Valider",
+    "cancel": "Retour"
+  },
   "Search": {
     "title1": "Résultats trouvés ({nb})",
     "title2": "Trouver une alternance parmi {nb} annonces.",

@@ -33,6 +33,16 @@
     "cancel": "Cancel",
     "failedToLogin": "Failed to login"
   },
+  "Subscribe": {
+    "title": "Registration form",
+    "email": "Email",
+    "password": "Password",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "terms": "Accept terms and conditions",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
   "Search": {
     "title1": "Results found ({nb})",
     "title2": "Find an alternated training among {nb} ads.",
