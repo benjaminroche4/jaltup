@@ -3,10 +3,10 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import * as React from 'react'
 import { use } from 'react'
-import { OfferLayout } from '@/app/[locale]/offers/[publicId]/offer-layout'
+import { OfferLayout } from '@/app/[locale]/offer/[publicId]/[slug]/offer-layout'
 import { ErrorBoundary } from '@/components/error-boundary'
 
-type Params = Promise<{ publicId: string }>
+type Params = Promise<{ publicId: string; slug: string }>
 
 // eslint-disable-next-line import/no-default-export
 export default function Page(props: { params: Params }) {
