@@ -14,13 +14,14 @@
     "noResultFound": "Désolé, nous n'avons trouvé aucune offre correspondant à vos critères de recherche !"
   },
   "NavBar": {
-    "offers": "Offres",
+    "offers": "Offres d'alternance",
     "companies": "Entreprises",
     "trainings": "Formations",
     "login": "Se connecter",
     "logout": "Se déconnecter",
     "subscribe": "S'inscrire",
-    "confirm": "Etes-vous sûr de vouloir vous déconnecter ?"
+    "confirm": "Etes-vous sûr de vouloir vous déconnecter ?",
+    "training": "Formations"
   },
   "Login": {
     "title": "Se connecter",
