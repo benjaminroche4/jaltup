@@ -14,7 +14,7 @@ export default function Home() {
   const totalPages = useTotalPages()
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+    <main className="mx-auto max-w-7xl px-6 lg:px-8">
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
           <div className="flex flex-col items-center gap-4">

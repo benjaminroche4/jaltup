@@ -62,10 +62,7 @@ export const Search = () => {
       : t('title2', { nb: count })
 
   return (
-    <Card
-      className="relative flex size-full flex-col gap-6 p-6 transition duration-100 hover:shadow-md
-        dark:hover:shadow-gray-800"
-    >
+    <div className="relative flex size-full flex-col gap-6 bg-red-50 p-6 py-24">
       <CardTitle className="text-xl font-bold tracking-normal">{title}</CardTitle>
       <div className="flex flex-col gap-6 md:flex-row">
         <div className="md:basis-3/4">
@@ -83,6 +80,6 @@ export const Search = () => {
           />
         </div>
       </div>
-    </Card>
+    </div>
   )
 }
