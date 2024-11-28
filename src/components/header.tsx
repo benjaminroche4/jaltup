@@ -54,7 +54,7 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
   )
 }
 
-export const NavBar = () => {
+export const Header = () => {
   const t = useTranslations('NavBar')
   const locale = useLocale()
   const router = useRouter()
