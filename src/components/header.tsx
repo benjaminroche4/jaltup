@@ -103,7 +103,7 @@ export const Header = () => {
               </Link>
             ) : (
               <Button className="rounded-xl" variant="secondary" size="xl">
-                <Link href={`/${locale}/login`}>{t('login')}</Link>
+                <Link href={`/${locale}/connexion`}>{t('login')}</Link>
               </Button>
             )}
             <Button className="rounded-xl" size="xl">
@@ -193,7 +193,7 @@ export const Header = () => {
                 </Link>
               </div>
               <div>
-                <div className="mt-6 grid  grid-cols-2 space-x-6">
+                <div className="mt-6 grid grid-cols-2 space-x-6">
                   <Button className="rounded-xl" variant="secondary" size="xl">
                     <Link href={`/${locale}/login`}>{t('login')}</Link>
                   </Button>

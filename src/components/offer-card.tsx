@@ -82,7 +82,7 @@ export const OfferCard = ({ offer }: { offer: Offer }) => {
       className="relative flex h-full flex-col transition duration-100 hover:shadow-md dark:hover:shadow-gray-800"
     >
       <Link
-        href={`${locale}/offer/${offer.publicId}/${offer.slug}`}
+        href={`${locale}/offre/${offer.publicId}/${offer.slug}`}
         className="flex h-full flex-col"
       >
         <OfferCardHeader offer={offer} />
