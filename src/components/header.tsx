@@ -47,7 +47,7 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
             hover:text-primary"
         >
           <GraduationCap size={20} />
-          {t('training')}
+          {t('trainings')}
         </Link>
       </div>
     </nav>
@@ -107,7 +107,7 @@ export const Header = () => {
               </Button>
             )}
             <Button className="rounded-xl" size="xl">
-              <Link href="/">{t('subscribe')}</Link>
+              <Link href="/">{t('register')}</Link>
             </Button>
             {logged ? (
               <Avatar>
@@ -176,7 +176,7 @@ export const Header = () => {
                 >
                   <div className="flex items-center gap-3.5">
                     <GraduationCap size={20} />
-                    {t('training')}
+                    {t('trainings')}
                   </div>
                   <Badge variant="secondary">139</Badge>
                 </Link>
@@ -198,7 +198,7 @@ export const Header = () => {
                     <Link href={`/${locale}/login`}>{t('login')}</Link>
                   </Button>
                   <Button className="rounded-xl" size="xl">
-                    <Link href="/">{t('subscribe')}</Link>
+                    <Link href="/">{t('register')}</Link>
                   </Button>
                 </div>
               </div>

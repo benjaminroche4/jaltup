@@ -4,6 +4,7 @@ import { getLocale, getMessages } from 'next-intl/server'
 import * as React from 'react'
 import { Header } from '@/components/header'
 import '../globals.css'
+import {Footer} from "@/components/footer";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -25,6 +26,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Header />
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
