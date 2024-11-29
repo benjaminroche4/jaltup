@@ -21,7 +21,10 @@
     "logout": "Se déconnecter",
     "subscribe": "S'inscrire",
     "confirm": "Etes-vous sûr de vouloir vous déconnecter ?",
-    "training": "Formations"
+    "training": "Formations",
+    "contact": "Contactez-nous",
+    "personalData": "Données personnelles",
+    "legalNotice": "Mentions légales"
   },
   "Login": {
     "title": "Se connecter",

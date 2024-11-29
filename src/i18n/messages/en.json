@@ -14,13 +14,16 @@
     "noResultFound": "Sorry, we did not find any offers matching your search criteria!"
   },
   "NavBar": {
-    "offers": "Offers",
+    "offers": "Alternance opportunities",
     "companies": "Companies",
-    "trainings": "Trainings",
     "login": "Login",
     "logout": "Logout",
-    "subscribe": "Subscribe",
-    "confirm": "Are you sure you want to logout ?"
+    "register": "Sign-up",
+    "confirm": "Are you sure you want to logout ?",
+    "trainings": "Programs",
+    "contact": "Contact us",
+    "personalData": "Personal data",
+    "legalNotice": "Legal notice"
   },
   "Login": {
     "title": "Login",
