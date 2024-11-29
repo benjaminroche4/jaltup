@@ -81,7 +81,7 @@ export const NavBar = () => {
               </Link>
             ) : (
               <Link
-                href={`/${locale}/login`}
+                href={`/${locale}/connexion`}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
               >
                 {t('login')}
