@@ -37,11 +37,18 @@
     "title": "Formulaire d'inscription",
     "email": "E-mail",
     "password": "Mot de passe",
+    "confirmPassword": "Confirmation du mot de passe",
     "firstname": "Prénom",
     "lastname": "Nom",
     "terms": "Accepter les termes et conditions",
     "submit": "Valider",
-    "cancel": "Retour"
+    "cancel": "Retour",
+    "wrongEmail": "L'adresse E-mail est invalide",
+    "wrongPassword": "Le mot de passe est invalide, il doit contenir au moins 6 caractères avec au moins 2 caratères spéciaux et au moins 2 chiffres",
+    "wrongFirstName": "Le prénom est invalide",
+    "wrongLastName": "Le nom est invalide",
+    "wrongNotConfirmed": "Le mot de passe n'est pas confirmé",
+    "wrongNotApproved": "Les termes et conditions doivent être acceptés"
   },
   "Search": {
     "title1": "Résultats trouvés ({nb})",
