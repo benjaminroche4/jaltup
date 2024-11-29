@@ -5,6 +5,7 @@ import * as React from 'react'
 import { NavBar } from '@/components/nav-bar'
 import { ThemeProvider } from '@/components/theme-provider'
 import '../globals.css'
+import {Footer} from "@/components/footer";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -32,6 +33,7 @@ export default async function RootLayout({
           >
             <NavBar />
             {children}
+            <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
