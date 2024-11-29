@@ -14,16 +14,14 @@ export default function Home() {
   const totalPages = useTotalPages()
 
   return (
-    <main>
+    <main className="mx-auto max-w-7xl px-6 lg:px-8">
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
-          <main className="px-4 py-12 sm:px-12">
-            <div className="flex flex-col items-center gap-4">
-              <Search />
-              <OffersList />
-              {totalPages > 1 ? <Paginator showPreviousNext={true} /> : null}
-            </div>
-          </main>
+          <div className="flex flex-col items-center gap-4">
+            <Search />
+            <OffersList />
+            {totalPages > 1 ? <Paginator showPreviousNext={true} /> : null}
+          </div>
         </QueryClientProvider>
       </ErrorBoundary>
     </main>

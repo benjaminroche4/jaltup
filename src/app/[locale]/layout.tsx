@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import * as React from 'react'
-import { NavBar } from '@/components/nav-bar'
-import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from '@/components/header'
 import '../globals.css'
 
 export const metadata: Metadata = {
@@ -24,15 +23,8 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NavBar />
-            {children}
-          </ThemeProvider>
+          <Header />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>
