@@ -7,7 +7,6 @@ import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useState } from 'react'
 import { Confirmation } from '@/components/confirmation'
-import { LocaleSwitcher } from '@/components/locale-switcher'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { getUserAvatar, getUsername, isLogged, useLogout } from '@/lib/auth-service'
@@ -95,7 +94,6 @@ export const NavBar = () => {
             >
               {t('subscribe')}
             </Link>
-            <LocaleSwitcher />
             <ModeToggle />
             {logged ? (
               <Avatar>
