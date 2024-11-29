@@ -37,11 +37,18 @@
     "title": "Registration form",
     "email": "Email",
     "password": "Password",
+    "confirmPassword": "Password Confirmation",
     "firstname": "Firstname",
     "lastname": "Lastname",
     "terms": "Accept terms and conditions",
     "submit": "Submit",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "wrongEmail": "The email address is invalid",
+    "wrongPassword": "Password is invalid, must contain at least 5 characters",
+    "wrongFirstName": "The first name is invalid",
+    "wrongLastName": "The lastname is invalid",
+    "wrongNotConfirmed": "Password is not confirmed",
+    "wrongNotApproved": "Terms and conditions must be accepted"
   },
   "Search": {
     "title1": "Results found ({nb})",
