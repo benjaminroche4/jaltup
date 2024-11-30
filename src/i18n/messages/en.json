@@ -16,11 +16,11 @@
   "NavBar": {
     "offers": "Job offers",
     "companies": "Companies",
+    "trainings": "Programs",
     "login": "Login",
     "logout": "Logout",
     "register": "Sign-up",
     "confirm": "Are you sure you want to logout ?",
-    "trainings": "Programs",
     "contact": "Contact us",
     "personalData": "Personal data",
     "legalNotice": "Legal notice"

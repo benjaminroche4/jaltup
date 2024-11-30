@@ -22,7 +22,7 @@ const MainMenu = ({ className, ...props }: React.HTMLAttributes<HTMLElement>) =>
   return (
     <nav className={cn('my-2 flex items-center space-x-8', className)} {...props}>
       <Link href="/" className="mt-1 transition-colors">
-        <Image src={'logos/logo_black.svg'} alt={'Logo Jaltup'} width={'100'} height={'110'} />
+        <Image src={'/logos/logo_black.svg'} alt={'Logo Jaltup'} width={'100'} height={'110'} />
       </Link>
       <div className="hidden items-center space-x-8 lg:flex">
         <Link
@@ -128,7 +128,7 @@ export const Header = () => {
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Jaltup</span>
               <Image
-                src={'logos/logo_black.svg'}
+                src={'/logos/logo_black.svg'}
                 alt={'Logo Jaltup'}
                 width={'100'}
                 height={'110'}

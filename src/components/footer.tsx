@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Jaltup</span>
               <Image
-                src={'logos/logo_black.svg'}
+                src={'/logos/logo_black.svg'}
                 alt={'Logo Jaltup'}
                 width={'100'}
                 height={'110'}
