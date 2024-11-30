@@ -11,6 +11,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Spinner } from '@/components/ui/spinner'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { EntityConsole } from '@/lib/entity-console'
@@ -160,6 +167,31 @@ const Step1Content = ({
   )
 }
 
+const LevelSelector = ({
+  level,
+  setLevel,
+}: {
+  level: string | undefined
+  setLevel: (level: string) => void
+}) => (
+  <Select onValueChange={setLevel} defaultValue={level}>
+    <SelectTrigger className="w-[180px]">
+      <SelectValue />
+    </SelectTrigger>
+    <SelectContent id="level">
+      <SelectItem value="Sans diplôme">Sans diplôme</SelectItem>
+      <SelectItem value="BEP">BEP</SelectItem>
+      <SelectItem value="CAP">CAP</SelectItem>
+      <SelectItem value="Bac">Bac</SelectItem>
+      <SelectItem value="Bac+2">Bac+2</SelectItem>
+      <SelectItem value="Bac+3">Bac+3</SelectItem>
+      <SelectItem value="Bac+4">Bac+4</SelectItem>
+      <SelectItem value="Bac+5">Bac+5</SelectItem>
+      <SelectItem value="Bac+8">Bac+8</SelectItem>
+    </SelectContent>
+  </Select>
+)
+
 const Step2Content = () => {
   const t = useTranslations('Register')
 
@@ -187,15 +219,7 @@ const Step2Content = () => {
         </div>
         <div className="flex flex-col space-y-1.5">
           <span>{t('level')}</span>
-          <Input
-            id="level"
-            minLength={2}
-            maxLength={50}
-            value={level}
-            onInput={(event: React.FormEvent<HTMLInputElement>) =>
-              setLevel(event.currentTarget.value)
-            }
-          />
+          <LevelSelector level={level} setLevel={setLevel} />
         </div>
         <div className="flex flex-col space-y-1.5">
           <span>{t('city')}</span>
@@ -248,8 +272,8 @@ const SubscribeContent = () => {
       <CardContent>
         <Tabs defaultValue="account">
           <TabsList>
-            <TabsTrigger value="account">Account</TabsTrigger>
-            <TabsTrigger value="details">Details</TabsTrigger>
+            <TabsTrigger value="account">{t('account')}</TabsTrigger>
+            <TabsTrigger value="details">{t('details')}</TabsTrigger>
           </TabsList>
           <TabsContent value="account">
             <Step1Content
@@ -275,7 +299,7 @@ const SubscribeContent = () => {
         </div>
         {(isError && error) || validatorError ? (
           <div className="my-3 text-red-600">
-            {validatorError ?? `${t('failedToLogin')} : ${error?.message}`}
+            {validatorError ?? `${t('failedToRegister')} : ${error?.message}`}
           </div>
         ) : null}
       </CardContent>
