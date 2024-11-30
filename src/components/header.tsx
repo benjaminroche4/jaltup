@@ -148,7 +148,7 @@ export const Header = () => {
               )}
               {!logged ? (
                 <Link
-                  href={`/${locale}/subscribe`}
+                  href={`/${locale}/inscription`}
                   className="rounded-xl border bg-slate-200 p-2 text-sm font-medium text-muted-foreground transition-colors
                     hover:text-primary"
                 >
@@ -254,7 +254,7 @@ export const Header = () => {
                     )}
                     {!logged ? (
                       <Button className="rounded-xl" size="xl">
-                        <Link href={`/${locale}/subscribe`}>{t('register')}</Link>
+                        <Link href={`/${locale}/inscription`}>{t('register')}</Link>
                       </Button>
                     ) : null}
                   </div>

@@ -40,7 +40,7 @@ const useValidator = (
   confirmPassword: string,
   user: User,
 ): string | undefined => {
-  const t = useTranslations('Subscribe')
+  const t = useTranslations('Register')
 
   if (!emailValidator(user.email)) {
     return t('wrongEmail')
@@ -76,7 +76,7 @@ const Step1Content = ({
   confirmPassword: string
   setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
 }) => {
-  const t = useTranslations('Subscribe')
+  const t = useTranslations('Register')
 
   const email = useEmail()
   const setEmail = useSetEmail()
@@ -161,7 +161,7 @@ const Step1Content = ({
 }
 
 const Step2Content = () => {
-  const t = useTranslations('Subscribe')
+  const t = useTranslations('Register')
 
   const school = useSchool()
   const setSchool = useSetSchool()
@@ -215,7 +215,7 @@ const Step2Content = () => {
 }
 
 const SubscribeContent = () => {
-  const t = useTranslations('Subscribe')
+  const t = useTranslations('Register')
 
   const [approved, setApproved] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState('')
