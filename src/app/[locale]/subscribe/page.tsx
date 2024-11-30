@@ -12,53 +12,30 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
 import { Spinner } from '@/components/ui/spinner'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { EntityConsole } from '@/lib/entity-console'
+import { emailValidator, passwordValidator, stringValidator } from '@/lib/utils'
 import { User } from '@/model/user'
 import { useRegister } from '@/queries/register'
 import {
+  useCity,
   useEmail,
   useFirstName,
   useLastName,
+  useLevel,
   usePassword,
   useRegisterStore,
+  useSchool,
+  useSetCity,
   useSetEmail,
   useSetFirstName,
   useSetLastName,
+  useSetLevel,
   useSetPassword,
+  useSetSchool,
 } from '@/store/registerStore'
 
-const stringValidator = (str: string, min = 2, max = 50) => str.length >= min && str.length <= max
-
-const emailValidator = (str: string) => {
-  if (!stringValidator(str, 2, 50)) {
-    return false
-  }
-
-  return str
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    )
-}
-
-const passwordValidator = (str: string) => {
-  if (!stringValidator(str, 6, 20)) {
-    return false
-  }
-
-  const numbers = str.match(/[0-9]/g)
-  if (numbers === null || numbers.length < 2) {
-    return false
-  }
-
-  const specials = str.match(/[^0-9A-Za-z]/g)
-  if (specials === null || specials.length < 2) {
-    return false
-  }
-  return true
-}
-
-const useStep1Validator = (
+const useValidator = (
   approved: boolean,
   confirmPassword: string,
   user: User,
@@ -92,12 +69,15 @@ const useStep1Validator = (
   return undefined
 }
 
-const Step1Content = () => {
+const Step1Content = ({
+  confirmPassword,
+  setConfirmPassword,
+}: {
+  confirmPassword: string
+  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
+}) => {
   const t = useTranslations('Subscribe')
 
-  const [approved, setApproved] = useState(false)
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const router = useRouter()
   const email = useEmail()
   const setEmail = useSetEmail()
   const password = usePassword()
@@ -106,6 +86,140 @@ const Step1Content = () => {
   const setFirstname = useSetFirstName()
   const lastname = useLastName()
   const setLastname = useSetLastName()
+
+  return (
+    <form>
+      <div className="grid w-full items-center gap-4">
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('email')}</span>
+          <Input
+            id="email"
+            placeholder="jdoe@domain.com"
+            minLength={2}
+            maxLength={50}
+            value={email}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setEmail(event.currentTarget.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('password')}</span>
+          <PasswordInput
+            id="password"
+            placeholder="password"
+            minLength={2}
+            maxLength={20}
+            value={password}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setPassword(event.currentTarget.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('confirmPassword')}</span>
+          <PasswordInput
+            id="confirmPassword"
+            placeholder="confirmPassword"
+            minLength={2}
+            maxLength={20}
+            value={confirmPassword}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setConfirmPassword(event.currentTarget.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('firstname')}</span>
+          <Input
+            id="firstname"
+            placeholder="John"
+            minLength={2}
+            maxLength={50}
+            value={firstname}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setFirstname(event.currentTarget.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('lastname')}</span>
+          <Input
+            id="lastname"
+            placeholder="Doe"
+            minLength={2}
+            maxLength={50}
+            value={lastname}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setLastname(event.currentTarget.value)
+            }
+          />
+        </div>
+      </div>
+    </form>
+  )
+}
+
+const Step2Content = () => {
+  const t = useTranslations('Subscribe')
+
+  const school = useSchool()
+  const setSchool = useSetSchool()
+  const level = useLevel()
+  const setLevel = useSetLevel()
+  const city = useCity()
+  const setCity = useSetCity()
+
+  return (
+    <form>
+      <div className="grid w-full items-center gap-4">
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('school')}</span>
+          <Input
+            id="school"
+            minLength={2}
+            maxLength={50}
+            value={school}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setSchool(event.currentTarget.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('level')}</span>
+          <Input
+            id="level"
+            minLength={2}
+            maxLength={50}
+            value={level}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setLevel(event.currentTarget.value)
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
+          <span>{t('city')}</span>
+          <Input
+            id="city"
+            minLength={2}
+            maxLength={50}
+            value={city}
+            onInput={(event: React.FormEvent<HTMLInputElement>) =>
+              setCity(event.currentTarget.value)
+            }
+          />
+        </div>
+      </div>
+    </form>
+  )
+}
+
+const SubscribeContent = () => {
+  const t = useTranslations('Subscribe')
+
+  const [approved, setApproved] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const router = useRouter()
   const store = useRegisterStore()
   const { mutate, isLoading, isError, error } = useRegister()
 
@@ -124,7 +238,7 @@ const Step1Content = () => {
     router.back()
   }, [router])
 
-  const validatorError = useStep1Validator(approved, confirmPassword, store)
+  const validatorError = useValidator(approved, confirmPassword, store)
 
   return (
     <Card className="mx-auto my-20 w-[600px]">
@@ -132,87 +246,33 @@ const Step1Content = () => {
         <CardTitle>{t('title')}</CardTitle>
       </CardHeader>
       <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <span>{t('email')}</span>
-              <Input
-                id="email"
-                placeholder="jdoe@domain.com"
-                minLength={2}
-                maxLength={50}
-                value={email}
-                onInput={(event: React.FormEvent<HTMLInputElement>) =>
-                  setEmail(event.currentTarget.value)
-                }
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <span>{t('password')}</span>
-              <PasswordInput
-                id="password"
-                placeholder="password"
-                minLength={2}
-                maxLength={20}
-                value={password}
-                onInput={(event: React.FormEvent<HTMLInputElement>) =>
-                  setPassword(event.currentTarget.value)
-                }
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <span>{t('confirmPassword')}</span>
-              <PasswordInput
-                id="confirmPassword"
-                placeholder="confirmPassword"
-                minLength={2}
-                maxLength={20}
-                value={confirmPassword}
-                onInput={(event: React.FormEvent<HTMLInputElement>) =>
-                  setConfirmPassword(event.currentTarget.value)
-                }
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <span>{t('firstname')}</span>
-              <Input
-                id="firstname"
-                placeholder="John"
-                minLength={2}
-                maxLength={50}
-                value={firstname}
-                onInput={(event: React.FormEvent<HTMLInputElement>) =>
-                  setFirstname(event.currentTarget.value)
-                }
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <span>{t('lastname')}</span>
-              <Input
-                id="lastname"
-                placeholder="Doe"
-                minLength={2}
-                maxLength={50}
-                value={lastname}
-                onInput={(event: React.FormEvent<HTMLInputElement>) =>
-                  setLastname(event.currentTarget.value)
-                }
-              />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="terms"
-                  checked={approved}
-                  onCheckedChange={(checked: boolean) => {
-                    setApproved(checked)
-                  }}
-                />
-                <span className="leading-none">{t('terms')}</span>
-              </div>
-            </div>
+        <Tabs defaultValue="account">
+          <TabsList>
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <TabsTrigger value="details">Details</TabsTrigger>
+          </TabsList>
+          <TabsContent value="account">
+            <Step1Content
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
+            />
+          </TabsContent>
+          <TabsContent value="details">
+            <Step2Content />
+          </TabsContent>
+        </Tabs>
+        <div className="mt-6 flex flex-col">
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="terms"
+              checked={approved}
+              onCheckedChange={(checked: boolean) => {
+                setApproved(checked)
+              }}
+            />
+            <span className="leading-none">{t('terms')}</span>
           </div>
-        </form>
+        </div>
         {(isError && error) || validatorError ? (
           <div className="my-3 text-red-600">
             {validatorError ?? `${t('failedToLogin')} : ${error?.message}`}
@@ -239,7 +299,7 @@ export default function Page() {
     <main>
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
-          <Step1Content />
+          <SubscribeContent />
         </QueryClientProvider>
       </ErrorBoundary>
     </main>
