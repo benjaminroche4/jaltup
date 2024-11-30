@@ -33,7 +33,7 @@
     "cancel": "Retour",
     "failedToLogin": "Echec de connection"
   },
-  "Subscribe": {
+  "Register": {
     "title": "Formulaire d'inscription",
     "email": "E-mail",
     "password": "Mot de passe",
