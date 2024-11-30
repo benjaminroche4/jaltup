@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Star, TimerReset } from 'lucide-react'
+import { Clock, Star } from 'lucide-react'
 import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import * as React from 'react'
@@ -36,8 +36,8 @@ const OfferCardHeader = ({ offer }: { offer: Offer }) => {
           />
         </div>
       </div>
-      <div>
-        <CardTitle className="mt-3 text-xl font-bold tracking-normal">{offer.title}</CardTitle>
+      <div className="space-y-1.5">
+        <CardTitle className="mt-3 text-xl font-semibold tracking-normal">{offer.title}</CardTitle>
         <p className="text-sm text-gray-500 dark:text-gray-400">{offer.company.name}</p>
       </div>
     </CardHeader>
@@ -50,7 +50,6 @@ const OfferCardFooter = ({ offer }: { offer: Offer }) => {
   return (
     <CardFooter className="mt-auto flex justify-between">
       <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
-        <MapPin className="h-5 w-auto" />
         {offer.place.city.length > 10
           ? `${offer.place.city.substring(0, 10)}...`
           : offer.place.city}
@@ -59,9 +58,9 @@ const OfferCardFooter = ({ offer }: { offer: Offer }) => {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <div className="flex items-center gap-x-1 text-sm text-gray-500 dark:text-gray-400">
-              <TimerReset className="h-5 w-auto" />
-              {offer.dayLast} {t('Offer.daysLeft')}
+            <div className="flex items-center gap-x-1 rounded-full bg-gray-900 px-3 py-1.5 text-xs text-white">
+              <Clock className="h-5 w-auto fill-[#F9BF4B] stroke-gray-900"/>
+              {offer.dayLast}d left
             </div>
           </TooltipTrigger>
           <TooltipContent>
@@ -77,10 +76,7 @@ export const OfferCard = ({ offer }: { offer: Offer }) => {
   const locale = useLocale()
 
   return (
-    <Card
-      key={offer.publicId}
-      className="relative flex h-full flex-col transition duration-100 hover:shadow-md dark:hover:shadow-gray-800"
-    >
+    <Card key={offer.publicId} className="relative flex h-full flex-col border-none">
       <Link
         href={`${locale}/offre/${offer.publicId}/${offer.slug}`}
         className="flex h-full flex-col"
