@@ -24,7 +24,8 @@
     "training": "Formations",
     "contact": "Contactez-nous",
     "personalData": "Données personnelles",
-    "legalNotice": "Mentions légales"
+    "legalNotice": "Mentions légales",
+    "register": "S'inscrire"
   },
   "Login": {
     "title": "Se connecter",
