@@ -22,7 +22,7 @@ const register = async (registerUser: User) => {
   const json = await response.json()
 
   if (!response.ok) {
-    let message = 'Unknown error'
+    let message
     try {
       const error = ErrorReponse.parse(json)
       message = error.message

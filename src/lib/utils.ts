@@ -20,8 +20,8 @@ export const emailValidator = (str: string) => {
     )
 }
 
-export const passwordValidator = (str: string) => {
-  if (!stringValidator(str, 6, 20)) {
+export const passwordValidator = (str: string, min = 6, max = 30) => {
+  if (!stringValidator(str, min, max)) {
     return false
   }
 

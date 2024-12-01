@@ -7,7 +7,7 @@ import * as React from 'react'
 import { useCallback, useState } from 'react'
 import { ErrorBoundary } from '@/components/error-boundary'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Spinner } from '@/components/ui/spinner'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Stepper } from '@/components/ui/stepper'
 import { EntityConsole } from '@/lib/entity-console'
 import { emailValidator, passwordValidator, stringValidator } from '@/lib/utils'
 import { User } from '@/model/user'
@@ -42,11 +42,7 @@ import {
   useSetSchool,
 } from '@/store/registerStore'
 
-const useValidator = (
-  approved: boolean,
-  confirmPassword: string,
-  user: User,
-): string | undefined => {
+const useValidator = (confirmPassword: string, user: User): string | undefined => {
   const t = useTranslations('Register')
 
   if (!emailValidator(user.email)) {
@@ -57,6 +53,10 @@ const useValidator = (
     return t('wrongPassword')
   }
 
+  if (user.password !== confirmPassword) {
+    return t('wrongNotConfirmed')
+  }
+
   if (!stringValidator(user.firstName ?? '')) {
     return t('wrongFirstName')
   }
@@ -65,106 +65,7 @@ const useValidator = (
     return t('wrongLastName')
   }
 
-  if (user.password !== confirmPassword) {
-    return t('wrongNotConfirmed')
-  }
-
-  if (!approved) {
-    return t('wrongNotApproved')
-  }
-
   return undefined
-}
-
-const Step1Content = ({
-  confirmPassword,
-  setConfirmPassword,
-}: {
-  confirmPassword: string
-  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
-}) => {
-  const t = useTranslations('Register')
-
-  const email = useEmail()
-  const setEmail = useSetEmail()
-  const password = usePassword()
-  const setPassword = useSetPassword()
-  const firstname = useFirstName()
-  const setFirstname = useSetFirstName()
-  const lastname = useLastName()
-  const setLastname = useSetLastName()
-
-  return (
-    <form>
-      <div className="grid w-full items-center gap-4">
-        <div className="flex flex-col space-y-1.5">
-          <span>{t('email')}</span>
-          <Input
-            id="email"
-            placeholder="jdoe@domain.com"
-            minLength={2}
-            maxLength={50}
-            value={email}
-            onInput={(event: React.FormEvent<HTMLInputElement>) =>
-              setEmail(event.currentTarget.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col space-y-1.5">
-          <span>{t('password')}</span>
-          <PasswordInput
-            id="password"
-            placeholder="password"
-            minLength={2}
-            maxLength={20}
-            value={password}
-            onInput={(event: React.FormEvent<HTMLInputElement>) =>
-              setPassword(event.currentTarget.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col space-y-1.5">
-          <span>{t('confirmPassword')}</span>
-          <PasswordInput
-            id="confirmPassword"
-            placeholder="confirmPassword"
-            minLength={2}
-            maxLength={20}
-            value={confirmPassword}
-            onInput={(event: React.FormEvent<HTMLInputElement>) =>
-              setConfirmPassword(event.currentTarget.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col space-y-1.5">
-          <span>{t('firstname')}</span>
-          <Input
-            id="firstname"
-            placeholder="John"
-            minLength={2}
-            maxLength={50}
-            value={firstname}
-            onInput={(event: React.FormEvent<HTMLInputElement>) =>
-              setFirstname(event.currentTarget.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col space-y-1.5">
-          <span>{t('lastname')}</span>
-          <Input
-            id="lastname"
-            placeholder="Doe"
-            minLength={2}
-            maxLength={50}
-            value={lastname}
-            onInput={(event: React.FormEvent<HTMLInputElement>) =>
-              setLastname(event.currentTarget.value)
-            }
-          />
-        </div>
-      </div>
-    </form>
-  )
 }
 
 const LevelSelector = ({
@@ -191,6 +92,101 @@ const LevelSelector = ({
     </SelectContent>
   </Select>
 )
+
+const Step1Content = ({
+  confirmPassword,
+  setConfirmPassword,
+}: {
+  confirmPassword: string
+  setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
+}) => {
+  const t = useTranslations('Register')
+  const store = useRegisterStore()
+  const email = useEmail()
+  const setEmail = useSetEmail()
+  const password = usePassword()
+  const setPassword = useSetPassword()
+  const firstname = useFirstName()
+  const setFirstname = useSetFirstName()
+  const lastname = useLastName()
+  const setLastname = useSetLastName()
+  const validatorError = useValidator(confirmPassword, store)
+
+  return (
+    <div>
+      <form>
+        <div className="grid w-full items-center gap-4">
+          <div className="flex flex-col space-y-1.5">
+            <span>{t('email')}</span>
+            <Input
+              id="email"
+              placeholder="jdoe@domain.com"
+              minLength={2}
+              maxLength={50}
+              value={email}
+              onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                setEmail(event.currentTarget.value)
+              }
+            />
+          </div>
+          <div className="flex flex-col space-y-1.5">
+            <span>{t('password')}</span>
+            <PasswordInput
+              id="password"
+              placeholder="password"
+              minLength={2}
+              maxLength={30}
+              value={password}
+              onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                setPassword(event.currentTarget.value)
+              }
+            />
+          </div>
+          <div className="flex flex-col space-y-1.5">
+            <span>{t('confirmPassword')}</span>
+            <PasswordInput
+              id="confirmPassword"
+              placeholder="confirmPassword"
+              minLength={2}
+              maxLength={30}
+              value={confirmPassword}
+              onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                setConfirmPassword(event.currentTarget.value)
+              }
+            />
+          </div>
+          <div className="flex flex-col space-y-1.5">
+            <span>{t('firstname')}</span>
+            <Input
+              id="firstname"
+              placeholder="John"
+              minLength={2}
+              maxLength={50}
+              value={firstname}
+              onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                setFirstname(event.currentTarget.value)
+              }
+            />
+          </div>
+          <div className="flex flex-col space-y-1.5">
+            <span>{t('lastname')}</span>
+            <Input
+              id="lastname"
+              placeholder="Doe"
+              minLength={2}
+              maxLength={50}
+              value={lastname}
+              onInput={(event: React.FormEvent<HTMLInputElement>) =>
+                setLastname(event.currentTarget.value)
+              }
+            />
+          </div>
+        </div>
+      </form>
+      <div className="mt-4 h-12 text-red-600">{validatorError}</div>
+    </div>
+  )
+}
 
 const Step2Content = () => {
   const t = useTranslations('Register')
@@ -238,6 +234,29 @@ const Step2Content = () => {
   )
 }
 
+const Step3Content = ({
+  approved,
+  setApproved,
+}: {
+  approved: boolean
+  setApproved: React.Dispatch<React.SetStateAction<boolean>>
+}) => {
+  const t = useTranslations('Register')
+
+  return (
+    <div className="flex h-16 items-center space-x-2">
+      <Checkbox
+        id="terms"
+        checked={approved}
+        onCheckedChange={(checked: boolean) => {
+          setApproved(checked)
+        }}
+      />
+      <span className="leading-none">{t('terms')}</span>
+    </div>
+  )
+}
+
 const SubscribeContent = () => {
   const t = useTranslations('Register')
 
@@ -245,7 +264,9 @@ const SubscribeContent = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const router = useRouter()
   const store = useRegisterStore()
-  const { mutate, isLoading, isError, error } = useRegister()
+  const { mutate, isLoading, error } = useRegister()
+  const validatorError = useValidator(confirmPassword, store)
+  const [index, setIndex] = useState(1)
 
   const onOK = useCallback(() => {
     mutate(store, {
@@ -262,55 +283,91 @@ const SubscribeContent = () => {
     router.back()
   }, [router])
 
-  const validatorError = useValidator(approved, confirmPassword, store)
-
   return (
     <Card className="mx-auto my-20 w-[600px]">
       <CardHeader>
         <CardTitle>{t('title')}</CardTitle>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="account">
-          <TabsList>
-            <TabsTrigger value="account">{t('account')}</TabsTrigger>
-            <TabsTrigger value="details">{t('details')}</TabsTrigger>
-          </TabsList>
-          <TabsContent value="account">
+        <Stepper
+          id={''}
+          steps={[
+            {
+              title: t('step1'),
+            },
+            {
+              title: t('step2'),
+            },
+            {
+              title: t('step3'),
+            },
+          ]}
+          current={index}
+          className="my-3"
+        />
+        {index === 1 ? (
+          <div className="mt-5 flex flex-col gap-5">
             <Step1Content
               confirmPassword={confirmPassword}
               setConfirmPassword={setConfirmPassword}
             />
-          </TabsContent>
-          <TabsContent value="details">
-            <Step2Content />
-          </TabsContent>
-        </Tabs>
-        <div className="mt-6 flex flex-col">
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="terms"
-              checked={approved}
-              onCheckedChange={(checked: boolean) => {
-                setApproved(checked)
-              }}
-            />
-            <span className="leading-none">{t('terms')}</span>
+            <div className="my-2 flex flex-row justify-between gap-3">
+              <Button variant="outline" onClick={onCancel}>
+                {t('cancel')}
+              </Button>
+              <Button
+                disabled={validatorError !== undefined}
+                onClick={() => {
+                  setIndex(2)
+                }}
+              >
+                {t('next')}
+              </Button>
+            </div>
           </div>
-        </div>
-        {(isError && error) || validatorError ? (
-          <div className="my-3 text-red-600">
-            {validatorError ?? `${t('failedToRegister')} : ${error?.message}`}
+        ) : index === 2 ? (
+          <div className="mt-5 flex flex-col gap-5">
+            <Step2Content />
+            <div className="my-2 flex flex-row justify-between gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIndex(1)
+                }}
+              >
+                {t('prev')}
+              </Button>
+              <Button
+                onClick={() => {
+                  setIndex(3)
+                }}
+              >
+                {t('next')}
+              </Button>
+            </div>
+          </div>
+        ) : index == 3 ? (
+          <div className="mt-5 flex flex-col gap-5">
+            <Step3Content approved={approved} setApproved={setApproved} />
+            <div className="h-16 text-red-600">
+              {error ? `${t('failedToRegister')} : ${error.message}` : undefined}
+            </div>
+            <div className="my-2 flex flex-row justify-between gap-3">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setIndex(2)
+                }}
+              >
+                {t('prev')}
+              </Button>
+              <Button onClick={onOK} disabled={!approved}>
+                {isLoading ? <Spinner size="small" /> : t('submit')}
+              </Button>
+            </div>
           </div>
         ) : null}
       </CardContent>
-      <CardFooter className="flex flex-row justify-between gap-3">
-        <Button variant="outline" onClick={onOK} disabled={validatorError !== undefined}>
-          {isLoading ? <Spinner size="small" /> : t('submit')}
-        </Button>
-        <Button variant="outline" onClick={onCancel}>
-          {t('cancel')}
-        </Button>
-      </CardFooter>
     </Card>
   )
 }

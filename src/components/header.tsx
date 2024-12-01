@@ -147,13 +147,9 @@ export const Header = () => {
                 </Button>
               )}
               {!logged ? (
-                <Link
-                  href={`/${locale}/inscription`}
-                  className="rounded-xl border bg-slate-200 p-2 text-sm font-medium text-muted-foreground transition-colors
-                    hover:text-primary"
-                >
-                  {t('register')}
-                </Link>
+                <Button className="rounded-xl" size="xl">
+                  <Link href={`/${locale}/inscription`}>{t('register')}</Link>
+                </Button>
               ) : null}
               {logged ? <UserAvatar /> : null}
             </nav>
