@@ -19,12 +19,12 @@ const LoginContent = () => {
   const t = useTranslations('Login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [disabled, setSisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true)
   const { mutate, isLoading, isError, error } = useLogin()
   const router = useRouter()
 
   useEffect(() => {
-    setSisabled(email.length === 0 || password.length === 0)
+    setDisabled(email.length === 0 || password.length === 0)
   }, [email.length, password.length])
 
   const onOK = useCallback(() => {
@@ -39,7 +39,7 @@ const LoginContent = () => {
         },
         onSuccess: (data) => {
           setSession(data)
-          router.back()
+          router.replace('/')
         },
       },
     )
@@ -60,7 +60,8 @@ const LoginContent = () => {
             <div className="flex flex-col space-y-1.5">
               <span>{t('email')}</span>
               <Input
-                id="name"
+                id="email"
+                maxLength={50}
                 placeholder="jdoe@domain.com"
                 value={email}
                 onInput={(event: React.FormEvent<HTMLInputElement>) =>
@@ -72,6 +73,7 @@ const LoginContent = () => {
               <span>{t('password')}</span>
               <PasswordInput
                 id="password"
+                maxLength={30}
                 placeholder="password"
                 value={password}
                 onInput={(event: React.FormEvent<HTMLInputElement>) =>
