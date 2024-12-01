@@ -38,8 +38,6 @@ export const useRegisterStore = create<RegisterState & RegisterAction>((set) => 
       } else {
         state.study = {
           school,
-          level: '',
-          city: '',
         }
       }
       return state
@@ -50,9 +48,7 @@ export const useRegisterStore = create<RegisterState & RegisterAction>((set) => 
         state.study.level = level
       } else {
         state.study = {
-          school: '',
           level,
-          city: '',
         }
       }
       return state
@@ -63,8 +59,6 @@ export const useRegisterStore = create<RegisterState & RegisterAction>((set) => 
         state.study.city = city
       } else {
         state.study = {
-          school: '',
-          level: '',
           city,
         }
       }

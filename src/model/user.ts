@@ -11,9 +11,9 @@ export const UserSchema = z.object({
   profilePicture: z.string().optional(),
   study: z
     .object({
-      school: z.string(),
-      city: z.string(),
-      level: z.string(),
+      school: z.string().optional(),
+      city: z.string().optional(),
+      level: z.string().optional(),
     })
     .optional()
     .nullable(),
