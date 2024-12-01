@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
+import {PartyPopper} from "lucide-react";
 
 const MAX_DAYS_FOR_NEW = 5
 
@@ -17,7 +18,7 @@ export const NewBadge = ({ date }: { date: Date }) => {
   }, [date])
 
   if (isNew) {
-    return <Badge variant="outline">{t('Common.new')}</Badge>
+    return <Badge variant="secondary" className="rounded-lg  px-2.5 py-1.5 text-xs border border-gray-100 bg-secondary text-secondary-foreground gap-x-1.5"><PartyPopper className="h-4 w-auto"/>{t('Common.new')}</Badge>
   }
 
   return null

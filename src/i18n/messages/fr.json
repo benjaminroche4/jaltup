@@ -23,7 +23,8 @@
     "confirm": "Etes-vous sûr de vouloir vous déconnecter ?",
     "contact": "Contactez-nous",
     "personalData": "Données personnelles",
-    "legalNotice": "Mentions légales"
+    "legalNotice": "Mentions légales",
+    "register": "S'inscrire"
   },
   "Login": {
     "title": "Se connecter",
