@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import * as React from 'react'
+import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import '../globals.css'
-import {Footer} from "@/components/footer";
 
 export const metadata: Metadata = {
   title: 'Create Next App',
