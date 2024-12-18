@@ -25,7 +25,7 @@ const getOffers = async (params: GetOffersParams): Promise<OffersType> => {
     urlParams.push(`title=${encodeURIComponent(params.title.toLocaleLowerCase())}`)
   }
   if (params.place && params.place.length > 0) {
-    urlParams.push(`place=${encodeURIComponent(params.place.toLocaleLowerCase())}`)
+    urlParams.push(`place=${encodeURIComponent(params.place)}`)
   }
   if (zbPage) {
     urlParams.push(`page=${zbPage}`)

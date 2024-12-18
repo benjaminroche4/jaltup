@@ -4,7 +4,7 @@ export const CompanySchema = z.object({
   name: z.string(),
   verified: z.boolean(),
   offerNumber: z.number(),
-  websiteUrl: z.string().url().optional(),
+  websiteUrl: z.string().url().or(z.string().length(0)).optional(),
   logo: z.string().optional(),
 })
 
