@@ -35,14 +35,28 @@ const OfferCardHeader = ({ offer }: { offer: Offer }) => {
       </div>
       <div className="space-y-1.5 pt-2">
         <CardTitle className="mt-3 text-xl font-semibold tracking-normal">{offer.title}</CardTitle>
-        <p className="text-sm text-gray-500">{offer.company.name}</p>
+        <div className="flex items-center gap-x-1">
+          <p className="text-sm text-gray-500">{offer.company.name}</p>
+        </div>
+      </div>
+      <div className="relative pt-5">
+        <div className="flex items-center">
+          <div className="flex items-center gap-x-2">
+            <p className="block w-full rounded-lg bg-gray-50 px-1.5 py-2.5 text-xs tracking-wide text-gray-600">
+              #PHP
+            </p>
+            <p className="block w-full rounded-lg bg-gray-50 px-1.5 py-2.5 text-xs tracking-wide text-gray-600">
+              #AJAX
+            </p>
+          </div>
+        </div>
       </div>
       <div className="space-y-2 pt-10">
         <div className="flex justify-between">
           <p className="text-xs text-gray-500/90">Il y a {offer.dayLast} jours</p>
           <p className="text-xs text-gray-500/90">{offer.dayLast} jours restant</p>
         </div>
-        <Progress value="50" className="h-2 fill-yellow-500" />
+        <Progress value="50" className="h-2" />
       </div>
     </CardHeader>
   )
